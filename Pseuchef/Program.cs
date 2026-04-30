@@ -1,4 +1,5 @@
 namespace Pseuchef
+
 {
     internal static class Program
     {
