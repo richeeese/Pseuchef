@@ -7,10 +7,16 @@ namespace Pseuchef.Enums
     public enum FoodCategory
     {
         Produce,
-        MeatAndPoultry,
+        Meat,
+        Poultry,
+        Fish,
         Seafoood,
         Dairy,
+        Vegetables,
+        FatsAndOils,
+        Sugars,
         Grains,
+        Nuts,
         CannedGoods,
         Bakery,
         Beverage,

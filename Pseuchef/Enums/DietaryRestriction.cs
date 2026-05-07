@@ -10,8 +10,6 @@ namespace Pseuchef.Enums
         Vegan,
         Vegetarian,
         Pescatarian,
-        Halal,
-        Kosher,
         GlutenFree,
         DairyFree,
         NutFree,
