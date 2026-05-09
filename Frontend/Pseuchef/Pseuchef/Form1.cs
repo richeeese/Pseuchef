@@ -29,6 +29,9 @@ namespace Pseuchef
         // Tracks the currently active sidebar button
         private Guna2Button _activeButton = null;
 
+        // Tracks the row index when ⋮ is clicked
+        private int _actionRowIndex = -1;
+
         public Form1()
         {
             InitializeComponent();
@@ -47,8 +50,21 @@ namespace Pseuchef
             // Setup donut chart paint handler (registered once to avoid stacking)
             SetupDonutChart();
 
+            // Setup pantry tab
+            StylePantryTab();
+            LoadPantryTabData();
+            dgvPantryTab.CellPainting += dgvPantryTab_CellPainting;
+            dgvPantryTab.CellClick += dgvPantryTab_CellClick;
+            dgvPantryTab.CellMouseEnter += (s, ev) => dgvPantryTab.InvalidateCell(ev.ColumnIndex, ev.RowIndex);
+            dgvPantryTab.CellMouseLeave += (s, ev) => dgvPantryTab.InvalidateCell(ev.ColumnIndex, ev.RowIndex);
+
+            // Style context menu
+            cmsRowActions.BackColor = Color.White;
+            cmsRowActions.ForeColor = AppColors.Dark;
+            cmsRowActions.Font = new Font("Google Sans", 9);
+            mnuDelete.ForeColor = AppColors.Red;
+
             // Paint neobrutalist offset shadows behind the 3 dashboard section panels
-            // Shadow is drawn on tlpDashboard so it renders beneath the Guna2Panels
             tlpDashboard.Paint += (s, ev) =>
             {
                 DrawPanelShadow(ev.Graphics, pnlPantrySection);
@@ -56,6 +72,28 @@ namespace Pseuchef
                 DrawPanelShadow(ev.Graphics, pnlRecipeSection);
             };
             tlpDashboard.Invalidate();
+
+            // Paint shadow and border behind the pantry tab table
+            tlpPantryTab.Paint += (s, ev) =>
+            {
+                DrawPanelShadow(ev.Graphics, dgvPantryTab);
+                using var pen = new Pen(AppColors.Dark, 2);
+                ev.Graphics.DrawRectangle(pen,
+                    dgvPantryTab.Left,
+                    dgvPantryTab.Top,
+                    dgvPantryTab.Width,
+                    dgvPantryTab.Height);
+            };
+            tlpPantryTab.Invalidate();
+
+            txtPantrySearch.TextChanged += (s, ev) =>
+            {
+                // Update placeholder visibility hint
+                txtPantrySearch.PlaceholderText = txtPantrySearch.Text.Length > 0
+                    ? ""
+                    : "Search items...";
+            };
+
         }
 
         protected override void OnShown(EventArgs e)
@@ -163,7 +201,6 @@ namespace Pseuchef
             var g = e.Graphics;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            // Calculate donut size to fit the PictureBox
             int size = Math.Min(pnlDonutChart.Width / 2, pnlDonutChart.Height) - 10;
             if (size <= 0) return;
 
@@ -178,9 +215,8 @@ namespace Pseuchef
                 size - thickness
             );
 
-            float startAngle = -90f; // Start from top of circle
+            float startAngle = -90f;
 
-            // Draw each segment as an arc with colored pen
             float redAngle = 360f * useNow / total;
             using (var pen = new Pen(AppColors.Red, thickness))
                 g.DrawArc(pen, innerRect, startAngle, redAngle);
@@ -195,7 +231,6 @@ namespace Pseuchef
             using (var pen = new Pen(AppColors.Green, thickness))
                 g.DrawArc(pen, innerRect, startAngle, greenAngle);
 
-            // Center label showing total item count
             using var centerFont = new Font("Google Sans", size / 4f, FontStyle.Bold);
             using var centerBrush = new SolidBrush(AppColors.Dark);
             var format = new StringFormat
@@ -206,7 +241,6 @@ namespace Pseuchef
             g.DrawString(total.ToString(), centerFont, centerBrush,
                 new RectangleF(x, y, size, size), format);
 
-            // Draw legend to the right of the donut
             int legendX = x + size + 16;
             int legendY = y + (size / 2) - 20;
             int rowH = 22;
@@ -217,7 +251,7 @@ namespace Pseuchef
         }
 
         /// <summary>
-        /// Draws a single color square + label row for the donut chart legend.
+        /// Draws a single legend row: colored square + label text.
         /// </summary>
         private void DrawLegendRow(Graphics g, int x, int y, Color color, string text)
         {
@@ -239,8 +273,7 @@ namespace Pseuchef
         ///
         /// [MOCK] TODO (Ritzy): Replace alert list with:
         ///   var alerts = pantryService.GetExpiringItems()
-        ///       .Select(i => (i.Name, i.DaysUntilExpiry))
-        ///       .ToList();
+        ///       .Select(i => (i.Name, i.DaysUntilExpiry)).ToList();
         /// </summary>
         private void LoadMockAlerts()
         {
@@ -258,7 +291,6 @@ namespace Pseuchef
                 ("Chicken Tracker", 2),
             };
 
-            // Sort by urgency: closest to expiry appears first
             alerts = alerts.OrderBy(a => a.days).ToList();
 
             flpAlerts.Controls.Clear();
@@ -272,7 +304,6 @@ namespace Pseuchef
         /// </summary>
         private Panel CreateAlertCard(string itemName, int daysLeft)
         {
-            // Determine color and label based on days remaining
             Color badgeColor;
             string urgencyText;
 
@@ -315,7 +346,6 @@ namespace Pseuchef
                 AutoSize = false
             };
 
-            // Yellow buttons get dark text for contrast; red/green get off-white
             var btnUseNow = new Guna2Button
             {
                 Text = "Use",
@@ -327,19 +357,16 @@ namespace Pseuchef
                 Font = new Font("Google Sans", 8, FontStyle.Bold)
             };
 
-            // Neobrutalist 3px solid border
             container.Paint += (s, e) =>
             {
                 using var pen = new Pen(AppColors.Dark, 3);
                 e.Graphics.DrawRectangle(pen, 0, 0, container.Width - 1, container.Height - 1);
             };
 
-            // accent added last so Dock = Left doesn't displace other controls
             container.Controls.Add(lblName);
             container.Controls.Add(lblUrgency);
             container.Controls.Add(btnUseNow);
-            container.Controls.Add(accent);
-
+            container.Controls.Add(accent); // accent last so Dock = Left doesn't displace others
             return container;
         }
 
@@ -374,12 +401,10 @@ namespace Pseuchef
         /// <summary>
         /// Builds a single recipe card with image placeholder, metadata,
         /// ingredient match badge, and Cook Now button.
-        /// Match badge: Green = full match, Yellow = partial, Red = few matches.
         /// </summary>
         private Panel CreateRecipeCard(string recipeName, string duration,
                                        string servings, int matchCount, int totalIngredients)
         {
-            // 3 cards share the available width with gaps accounted for
             int cardWidth = (flpRecipeCards.ClientSize.Width - 32) / 3;
 
             var card = new Panel
@@ -390,7 +415,7 @@ namespace Pseuchef
                 BackColor = Color.White
             };
 
-            // Top half: image area — TODO (Regina): replace lblIcon with real recipe image
+            // Top half: image area — TODO (Regina): replace with real recipe image
             var imgPlaceholder = new Panel
             {
                 Width = cardWidth,
@@ -430,7 +455,6 @@ namespace Pseuchef
                 AutoSize = false
             };
 
-            // Badge color reflects pantry ingredient match ratio
             Color matchColor = matchCount == totalIngredients ? AppColors.Green
                              : matchCount >= totalIngredients / 2 ? AppColors.Yellow
                              : AppColors.Red;
@@ -460,27 +484,23 @@ namespace Pseuchef
                 Font = new Font("Google Sans", 8, FontStyle.Bold)
             };
 
-            // Neobrutalist card border
             card.Paint += (s, e) =>
             {
                 using var pen = new Pen(AppColors.Dark, 2);
                 e.Graphics.DrawRectangle(pen, 1, 1, card.Width - 2, card.Height - 3);
             };
 
-            // Image area bottom border acts as a section divider
             imgPlaceholder.Paint += (s, e) =>
             {
                 using var pen = new Pen(AppColors.Dark, 2);
                 e.Graphics.DrawRectangle(pen, 1, 1, card.Width - 2, card.Height - 2);
             };
 
-            // imgPlaceholder added last so it renders on top of card border
             card.Controls.Add(lblName);
             card.Controls.Add(lblMeta);
             card.Controls.Add(lblMatch);
             card.Controls.Add(btnCook);
-            card.Controls.Add(imgPlaceholder);
-
+            card.Controls.Add(imgPlaceholder); // added last so it renders on top
             return card;
         }
 
@@ -506,12 +526,232 @@ namespace Pseuchef
         }
 
         // ============================================================
-        // UNUSED DESIGNER-GENERATED STUBS
+        // PANTRY TAB
+        // ============================================================
+
+        /// <summary>
+        /// Styles the full pantry tab DataGridView.
+        /// Called from Form1_Load.
+        /// </summary>
+        private void StylePantryTab()
+        {
+            dgvPantryTab.ReadOnly = true; // prevent direct cell editing
+            dgvPantryTab.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvPantryTab.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvPantryTab.GridColor = Color.FromArgb(220, 220, 220);
+
+            // Header
+            dgvPantryTab.EnableHeadersVisualStyles = false;
+            dgvPantryTab.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dgvPantryTab.ColumnHeadersDefaultCellStyle.ForeColor = AppColors.Dark;
+            dgvPantryTab.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.White;
+            dgvPantryTab.ColumnHeadersDefaultCellStyle.Font = new Font("Google Sans", 9, FontStyle.Bold);
+            dgvPantryTab.ColumnHeadersDefaultCellStyle.Padding = new Padding(8, 0, 0, 0);
+            dgvPantryTab.ColumnHeadersHeight = 40;
+
+            // Rows
+            dgvPantryTab.DefaultCellStyle.Font = new Font("Google Sans", 9);
+            dgvPantryTab.DefaultCellStyle.ForeColor = AppColors.Dark;
+            dgvPantryTab.DefaultCellStyle.BackColor = Color.White;
+            dgvPantryTab.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 235);
+            dgvPantryTab.DefaultCellStyle.SelectionForeColor = AppColors.Dark;
+            dgvPantryTab.DefaultCellStyle.Padding = new Padding(8, 0, 0, 0);
+            dgvPantryTab.RowsDefaultCellStyle.BackColor = Color.White;
+            dgvPantryTab.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            dgvPantryTab.RowTemplate.Height = 40;
+            dgvPantryTab.RowHeadersVisible = false;
+            dgvPantryTab.BackgroundColor = Color.White;
+
+            // Actions column — flat, centered
+            dgvPantryTab.Columns["colActions"].DefaultCellStyle.Font = new Font("Google Sans", 11);
+            dgvPantryTab.Columns["colActions"].DefaultCellStyle.ForeColor = AppColors.Dark;
+            dgvPantryTab.Columns["colActions"].DefaultCellStyle.BackColor = Color.White;
+            dgvPantryTab.Columns["colActions"].DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 235);
+            dgvPantryTab.Columns["colActions"].DefaultCellStyle.SelectionForeColor = AppColors.Dark;
+            dgvPantryTab.Columns["colActions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvPantryTab.Columns["colActions"].DefaultCellStyle.Padding = new Padding(0);
+
+            txtPantrySearch.FocusedState.BorderColor = AppColors.Green;
+            txtPantrySearch.BorderColor = AppColors.Dark;
+            txtPantrySearch.BorderThickness = 2;
+        }
+        private void LoadPantryTabData()
+        {
+            dgvPantryTab.Rows.Clear();
+
+            // [MOCK] Hardcoded pantry items
+            var items = new List<(string name, string category, string qty, string expiry, int daysLeft)>
+            {
+                ("Chicken Thighs", "Meat",    "1 kg",   DateTime.Today.AddDays(10).ToString("yyyy-MM-dd"), 10),
+                ("Heavy Cream",    "Dairy",   "200 ml", DateTime.Today.AddDays(2).ToString("yyyy-MM-dd"),   2),
+                ("Asparagus",      "Veggies", "10 pcs", DateTime.Today.AddDays(0).ToString("yyyy-MM-dd"),   0),
+                ("Garlic",         "Veggies", "1 bulb", DateTime.Today.AddDays(14).ToString("yyyy-MM-dd"), 14),
+                ("Olive Oil",      "Pantry",  "500 ml", DateTime.Today.AddDays(60).ToString("yyyy-MM-dd"), 60),
+                ("Greek Yogurt",   "Dairy",   "200 g",  DateTime.Today.AddDays(3).ToString("yyyy-MM-dd"),   3),
+            };
+
+            foreach (var (name, category, qty, expiry, daysLeft) in items)
+            {
+                string status = daysLeft <= 1 ? "🔴 Use Now"
+                              : daysLeft <= 3 ? "🟡 Expiring Soon"
+                              : "🟢 Fresh";
+                dgvPantryTab.Rows.Add(name, category, qty, expiry, status, "⋮");
+            }
+        }
+
+        /// <summary>
+        /// Custom cell painting for the pantry tab:
+        /// - ⋮ column: flat text, orange on hover
+        /// - Status column: colored badge pill
+        /// </summary>
+        private void dgvPantryTab_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            // ── ⋮ Actions column — paint as plain text with hover highlight ──
+            if (e.ColumnIndex == dgvPantryTab.Columns["colActions"].Index)
+            {
+                bool isHovered = dgvPantryTab.CurrentCell != null &&
+                                 dgvPantryTab.CurrentCell.RowIndex == e.RowIndex &&
+                                 dgvPantryTab.CurrentCell.ColumnIndex == e.ColumnIndex;
+
+                Color bgColor = isHovered ? Color.FromArgb(240, 240, 235) : Color.White;
+                Color dotColor = isHovered ? AppColors.Orange : AppColors.Dark;
+
+                using (var bgBrush = new SolidBrush(bgColor))
+                    e.Graphics.FillRectangle(bgBrush, e.CellBounds);
+
+                using (var textBrush = new SolidBrush(dotColor))
+                using (var font = new Font("Google Sans", 13, FontStyle.Bold))
+                {
+                    var format = new StringFormat
+                    {
+                        Alignment = StringAlignment.Center,
+                        LineAlignment = StringAlignment.Center
+                    };
+                    e.Graphics.DrawString("⋮", font, textBrush, e.CellBounds, format);
+                }
+
+                e.Handled = true;
+                return;
+            }
+
+            // ── Status column — paint as colored badge pill ──
+            if (e.ColumnIndex != dgvPantryTab.Columns["colStatus"].Index) return;
+
+            e.PaintBackground(e.ClipBounds, true);
+            if (e.Value == null) return;
+
+            string status = e.Value.ToString();
+
+            Color badgeColor;
+            Color textColor;
+
+            if (status.Contains("Use Now")) { badgeColor = AppColors.Red; textColor = AppColors.OffWhite; }
+            else if (status.Contains("Expiring")) { badgeColor = AppColors.Yellow; textColor = AppColors.Dark; }
+            else { badgeColor = AppColors.Green; textColor = AppColors.OffWhite; }
+
+            var badgeRect = new Rectangle(
+                e.CellBounds.X + 6,
+                e.CellBounds.Y + 8,
+                e.CellBounds.Width - 12,
+                e.CellBounds.Height - 16
+            );
+
+            using var fillBrush = new SolidBrush(badgeColor);
+            e.Graphics.FillRectangle(fillBrush, badgeRect);
+
+            using var badgeTextBrush = new SolidBrush(textColor);
+            using var badgeFont = new Font("Google Sans", 8, FontStyle.Bold);
+            var fmt = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            e.Graphics.DrawString(
+                status.Replace("🔴 ", "").Replace("🟡 ", "").Replace("🟢 ", ""),
+                badgeFont, badgeTextBrush, badgeRect, fmt);
+
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Handles ⋮ button click — shows context menu below the clicked cell.
+        /// </summary>
+        private void dgvPantryTab_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            if (e.ColumnIndex != dgvPantryTab.Columns["colActions"].Index) return;
+
+            _actionRowIndex = e.RowIndex;
+
+            var cellRect = dgvPantryTab.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+            var menuPos = dgvPantryTab.PointToScreen(new Point(cellRect.Left, cellRect.Bottom));
+            cmsRowActions.Show(menuPos);
+        }
+
+        /// <summary>
+        /// Edit menu item — placeholder until Ritzy wires up the edit form.
+        /// TODO (Ritzy): Replace MessageBox with real edit dialog/form.
+        /// </summary>
+        private void mnuEdit_Click(object sender, EventArgs e)
+        {
+            if (_actionRowIndex < 0) return;
+            string itemName = dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value.ToString();
+            MessageBox.Show($"Edit: {itemName}\n\nTODO: Open edit dialog.",
+                "Edit Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Delete menu item — confirms then removes the row from the grid.
+        /// TODO (Ritzy): Also call pantryService.DeleteItem(id) here.
+        /// </summary>
+        private void mnuDelete_Click(object sender, EventArgs e)
+        {
+            if (_actionRowIndex < 0) return;
+
+            string itemName = dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value.ToString();
+            var confirm = MessageBox.Show(
+                $"Remove \"{itemName}\" from your pantry?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirm == DialogResult.Yes)
+            {
+                dgvPantryTab.Rows.RemoveAt(_actionRowIndex);
+                _actionRowIndex = -1;
+            }
+        }
+
+        // ============================================================
+        // DESIGNER-GENERATED STUBS
         // Kept to prevent designer from throwing missing method errors
         // ============================================================
         private void guna2Panel1_Paint(object sender, PaintEventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }
         private void dgvPantry_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void lblDashboardTitle_Click(object sender, EventArgs e) { }
+
+        private void txtPantrySearch_TextChanged(object sender, EventArgs e)
+        {
+            string query = txtPantrySearch.Text.Trim().ToLower();
+
+            dgvPantryTab.ClearSelection();
+
+            foreach (DataGridViewRow row in dgvPantryTab.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string itemName = row.Cells["colItemName"].Value?.ToString().ToLower() ?? "";
+                string category = row.Cells["colCategory"].Value?.ToString().ToLower() ?? "";
+
+                row.Visible = string.IsNullOrEmpty(query)
+                           || itemName.Contains(query)
+                           || category.Contains(query);
+            }
+
+        }
     }
 }
