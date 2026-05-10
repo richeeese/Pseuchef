@@ -13,7 +13,7 @@ namespace Pseuchef.Services.Strategies
             if (items == null || !items.Any())
                 return 0;
 
-            return items.Sum(item => item.CalorieCount);
+            return items.Sum(item => item.calorieCount);
         }
 
         public string GetDescription()

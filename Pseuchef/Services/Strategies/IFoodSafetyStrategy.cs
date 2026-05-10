@@ -29,7 +29,7 @@ namespace Pseuchef.Services.Strategies
                 return false;
 
             return !excludedIngredients.Any(ex => 
-                ex.Equals(item.ItemName, StringComparison.OrdinalIgnoreCase));
+                ex.Equals(item.itemName, StringComparison.OrdinalIgnoreCase));
         }
 
         public string GetDescription()

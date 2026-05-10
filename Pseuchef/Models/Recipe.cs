@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pseuchef.Services;
 
 namespace Pseuchef.Models
 {
     public class Recipe
     {
         public string recipeTitle { get; private set; }
-        public List<string> ingredientsNeeded { get; private set; }
+        public List<RecipeIngredient> ingredientsNeeded { get; private set; }
         public double prepTime { get; private set; }
+        public string imageUrl { get; private set; }
 
-        public Recipe(string title, List<string> ingredients, double time)
+        /// <summary>
+        /// Creates a new recipe with a list of ingredients.
+        /// </summary>
+        /// <param name="title">The recipe title</param>
+        /// <param name="ingredients">List of RecipeIngredient objects</param>
+        /// <param name="time">Preparation time in minutes</param>
+        /// <param name="imageUrl">URL to the recipe dish image</param>
+        public Recipe(string title, List<RecipeIngredient> ingredients, double time, string imageUrl = "")
         {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("Recipe title cannot be empty", nameof(title));
@@ -19,15 +28,18 @@ namespace Pseuchef.Models
                 throw new ArgumentException("Prep time cannot be negative", nameof(time));
 
             recipeTitle = title;
-            ingredientsNeeded = ingredients ?? new List<string>();
+            ingredientsNeeded = ingredients ?? new List<RecipeIngredient>();
             prepTime = time;
+            this.imageUrl = imageUrl ?? "";
         }
 
         public string GetTitle() => recipeTitle;
 
-        public IReadOnlyList<string> GetIngredients() => ingredientsNeeded.AsReadOnly();
+        public IReadOnlyList<RecipeIngredient> GetIngredients() => ingredientsNeeded.AsReadOnly();
 
         public double GetPrepTime() => prepTime;
+
+        public string GetImageUrl() => imageUrl;
 
         public int GetIngredientCount() => ingredientsNeeded.Count;
 
@@ -37,7 +49,7 @@ namespace Pseuchef.Models
                 return false;
 
             return ingredientsNeeded.Any(ing => 
-                ing.Equals(ingredient, StringComparison.OrdinalIgnoreCase));
+                ing.ingredientName.Equals(ingredient, StringComparison.OrdinalIgnoreCase));
         }
 
         public string DisplayRecipe()
@@ -46,6 +58,10 @@ namespace Pseuchef.Models
             recipeDisplay.AppendLine("========================================");
             recipeDisplay.AppendLine($"Recipe: {recipeTitle}");
             recipeDisplay.AppendLine("========================================");
+
+            if (!string.IsNullOrEmpty(imageUrl))
+                recipeDisplay.AppendLine($"Image: {imageUrl}");
+
             recipeDisplay.AppendLine($"Preparation Time: {prepTime} minutes");
             recipeDisplay.AppendLine($"Number of Ingredients: {GetIngredientCount()}");
 
@@ -55,7 +71,9 @@ namespace Pseuchef.Models
                 recipeDisplay.AppendLine("Ingredients:");
                 for (int i = 0; i < ingredientsNeeded.Count; i++)
                 {
-                    recipeDisplay.AppendLine($"  {i + 1}. {ingredientsNeeded[i]}");
+                    var ingredient = ingredientsNeeded[i];
+                    recipeDisplay.AppendLine($"  {i + 1}. {ingredient.ingredientName}");
+                    recipeDisplay.AppendLine($"     Used: {ingredient.usedCount}, Missed: {ingredient.missedCount}");
                 }
             }
             else
@@ -76,6 +94,20 @@ namespace Pseuchef.Models
         public override string ToString()
         {
             return $"{recipeTitle} ({GetIngredientCount()} ingredients, {prepTime} min)";
+        }
+
+        /// <summary>
+        /// Generates a shopping list of ingredients needed for this recipe that are not in the virtual fridge.
+        /// </summary>
+        /// <param name="virtualFridge">The virtual fridge inventory to check against</param>
+        /// <returns>A list of FoodItems that are needed but not in the fridge</returns>
+        public List<FoodItem> GenerateShoppingList(VirtualFridge virtualFridge)
+        {
+            if (virtualFridge == null)
+                throw new ArgumentNullException(nameof(virtualFridge), "Virtual fridge cannot be null");
+
+            var shoppingListManager = new ShoppingListManager();
+            return shoppingListManager.GenerateList(this, virtualFridge);
         }
     }
 }
