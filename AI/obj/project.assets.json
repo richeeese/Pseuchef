@@ -35,11 +35,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\AI\\Pseuchef.AI.csproj",
+      "projectUniqueName": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\AI\\Pseuchef.AI.csproj",
       "projectName": "Pseuchef.AI",
-      "projectPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\AI\\Pseuchef.AI.csproj",
+      "projectPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\AI\\Pseuchef.AI.csproj",
       "packagesPath": "C:\\Users\\Mhalik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\AI\\obj\\",
+      "outputPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\AI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Mhalik\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -57,8 +57,8 @@
           "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Pseuchef.Backend.csproj": {
-              "projectPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Pseuchef.Backend.csproj"
+            "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Backend\\Pseuchef.Backend.csproj": {
+              "projectPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Backend\\Pseuchef.Backend.csproj"
             }
           }
         }
@@ -115,5 +115,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Mhalik\\Projects\\Pseuchef\\AI\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
+    }
+  ]
 }

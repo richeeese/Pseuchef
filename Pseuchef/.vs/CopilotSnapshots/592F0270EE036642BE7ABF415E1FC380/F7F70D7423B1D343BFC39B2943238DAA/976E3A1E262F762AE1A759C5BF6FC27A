@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using Pseuchef.Models;
+
+namespace Pseuchef.Interfaces
+{
+    /// <summary>
+    /// Strategy interface for filtering food items based on different criteria.
+    /// </summary>
+    public interface IFoodItemFilterStrategy
+    {
+        /// <summary>
+        /// Filters a list of food items based on the strategy's criteria.
+        /// </summary>
+        /// <param name="items">The list of food items to filter</param>
+        /// <returns>A filtered list of food items</returns>
+        List<FoodItem> Filter(List<FoodItem> items);
+
+        /// <summary>
+        /// Gets a description of what this filter does.
+        /// </summary>
+        string GetDescription();
+    }
+}

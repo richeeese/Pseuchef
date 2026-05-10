@@ -1,37 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\",
+  "WorkspaceRootPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|C:\\Users\\Mhalik\\Projects\\Pseuchef1\\frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|c:\\users\\mhalik\\projects\\pseuchef\\frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|solutionrelative:frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|c:\\users\\mhalik\\projects\\pseuchef1\\frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|c:\\users\\mhalik\\projects\\pseuchef\\frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|solutionrelative:frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\mhalik\\projects\\pseuchef1\\backend\\interfaces\\irecipeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\mhalik\\projects\\pseuchef\\backend\\interfaces\\irecipeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|solutionrelative:backend\\interfaces\\irecipeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\mhalik\\projects\\pseuchef1\\backend\\interfaces\\irecipefilterstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\mhalik\\projects\\pseuchef\\backend\\interfaces\\irecipefilterstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|solutionrelative:backend\\interfaces\\irecipefilterstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\mhalik\\projects\\pseuchef1\\backend\\services\\recipefetcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\mhalik\\projects\\pseuchef\\backend\\services\\recipefetcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|solutionrelative:backend\\services\\recipefetcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\mhalik\\projects\\pseuchef1\\backend\\models\\perishableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\mhalik\\projects\\pseuchef\\backend\\models\\perishableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|solutionrelative:backend\\models\\perishableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|c:\\users\\mhalik\\projects\\pseuchef1\\frontend\\pseuchef.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|c:\\users\\mhalik\\projects\\pseuchef\\frontend\\pseuchef.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|solutionrelative:frontend\\pseuchef.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|C:\\Users\\Mhalik\\Projects\\Pseuchef1\\frontend\\ui\\additemform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|C:\\Users\\Mhalik\\Projects\\Pseuchef\\frontend\\ui\\additemform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|solutionrelative:frontend\\ui\\additemform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -52,102 +52,97 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\UI\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Frontend\\UI\\Form1.cs",
               "RelativeDocumentMoniker": "Frontend\\UI\\Form1.cs",
-              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\UI\\Form1.cs",
+              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Frontend\\UI\\Form1.cs",
               "RelativeToolTip": "Frontend\\UI\\Form1.cs",
               "ViewState": "AgIAAEQGAAAAAAAAAAAwwE4GAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T17:11:53.6Z",
+              "WhenOpened": "2026-05-10T21:25:44.218Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "IRecipeService.cs",
-              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Interfaces\\IRecipeService.cs",
+              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Backend\\Interfaces\\IRecipeService.cs",
               "RelativeDocumentMoniker": "Backend\\Interfaces\\IRecipeService.cs",
-              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Interfaces\\IRecipeService.cs",
+              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Backend\\Interfaces\\IRecipeService.cs",
               "RelativeToolTip": "Backend\\Interfaces\\IRecipeService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T16:50:22.683Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T21:25:44.288Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "IRecipeFilterStrategy.cs",
-              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Interfaces\\IRecipeFilterStrategy.cs",
+              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Backend\\Interfaces\\IRecipeFilterStrategy.cs",
               "RelativeDocumentMoniker": "Backend\\Interfaces\\IRecipeFilterStrategy.cs",
-              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Interfaces\\IRecipeFilterStrategy.cs",
+              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Backend\\Interfaces\\IRecipeFilterStrategy.cs",
               "RelativeToolTip": "Backend\\Interfaces\\IRecipeFilterStrategy.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T16:50:10.27Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T21:25:44.293Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "RecipeFetcher.cs",
-              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Services\\RecipeFetcher.cs",
+              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Backend\\Services\\RecipeFetcher.cs",
               "RelativeDocumentMoniker": "Backend\\Services\\RecipeFetcher.cs",
-              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Services\\RecipeFetcher.cs",
+              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Backend\\Services\\RecipeFetcher.cs",
               "RelativeToolTip": "Backend\\Services\\RecipeFetcher.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T16:49:50.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T21:25:44.297Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "PerishableItem.cs",
-              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Models\\PerishableItem.cs",
+              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Backend\\Models\\PerishableItem.cs",
               "RelativeDocumentMoniker": "Backend\\Models\\PerishableItem.cs",
-              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Models\\PerishableItem.cs",
+              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Backend\\Models\\PerishableItem.cs",
               "RelativeToolTip": "Backend\\Models\\PerishableItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T16:48:14.223Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T21:25:44.301Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\UI\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Frontend\\UI\\Form1.cs",
               "RelativeDocumentMoniker": "Frontend\\UI\\Form1.cs",
-              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\UI\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Frontend\\UI\\Form1.cs [Design]",
               "RelativeToolTip": "Frontend\\UI\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T16:26:41.58Z",
+              "WhenOpened": "2026-05-10T21:25:45.248Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Pseuchef.csproj",
-              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\Pseuchef.csproj",
+              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Frontend\\Pseuchef.csproj",
               "RelativeDocumentMoniker": "Frontend\\Pseuchef.csproj",
-              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\Pseuchef.csproj",
+              "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Frontend\\Pseuchef.csproj",
               "RelativeToolTip": "Frontend\\Pseuchef.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-10T16:26:57.441Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T21:25:45.256Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "AddItemForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\UI\\AddItemForm.cs",
+              "DocumentMoniker": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\Frontend\\UI\\AddItemForm.cs",
               "RelativeDocumentMoniker": "Frontend\\UI\\AddItemForm.cs",
               "ToolTip": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\UI\\AddItemForm.cs [Design]",
-              "RelativeToolTip": "Frontend\\UI\\AddItemForm.cs [Design]",
+              "RelativeToolTip": "..\\Pseuchef1\\Frontend\\UI\\AddItemForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T16:25:38.548Z"
+              "WhenOpened": "2026-05-10T21:25:45.319Z"
             }
           ]
         }
