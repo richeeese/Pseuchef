@@ -21,7 +21,6 @@ namespace Pseuchef.UI
             _ingredients = ingredients;
             _steps = steps;
 
-            // Static labels — set directly
             lblRecipeName.Text = name;
 
             Color matchColor = match == total ? AppColors.Green
@@ -29,18 +28,13 @@ namespace Pseuchef.UI
                                     : AppColors.Red;
             lblDetailMeta.Text = $"⏱ {duration}   ·   🍽 {servings}   ·   ✓ {match}/{total} ingredients in pantry";
             lblDetailMeta.ForeColor = matchColor;
+
+            // ── Wire close button here — never depends on Load event firing ──
+            btnCloseDetail.Click += (s, e) => this.Close();
         }
 
         private void RecipeDetailForm_Load(object sender, EventArgs e)
         {
-            btnCloseDetail.Click += (s, ev) => this.Close();
-
-            // Footer top border
-            pnlFooter.Paint += (s, ev) =>
-            {
-                using var pen = new Pen(Color.FromArgb(220, 220, 220), 1);
-                ev.Graphics.DrawLine(pen, 0, 0, pnlFooter.Width, 0);
-            };
 
             PopulateIngredients();
             PopulateSteps();

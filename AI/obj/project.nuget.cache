@@ -8,15 +8,5 @@
     "C:\\Users\\Mhalik\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.26\\microsoft.netcore.app.ref.8.0.26.nupkg.sha512",
     "C:\\Users\\Mhalik\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.26\\microsoft.aspnetcore.app.ref.8.0.26.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "message": "Problem reading the cache file C:\\Users\\Mhalik\\Projects\\Pseuchef\\AI\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
-      "projectPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\AI\\Pseuchef.AI.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Mhalik\\Projects\\Pseuchef\\AI\\Pseuchef.AI.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

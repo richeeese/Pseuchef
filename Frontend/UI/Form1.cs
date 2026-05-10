@@ -172,6 +172,28 @@ namespace Pseuchef.UI
                 ApplyRecipeFilters();
             };
 
+            // ── Dashboard + Add Item ──
+            btnAdd.Click += (s, e) =>
+            {
+                using var addForm = new AddItemForm();
+                if (addForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    int daysLeft = (DateTime.Parse(addForm.ExpiryDate) - DateTime.Today).Days;
+                    string status = daysLeft <= 1 ? "🔴 Use Now"
+                                  : daysLeft <= 3 ? "🟡 Expiring Soon"
+                                  : "🟢 Fresh";
+
+                    // Add to pantry tab so data is consistent
+                    dgvPantryTab.Rows.Add(
+                        addForm.ItemName, addForm.Category,
+                        addForm.Quantity, addForm.ExpiryDate,
+                        status, "⋮");
+
+                    // TODO (Ritzy): call pantryService.AddItem(item) here
+                }
+                UpdateLastAdded(addForm.ItemName, addForm.Quantity);
+            };
+
         }
 
         protected override void OnShown(EventArgs e)
@@ -436,6 +458,22 @@ namespace Pseuchef.UI
                 Font = new Font("Google Sans", 8, FontStyle.Bold)
             };
 
+            string capturedItem = itemName;
+            btnUseNow.Click += (s, e) =>
+            {
+                // Switch to Recipe Discovery tab
+                SetActiveButton(btnRecipeDiscovery);
+                ShowPanel(pnlRecipeDiscovery);
+
+                // Activate "From My Pantry" chip — most relevant for expiring items
+                _activeRecipeFilter = "From My Pantry";
+                RefreshRecipeFilterChips();
+
+                // Clear search and re-render filtered cards
+                txtRecipeSearch.Text = "";
+                ApplyRecipeFilters();
+            };
+
             container.Paint += (s, e) =>
             {
                 using var pen = new Pen(AppColors.Dark, 3);
@@ -561,6 +599,19 @@ namespace Pseuchef.UI
                 ForeColor = AppColors.OffWhite,
                 BorderRadius = 0,
                 Font = new Font("Google Sans", 8, FontStyle.Bold)
+            };
+
+            string cName = recipeName, cDuration = duration, cServings = servings;
+            int cMatch = matchCount, cTotal = totalIngredients;
+
+            btnCook.Click += (s, e) =>
+            {
+                _recipeDetails.TryGetValue(cName, out var detail);
+                using var popup = new RecipeDetailForm(
+                    cName, cDuration, cServings, cMatch, cTotal,
+                    detail.ingredients ?? new(),
+                    detail.steps ?? new());
+                popup.ShowDialog(this);
             };
 
             card.Paint += (s, e) =>
@@ -941,6 +992,7 @@ namespace Pseuchef.UI
 
                 // TODO (Ritzy): Also call pantryService.AddItem(item) here
             }
+            UpdateLastAdded(addForm.ItemName, addForm.Quantity);
         }
 
         // ============================================================
@@ -1642,9 +1694,19 @@ namespace Pseuchef.UI
             _surpriseMode = false;
             ApplyRecipeFilters(); // re-renders with current chip + search state
         }
+
+        private void UpdateLastAdded(string itemName, string quantity)
+        {
+            lblLastAdded.Text = $"Last added: {itemName} · {quantity} · just now";
+        }
         private void txtPantrySearch_TextChanged(object sender, EventArgs e)
         {
             ApplyPantryFilters();
+        }
+
+        private void tlpShoppingList_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

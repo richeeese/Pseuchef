@@ -30,18 +30,16 @@ namespace Pseuchef.UI
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tableLayoutPanel1 = new TableLayoutPanel();
             pnlHeader = new TableLayoutPanel();
             lblRecipeName = new Label();
@@ -54,15 +52,12 @@ namespace Pseuchef.UI
             lblIngredientsTitle = new Label();
             pnlInstructions = new Guna.UI2.WinForms.Guna2Panel();
             lblInstructionsTitle = new Label();
-            pnlFooter = new TableLayoutPanel();
-            btnAddMissing = new Guna.UI2.WinForms.Guna2Button();
             tableLayoutPanel1.SuspendLayout();
             pnlHeader.SuspendLayout();
             pnlMeta.SuspendLayout();
             tlpContent.SuspendLayout();
             pnlIngredients.SuspendLayout();
             pnlInstructions.SuspendLayout();
-            pnlFooter.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -73,15 +68,13 @@ namespace Pseuchef.UI
             tableLayoutPanel1.Controls.Add(pnlHeader, 0, 0);
             tableLayoutPanel1.Controls.Add(pnlMeta, 0, 1);
             tableLayoutPanel1.Controls.Add(tlpContent, 0, 2);
-            tableLayoutPanel1.Controls.Add(pnlFooter, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(2, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 4;
+            tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             tableLayoutPanel1.Size = new Size(716, 536);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -116,7 +109,7 @@ namespace Pseuchef.UI
             // btnCloseDetail
             // 
             btnCloseDetail.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCloseDetail.CustomizableEdges = customizableEdges13;
+            btnCloseDetail.CustomizableEdges = customizableEdges1;
             btnCloseDetail.DisabledState.BorderColor = Color.DarkGray;
             btnCloseDetail.DisabledState.CustomBorderColor = Color.DarkGray;
             btnCloseDetail.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -124,11 +117,12 @@ namespace Pseuchef.UI
             btnCloseDetail.FillColor = Color.FromArgb(0, 0, 0, 0);
             btnCloseDetail.Font = new Font("Segoe UI", 9F);
             btnCloseDetail.ForeColor = Color.Green;
+            btnCloseDetail.Image = Properties.Resources.close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz48;
             btnCloseDetail.ImageOffset = new Point(0, 12);
             btnCloseDetail.Location = new Point(692, 0);
             btnCloseDetail.Margin = new Padding(0);
             btnCloseDetail.Name = "btnCloseDetail";
-            btnCloseDetail.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnCloseDetail.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnCloseDetail.Size = new Size(24, 24);
             btnCloseDetail.TabIndex = 1;
             btnCloseDetail.Text = "guna2Button1";
@@ -137,11 +131,11 @@ namespace Pseuchef.UI
             // 
             pnlMeta.BackColor = Color.FromArgb(245, 245, 240);
             pnlMeta.Controls.Add(lblDetailMeta);
-            pnlMeta.CustomizableEdges = customizableEdges15;
+            pnlMeta.CustomizableEdges = customizableEdges3;
             pnlMeta.Dock = DockStyle.Fill;
             pnlMeta.Location = new Point(3, 27);
             pnlMeta.Name = "pnlMeta";
-            pnlMeta.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            pnlMeta.ShadowDecoration.CustomizableEdges = customizableEdges4;
             pnlMeta.Size = new Size(710, 34);
             pnlMeta.TabIndex = 1;
             // 
@@ -171,29 +165,29 @@ namespace Pseuchef.UI
             tlpContent.Name = "tlpContent";
             tlpContent.RowCount = 1;
             tlpContent.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpContent.Size = new Size(710, 406);
+            tlpContent.Size = new Size(710, 466);
             tlpContent.TabIndex = 2;
             // 
             // pnlDivider
             // 
             pnlDivider.BackColor = Color.Gainsboro;
-            pnlDivider.CustomizableEdges = customizableEdges17;
+            pnlDivider.CustomizableEdges = customizableEdges5;
             pnlDivider.Dock = DockStyle.Fill;
             pnlDivider.Location = new Point(286, 3);
             pnlDivider.Name = "pnlDivider";
-            pnlDivider.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            pnlDivider.Size = new Size(1, 400);
+            pnlDivider.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            pnlDivider.Size = new Size(1, 460);
             pnlDivider.TabIndex = 1;
             // 
             // pnlIngredients
             // 
             pnlIngredients.Controls.Add(lblIngredientsTitle);
-            pnlIngredients.CustomizableEdges = customizableEdges19;
+            pnlIngredients.CustomizableEdges = customizableEdges7;
             pnlIngredients.Dock = DockStyle.Fill;
             pnlIngredients.Location = new Point(3, 3);
             pnlIngredients.Name = "pnlIngredients";
-            pnlIngredients.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            pnlIngredients.Size = new Size(277, 400);
+            pnlIngredients.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            pnlIngredients.Size = new Size(277, 460);
             pnlIngredients.TabIndex = 0;
             // 
             // lblIngredientsTitle
@@ -210,12 +204,12 @@ namespace Pseuchef.UI
             // pnlInstructions
             // 
             pnlInstructions.Controls.Add(lblInstructionsTitle);
-            pnlInstructions.CustomizableEdges = customizableEdges21;
+            pnlInstructions.CustomizableEdges = customizableEdges9;
             pnlInstructions.Dock = DockStyle.Fill;
             pnlInstructions.Location = new Point(287, 3);
             pnlInstructions.Name = "pnlInstructions";
-            pnlInstructions.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            pnlInstructions.Size = new Size(420, 400);
+            pnlInstructions.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            pnlInstructions.Size = new Size(420, 460);
             pnlInstructions.TabIndex = 2;
             // 
             // lblInstructionsTitle
@@ -228,38 +222,6 @@ namespace Pseuchef.UI
             lblInstructionsTitle.Size = new Size(112, 31);
             lblInstructionsTitle.TabIndex = 1;
             lblInstructionsTitle.Text = "INSTRUCTIONS";
-            // 
-            // pnlFooter
-            // 
-            pnlFooter.ColumnCount = 1;
-            pnlFooter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            pnlFooter.Controls.Add(btnAddMissing, 0, 0);
-            pnlFooter.Dock = DockStyle.Fill;
-            pnlFooter.Location = new Point(3, 479);
-            pnlFooter.Name = "pnlFooter";
-            pnlFooter.RowCount = 1;
-            pnlFooter.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            pnlFooter.Size = new Size(710, 54);
-            pnlFooter.TabIndex = 3;
-            // 
-            // btnAddMissing
-            // 
-            btnAddMissing.BorderColor = Color.FromArgb(26, 26, 26);
-            btnAddMissing.BorderThickness = 2;
-            btnAddMissing.CustomizableEdges = customizableEdges23;
-            btnAddMissing.DisabledState.BorderColor = Color.DarkGray;
-            btnAddMissing.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnAddMissing.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnAddMissing.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnAddMissing.FillColor = Color.White;
-            btnAddMissing.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAddMissing.ForeColor = Color.FromArgb(26, 26, 26);
-            btnAddMissing.Location = new Point(3, 3);
-            btnAddMissing.Name = "btnAddMissing";
-            btnAddMissing.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            btnAddMissing.Size = new Size(360, 36);
-            btnAddMissing.TabIndex = 0;
-            btnAddMissing.Text = "+ Add Missing to Shopping List";
             // 
             // RecipeDetailForm
             // 
@@ -283,7 +245,6 @@ namespace Pseuchef.UI
             pnlIngredients.PerformLayout();
             pnlInstructions.ResumeLayout(false);
             pnlInstructions.PerformLayout();
-            pnlFooter.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -301,7 +262,5 @@ namespace Pseuchef.UI
         private Guna.UI2.WinForms.Guna2Panel pnlDivider;
         private Guna.UI2.WinForms.Guna2Panel pnlInstructions;
         private Label lblInstructionsTitle;
-        private TableLayoutPanel pnlFooter;
-        private Guna.UI2.WinForms.Guna2Button btnAddMissing;
     }
 }
