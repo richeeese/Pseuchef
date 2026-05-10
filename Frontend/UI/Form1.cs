@@ -12,15 +12,24 @@
 
 using Guna.UI2.WinForms;
 using System.Linq;
+using Pseuchef.Services;
+using Pseuchef.Interfaces;
+using Pseuchef.Models;
+using Pseuchef.Enums;
 
 namespace Pseuchef.UI
 {
     public partial class Form1 : Form
     {
         // ─────────────────────────────────────────────
-        // [MOCK] Dashboard expiry summary counts
-        // TODO (Ritzy): Replace with real counts from IPantryService
-        // e.g. _useNow = pantryService.GetExpiringCount(maxDays: 1);
+        // Backend Services
+        // ─────────────────────────────────────────────
+        private VirtualFridge _virtualFridge;
+        private IRecipeService _recipeService;
+        private UserProfile _userProfile;
+
+        // ─────────────────────────────────────────────
+        // Dashboard expiry summary counts
         // ─────────────────────────────────────────────
         private int _useNow = 2;
         private int _expiringSoon = 4;
@@ -37,11 +46,11 @@ namespace Pseuchef.UI
         // Tracks the active filter chip on the Recipe Discovery tab
         private string _activeRecipeFilter = "All";
 
-        // [MOCK] Full recipe list — TODO (Ritzy): replace with IRecipeService call
+        // Full recipe list
         private List<(string name, string duration, string servings,
                       int match, int total, string[] tags)> _allRecipes;
 
-        // [MOCK] Per-recipe detail data — TODO (Ritzy): replace with IRecipeService.GetDetail(id)
+        // Per-recipe detail data
         private Dictionary<string, (
             List<(string name, string qty, bool inPantry)> ingredients,
             List<string> steps)> _recipeDetails;
@@ -52,6 +61,19 @@ namespace Pseuchef.UI
         public Form1()
         {
             InitializeComponent();
+
+            // Initialize Backend services
+            _virtualFridge = new VirtualFridge();
+            _recipeService = new RecipeFetcher();
+
+            // Create a default user profile (no dietary restrictions)
+            _userProfile = new UserProfile(
+                username: "DefaultUser",
+                dietaryPreferences: new List<DietaryRestriction>(),
+                excludedIngredients: new List<string>(),
+                calorieGoal: 2000,
+                isMetric: true
+            );
         }
 
         // ============================================================
@@ -251,11 +273,22 @@ namespace Pseuchef.UI
         // ============================================================
 
         /// <summary>
-        /// Registers the Paint event for the donut chart PictureBox.
+        /// Registers the Paint event for the donut chart PictureBox and updates counts.
         /// Called once from Form1_Load. Uses -= before += to prevent stacking.
+        /// Fetches real data from VirtualFridge.
         /// </summary>
         private void SetupDonutChart()
         {
+            // Update counts from VirtualFridge
+            var expiringNow = _virtualFridge.GetExpiringItems(daysUntilExpiry: 1);
+            var expiringSoon = _virtualFridge.GetExpiringItems(daysUntilExpiry: 7).Except(expiringNow).ToList();
+            var allItems = _virtualFridge.GetInventory();
+            var fresh = allItems.Except(expiringNow).Except(expiringSoon).ToList();
+
+            _useNow = expiringNow.Count;
+            _expiringSoon = expiringSoon.Count;
+            _fresh = fresh.Count;
+
             int total = _useNow + _expiringSoon + _fresh;
             lblItemCount.Text = $"📦 {total} items";
 
@@ -349,10 +382,7 @@ namespace Pseuchef.UI
         /// <summary>
         /// Loads and renders alert cards into flpAlerts.
         /// Cards are sorted by urgency (fewest days left first).
-        ///
-        /// [MOCK] TODO (Ritzy): Replace alert list with:
-        ///   var alerts = pantryService.GetExpiringItems()
-        ///       .Select(i => (i.Name, i.DaysUntilExpiry)).ToList();
+        /// Gets expiring items from VirtualFridge.
         /// </summary>
         private void LoadMockAlerts()
         {
@@ -361,20 +391,27 @@ namespace Pseuchef.UI
             flpAlerts.Padding = new Padding(0);
             flpAlerts.Margin = new Padding(0);
 
-            // [MOCK] Hardcoded alert data
-            var alerts = new List<(string item, int days)>
+            // Get expiring items from VirtualFridge
+            var expiringItems = _virtualFridge.GetExpiringItems(daysUntilExpiry: 7);
+
+            // Convert to alert format: (item name, days left)
+            var alerts = new List<(string item, int days)>();
+
+            foreach (var item in expiringItems)
             {
-                ("Heavy Cream",     5),
-                ("Asparagus",       0),
-                ("Chicken Thighs",  3),
-                ("Chicken Tracker", 2),
-            };
+                // Only process PerishableItem to get expiry date
+                if (item is PerishableItem perishable)
+                {
+                    int daysLeft = (perishable.GetExpiryDate().ToDateTime(TimeOnly.MinValue) - DateTime.Today).Days;
+                    alerts.Add((item.itemName, daysLeft));
+                }
+            }
 
             alerts = alerts.OrderBy(a => a.days).ToList();
 
             flpAlerts.Controls.Clear();
-            foreach (var (item, days) in alerts)
-                flpAlerts.Controls.Add(CreateAlertCard(item, days));
+            foreach (var (itemName, days) in alerts)
+                flpAlerts.Controls.Add(CreateAlertCard(itemName, days));
         }
 
         /// <summary>
@@ -455,26 +492,48 @@ namespace Pseuchef.UI
 
         /// <summary>
         /// Loads and renders 3 recipe cards into flpRecipeCards.
-        ///
-        /// [MOCK] TODO (Ritzy): Replace with:
-        ///   var recipes = recipeService.GetRecommendations(pantryItems).Take(3);
-        /// TODO (Regina): AI recommendation logic plugs in here
+        /// Gets recipes from RecipeFetcher using current pantry inventory.
         /// </summary>
         private void LoadMockRecipes()
         {
             flpRecipeCards.Controls.Clear();
             flpRecipeCards.Padding = new Padding(8, 6, 8, 6);
 
-            // [MOCK] Hardcoded recipe data
-            var recipes = new List<(string name, string duration, string servings, int match, int total)>
+            try
             {
-                ("Lemon Herb Chicken",   "35 min", "4 servings", 5, 5),
-                ("Mushroom Cream Pasta", "25 min", "2 servings", 3, 6),
-                ("Garlic Butter Shrimp", "20 min", "2 servings", 1, 5),
-            };
+                // Get inventory item names from VirtualFridge
+                var inventoryItems = _virtualFridge.GetInventory()
+                    .Select(item => item.itemName)
+                    .ToList();
 
-            foreach (var (name, duration, servings, match, total) in recipes)
-                flpRecipeCards.Controls.Add(CreateRecipeCard(name, duration, servings, match, total));
+                // Fetch recipes based on inventory
+                var fetchedRecipes = _recipeService.Search(inventoryItems, _userProfile);
+
+                // Take top 3 recipes
+                var topRecipes = fetchedRecipes.Take(3).ToList();
+
+                // Convert to display format
+                foreach (var recipe in topRecipes)
+                {
+                    int usedCount = recipe.GetIngredients().Sum(ing => ing.usedCount);
+                    int totalCount = recipe.GetIngredients().Count;
+
+                    flpRecipeCards.Controls.Add(
+                        CreateRecipeCard(
+                            recipe.GetTitle(),
+                            $"{recipe.GetPrepTime()} min",
+                            "2 servings",  // Default servings (not provided by API)
+                            usedCount,
+                            totalCount
+                        )
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                // Fallback if API fails
+                MessageBox.Show($"Failed to load recipes: {ex.Message}", "Recipe Load Error");
+            }
         }
 
         /// <summary>
@@ -658,23 +717,28 @@ namespace Pseuchef.UI
         {
             dgvPantryTab.Rows.Clear();
 
-            // [MOCK] Hardcoded pantry items
-            var items = new List<(string name, string category, string qty, string expiry, int daysLeft)>
-            {
-                ("Chicken Thighs", "Meat",    "1 kg",   DateTime.Today.AddDays(10).ToString("yyyy-MM-dd"), 10),
-                ("Heavy Cream",    "Dairy",   "200 ml", DateTime.Today.AddDays(2).ToString("yyyy-MM-dd"),   2),
-                ("Asparagus",      "Veggies", "10 pcs", DateTime.Today.AddDays(0).ToString("yyyy-MM-dd"),   0),
-                ("Garlic",         "Veggies", "1 bulb", DateTime.Today.AddDays(14).ToString("yyyy-MM-dd"), 14),
-                ("Olive Oil",      "Pantry",  "500 ml", DateTime.Today.AddDays(60).ToString("yyyy-MM-dd"), 60),
-                ("Greek Yogurt",   "Dairy",   "200 g",  DateTime.Today.AddDays(3).ToString("yyyy-MM-dd"),   3),
-            };
+            // Get items from VirtualFridge
+            var items = _virtualFridge.GetInventory();
 
-            foreach (var (name, category, qty, expiry, daysLeft) in items)
+            foreach (var item in items)
             {
+                string category = item.category.ToString();
+                string expiry = "";
+                int daysLeft = 365; // Default to fresh if not perishable
+
+                // If it's a PerishableItem, get expiry info
+                if (item is PerishableItem perishable)
+                {
+                    var expiryDate = perishable.GetExpiryDate();
+                    expiry = expiryDate.ToString("yyyy-MM-dd");
+                    daysLeft = perishable.GetDaysRemaining();
+                }
+
                 string status = daysLeft <= 1 ? "🔴 Use Now"
                               : daysLeft <= 3 ? "🟡 Expiring Soon"
                               : "🟢 Fresh";
-                dgvPantryTab.Rows.Add(name, category, qty, expiry, status, "⋮");
+
+                dgvPantryTab.Rows.Add(item.itemName, category, "", expiry, status, "⋮");
             }
         }
 
@@ -770,64 +834,102 @@ namespace Pseuchef.UI
         }
 
         /// <summary>
-        /// Edit menu item — placeholder until Ritzy wires up the edit form.
-        /// TODO (Ritzy): Replace MessageBox with real edit dialog/form.
+        /// Edit menu item — opens AddItemForm in edit mode and updates VirtualFridge.
         /// </summary>
         private void mnuEdit_Click(object sender, EventArgs e)
         {
             if (_actionRowIndex < 0) return;
 
-            // Read current row values
-            string itemName = dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value.ToString();
-            string category = dgvPantryTab.Rows[_actionRowIndex].Cells["colCategory"].Value.ToString();
-            string quantity = dgvPantryTab.Rows[_actionRowIndex].Cells["colQuantity"].Value.ToString();
-            string expiry = dgvPantryTab.Rows[_actionRowIndex].Cells["colExpiry"].Value.ToString();
-
-            // Open AddItemForm in edit mode
-            using var editForm = new AddItemForm(itemName, category, quantity, expiry);
-
-            if (editForm.ShowDialog(this) == DialogResult.OK)
+            try
             {
-                // Update the row with new values
-                int daysLeft = (DateTime.Parse(editForm.ExpiryDate) - DateTime.Today).Days;
+                // Read current row values
+                string itemName = dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value.ToString();
+                string category = dgvPantryTab.Rows[_actionRowIndex].Cells["colCategory"].Value.ToString();
+                string quantity = dgvPantryTab.Rows[_actionRowIndex].Cells["colQuantity"].Value.ToString();
+                string expiry = dgvPantryTab.Rows[_actionRowIndex].Cells["colExpiry"].Value.ToString();
 
-                string status = daysLeft <= 1 ? "🔴 Use Now"
-                              : daysLeft <= 3 ? "🟡 Expiring Soon"
-                              : "🟢 Fresh";
+                // Open AddItemForm in edit mode
+                using var editForm = new AddItemForm(itemName, category, quantity, expiry);
 
-                dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value = editForm.ItemName;
-                dgvPantryTab.Rows[_actionRowIndex].Cells["colCategory"].Value = editForm.Category;
-                dgvPantryTab.Rows[_actionRowIndex].Cells["colQuantity"].Value = editForm.Quantity;
-                dgvPantryTab.Rows[_actionRowIndex].Cells["colExpiry"].Value = editForm.ExpiryDate;
-                dgvPantryTab.Rows[_actionRowIndex].Cells["colStatus"].Value = status;
+                if (editForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    // Find the old item in VirtualFridge and remove it
+                    var oldItem = _virtualFridge.GetInventory().FirstOrDefault(i => i.itemName == itemName);
+                    if (oldItem != null)
+                    {
+                        _virtualFridge.RemoveItem(oldItem);
+                    }
 
-                // Repaint to update badge colors
-                dgvPantryTab.InvalidateRow(_actionRowIndex);
+                    // Parse new category and expiry
+                    if (!Enum.TryParse<FoodCategory>(editForm.Category, out var newCategory))
+                    {
+                        MessageBox.Show("Invalid category selected", "Error");
+                        return;
+                    }
 
-                // TODO (Ritzy): Also call pantryService.UpdateItem(id, updatedItem) here
+                    if (!DateTime.TryParse(editForm.ExpiryDate, out var expiryDate))
+                    {
+                        MessageBox.Show("Invalid expiry date", "Error");
+                        return;
+                    }
+
+                    // Create updated FoodItem
+                    var updatedItem = new PerishableItem(
+                        itemName: editForm.ItemName,
+                        category: newCategory,
+                        isCooked: false,
+                        isFrozen: false,
+                        calorieCount: 0,
+                        expiryDate: DateOnly.FromDateTime(expiryDate)
+                    );
+
+                    // Add updated item to VirtualFridge
+                    _virtualFridge.AddItem(updatedItem);
+
+                    // Refresh the table
+                    LoadPantryTabData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error editing item: {ex.Message}", "Error");
             }
         }
 
         /// <summary>
-        /// Delete menu item — confirms then removes the row from the grid.
-        /// TODO (Ritzy): Also call pantryService.DeleteItem(id) here.
+        /// Delete menu item — removes item from VirtualFridge and updates UI.
         /// </summary>
         private void mnuDelete_Click(object sender, EventArgs e)
         {
             if (_actionRowIndex < 0) return;
 
-            string itemName = dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value.ToString();
-            var confirm = MessageBox.Show(
-                $"Remove \"{itemName}\" from your pantry?",
-                "Confirm Delete",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-
-            if (confirm == DialogResult.Yes)
+            try
             {
-                dgvPantryTab.Rows.RemoveAt(_actionRowIndex);
-                _actionRowIndex = -1;
+                string itemName = dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value.ToString();
+                var confirm = MessageBox.Show(
+                    $"Remove \"{itemName}\" from your pantry?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (confirm == DialogResult.Yes)
+                {
+                    // Find and remove item from VirtualFridge
+                    var itemToDelete = _virtualFridge.GetInventory().FirstOrDefault(i => i.itemName == itemName);
+                    if (itemToDelete != null)
+                    {
+                        _virtualFridge.RemoveItem(itemToDelete);
+                    }
+
+                    // Refresh the table
+                    LoadPantryTabData();
+                    _actionRowIndex = -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting item: {ex.Message}", "Error");
             }
         }
 
@@ -922,24 +1024,42 @@ namespace Pseuchef.UI
             // ShowDialog makes it a modal — blocks until closed
             if (addForm.ShowDialog(this) == DialogResult.OK)
             {
-                // Calculate days left for status badge
-                int daysLeft = (DateTime.Parse(addForm.ExpiryDate) - DateTime.Today).Days;
+                try
+                {
+                    // Parse category enum
+                    if (!Enum.TryParse<FoodCategory>(addForm.Category, out var category))
+                    {
+                        MessageBox.Show("Invalid category selected", "Error");
+                        return;
+                    }
 
-                string status = daysLeft <= 1 ? "🔴 Use Now"
-                              : daysLeft <= 3 ? "🟡 Expiring Soon"
-                              : "🟢 Fresh";
+                    // Parse expiry date
+                    if (!DateTime.TryParse(addForm.ExpiryDate, out var expiryDate))
+                    {
+                        MessageBox.Show("Invalid expiry date", "Error");
+                        return;
+                    }
 
-                // Add the new row to the table
-                dgvPantryTab.Rows.Add(
-                    addForm.ItemName,
-                    addForm.Category,
-                    addForm.Quantity,
-                    addForm.ExpiryDate,
-                    status,
-                    "⋮"
-                );
+                    // Create FoodItem (use PerishableItem for items with expiry dates)
+                    var foodItem = new PerishableItem(
+                        itemName: addForm.ItemName,
+                        category: category,
+                        isCooked: false,
+                        isFrozen: false,
+                        calorieCount: 0,
+                        expiryDate: DateOnly.FromDateTime(expiryDate)
+                    );
 
-                // TODO (Ritzy): Also call pantryService.AddItem(item) here
+                    // Add to VirtualFridge
+                    _virtualFridge.AddItem(foodItem);
+
+                    // Refresh the table to show new item
+                    LoadPantryTabData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error adding item: {ex.Message}", "Error");
+                }
             }
         }
 
@@ -997,43 +1117,52 @@ namespace Pseuchef.UI
         // ============================================================
 
         /// <summary>
-        /// Initialises the full mock recipe list and renders cards.
+        /// Initialises the recipe list and renders cards.
         /// Called from OnShown so flpRecipeGrid has its real ClientSize.
-        ///
-        /// [MOCK] TODO (Ritzy): Replace _allRecipes list with:
-        ///   _allRecipes = recipeService.GetAll()
-        ///       .Select(r => (r.Name, r.Duration, r.Servings,
-        ///                     r.MatchCount, r.TotalIngredients, r.Tags))
-        ///       .ToList();
-        /// TODO (Regina): AI recommendation scores plug in here
+        /// Fetches recipes from RecipeFetcher based on current inventory.
         /// </summary>
         private void LoadMockRecipeDiscovery()
         {
-            InitRecipeDetails();
+            try
+            {
+                // Get inventory item names from VirtualFridge
+                var inventoryItems = _virtualFridge.GetInventory()
+                    .Select(item => item.itemName)
+                    .ToList();
 
-            // [MOCK] Tags drive the filter chip logic below
-            _allRecipes = new List<(string, string, string, int, int, string[])>
-    {
-        ("Lemon Herb Chicken",    "35 min", "4 servings", 5, 5,
-            new[] { "From My Pantry", "Healthy" }),
+                // Fetch recipes from API
+                var fetchedRecipes = _recipeService.Search(inventoryItems, _userProfile);
 
-        ("Mushroom Cream Pasta",  "25 min", "2 servings", 3, 6,
-            new[] { "Quick", "Budget-Friendly" }),
+                // Convert to display format with default tags
+                _allRecipes = fetchedRecipes.Select(recipe =>
+                {
+                    int usedCount = recipe.GetIngredients().Sum(ing => ing.usedCount);
+                    int totalCount = recipe.GetIngredients().Count;
 
-        ("Garlic Butter Shrimp",  "20 min", "2 servings", 1, 5,
-            new[] { "Quick", "From My Pantry" }),
+                    // Tag logic: "From My Pantry" if all ingredients in pantry
+                    string[] tags = usedCount == totalCount 
+                        ? new[] { "From My Pantry", "Quick" }
+                        : new[] { "Quick" };
 
-        ("Greek Yogurt Parfait",  "10 min", "1 serving",  2, 3,
-            new[] { "Quick", "Healthy", "Budget-Friendly" }),
+                    return (
+                        name: recipe.GetTitle(),
+                        duration: $"{recipe.GetPrepTime()} min",
+                        servings: "2 servings",  // Default
+                        match: usedCount,
+                        total: totalCount,
+                        tags: tags
+                    );
+                }).ToList();
 
-        ("Asparagus Stir Fry",   "15 min", "2 servings", 4, 4,
-            new[] { "From My Pantry", "Healthy", "Quick" }),
-
-        ("Beef Tacos",           "30 min", "4 servings", 2, 8,
-            new[] { "Budget-Friendly" }),
-    };
-
-            RenderRecipeCards(_allRecipes);
+                InitRecipeDetails();
+                RenderRecipeCards(_allRecipes);
+            }
+            catch (Exception ex)
+            {
+                // Fallback if API fails
+                MessageBox.Show($"Failed to load recipes: {ex.Message}", "Recipe Discovery Load Error");
+                _allRecipes = new List<(string, string, string, int, int, string[])>();
+            }
         }
 
         /// <summary>

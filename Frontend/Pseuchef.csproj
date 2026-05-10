@@ -8,11 +8,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Pseuchef</RootNamespace>
     <AssemblyName>Pseuchef</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <!-- Guna UI2 library -->
   <ItemGroup>
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <!-- Reference to Backend project so UI can use Models, Services, Enums -->

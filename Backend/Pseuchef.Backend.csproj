@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -8,6 +8,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Pseuchef</RootNamespace>
     <AssemblyName>Pseuchef.Backend</AssemblyName>
+    <UserSecretsId>fa5f55b2-7cf7-40a8-8b8e-fd09006f796c</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
 
 </Project>

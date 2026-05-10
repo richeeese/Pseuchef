@@ -3,20 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\ritzy celestial\\source\\repos\\pseuchef\\backend\\interfaces\\irecipeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|solutionrelative:backend\\interfaces\\irecipeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\ritzy celestial\\source\\repos\\pseuchef\\backend\\services\\recipefetcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|solutionrelative:backend\\services\\recipefetcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\ritzy celestial\\source\\repos\\pseuchef\\backend\\models\\perishableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|solutionrelative:backend\\models\\perishableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|c:\\users\\ritzy celestial\\source\\repos\\pseuchef\\frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|solutionrelative:frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ritzy Celestial\\.copilot\\plans\\plan-frontend-backend-integration-plan.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|MarkdownSecurePreview"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|c:\\users\\ritzy celestial\\source\\repos\\pseuchef\\frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|solutionrelative:frontend\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|c:\\users\\ritzy celestial\\source\\repos\\pseuchef\\frontend\\ui\\additemform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{83D83339-B530-679F-88A2-5C21D8862A0B}|Frontend\\Pseuchef.csproj|solutionrelative:frontend\\ui\\additemform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|c:\\users\\ritzy celestial\\source\\repos\\pseuchef\\backend\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5F58BD8-731C-101D-A133-6EB090780D3E}|Backend\\Pseuchef.Backend.csproj|solutionrelative:backend\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,41 +38,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IRecipeService.cs",
-              "DocumentMoniker": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Interfaces\\IRecipeService.cs",
-              "RelativeDocumentMoniker": "Backend\\Interfaces\\IRecipeService.cs",
-              "ToolTip": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Interfaces\\IRecipeService.cs",
-              "RelativeToolTip": "Backend\\Interfaces\\IRecipeService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T16:47:00.043Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PerishableItem.cs",
-              "DocumentMoniker": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Models\\PerishableItem.cs",
-              "RelativeDocumentMoniker": "Backend\\Models\\PerishableItem.cs",
-              "ToolTip": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Models\\PerishableItem.cs",
-              "RelativeToolTip": "Backend\\Models\\PerishableItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T16:46:00.456Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "RecipeFetcher.cs",
               "DocumentMoniker": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Services\\RecipeFetcher.cs",
               "RelativeDocumentMoniker": "Backend\\Services\\RecipeFetcher.cs",
               "ToolTip": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Services\\RecipeFetcher.cs",
               "RelativeToolTip": "Backend\\Services\\RecipeFetcher.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T16:35:30.952Z",
+              "WhenOpened": "2026-05-10T19:36:32.033Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Frontend\\UI\\Form1.cs",
+              "RelativeDocumentMoniker": "Frontend\\UI\\Form1.cs",
+              "ToolTip": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Frontend\\UI\\Form1.cs",
+              "RelativeToolTip": "Frontend\\UI\\Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T19:28:05.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "plan-frontend-backend-integration-plan.md [Preview]",
+              "DocumentMoniker": "C:\\Users\\Ritzy Celestial\\.copilot\\plans\\plan-frontend-backend-integration-plan.md",
+              "RelativeDocumentMoniker": "..\\..\\..\\.copilot\\plans\\plan-frontend-backend-integration-plan.md",
+              "ToolTip": "C:\\Users\\Ritzy Celestial\\.copilot\\plans\\plan-frontend-backend-integration-plan.md [Preview]",
+              "RelativeToolTip": "..\\..\\..\\.copilot\\plans\\plan-frontend-backend-integration-plan.md [Preview]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-05-10T19:29:41.331Z",
+              "EditorCaption": " [Preview]"
             },
             {
               "$type": "Document",
@@ -76,12 +82,33 @@
               "ToolTip": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Frontend\\UI\\Form1.cs [Design]",
               "RelativeToolTip": "Frontend\\UI\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T16:31:07.747Z",
+              "WhenOpened": "2026-05-10T18:42:47.957Z",
               "EditorCaption": " [Design]"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AddItemForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Frontend\\UI\\AddItemForm.cs",
+              "RelativeDocumentMoniker": "Frontend\\UI\\AddItemForm.cs",
+              "ToolTip": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Frontend\\UI\\AddItemForm.cs [Design]",
+              "RelativeToolTip": "Frontend\\UI\\AddItemForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T18:41:51.835Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Config.cs",
+              "DocumentMoniker": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Config.cs",
+              "RelativeDocumentMoniker": "Backend\\Config.cs",
+              "ToolTip": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Config.cs",
+              "RelativeToolTip": "Backend\\Config.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T17:51:23.207Z",
+              "EditorCaption": ""
             }
           ]
         }

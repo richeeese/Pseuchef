@@ -1,15 +1,16 @@
-C:\Users\Mhalik\Projects\Psuechef\AI\bin\Debug\net8.0-windows\Pseuchef.AI.deps.json
-C:\Users\Mhalik\Projects\Psuechef\AI\bin\Debug\net8.0-windows\Pseuchef.AI.dll
-C:\Users\Mhalik\Projects\Psuechef\AI\bin\Debug\net8.0-windows\Pseuchef.AI.pdb
-C:\Users\Mhalik\Projects\Psuechef\AI\bin\Debug\net8.0-windows\Pseuchef.Backend.dll
-C:\Users\Mhalik\Projects\Psuechef\AI\bin\Debug\net8.0-windows\Pseuchef.Backend.pdb
-C:\Users\Mhalik\Projects\Psuechef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.csproj.AssemblyReference.cache
-C:\Users\Mhalik\Projects\Psuechef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Mhalik\Projects\Psuechef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.AssemblyInfoInputs.cache
-C:\Users\Mhalik\Projects\Psuechef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.AssemblyInfo.cs
-C:\Users\Mhalik\Projects\Psuechef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.csproj.CoreCompileInputs.cache
-C:\Users\Mhalik\Projects\Psuechef\AI\obj\Debug\net8.0-windows\Pseuchef.BC838A63.Up2Date
-C:\Users\Mhalik\Projects\Psuechef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.dll
-C:\Users\Mhalik\Projects\Psuechef\AI\obj\Debug\net8.0-windows\refint\Pseuchef.AI.dll
-C:\Users\Mhalik\Projects\Psuechef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.pdb
-C:\Users\Mhalik\Projects\Psuechef\AI\obj\Debug\net8.0-windows\ref\Pseuchef.AI.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\bin\Debug\net8.0-windows\Pseuchef.AI.deps.json
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\bin\Debug\net8.0-windows\Pseuchef.AI.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\bin\Debug\net8.0-windows\Pseuchef.AI.pdb
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\bin\Debug\net8.0-windows\Pseuchef.Backend.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\bin\Debug\net8.0-windows\Pseuchef.Backend.pdb
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.csproj.AssemblyReference.cache
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.AssemblyInfoInputs.cache
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.AssemblyInfo.cs
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.csproj.CoreCompileInputs.cache
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.sourcelink.json
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\Pseuchef.BC838A63.Up2Date
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\refint\Pseuchef.AI.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\Pseuchef.AI.pdb
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\AI\obj\Debug\net8.0-windows\ref\Pseuchef.AI.dll

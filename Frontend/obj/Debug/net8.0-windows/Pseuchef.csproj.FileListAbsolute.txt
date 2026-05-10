@@ -1,34 +1,34 @@
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Resources\close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz48.png
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Resources\close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz481.png
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Resources\food_bank_24dp_E3E3E3_FILL0_wght200_GRAD200_opsz24.png
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Resources\minimize_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz48.png
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Pseuchef.exe
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Pseuchef.deps.json
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Pseuchef.runtimeconfig.json
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Pseuchef.dll
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Pseuchef.pdb
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Guna.UI2.dll
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\System.Management.dll
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\runtimes\win\lib\net7.0\System.Management.dll
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Pseuchef.AI.dll
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Pseuchef.Backend.dll
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Pseuchef.Backend.pdb
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Pseuchef.AI.pdb
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.csproj.AssemblyReference.cache
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.UI.AddItemForm.resources
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.UI.Form1.resources
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.UI.RecipeDetailForm.resources
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.csproj.GenerateResource.cache
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.AssemblyInfoInputs.cache
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.AssemblyInfo.cs
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.csproj.CoreCompileInputs.cache
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.csproj.Up2Date
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.dll
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\refint\Pseuchef.dll
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.pdb
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.genruntimeconfig.cache
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\ref\Pseuchef.dll
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Resources\close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz482.png
-C:\Users\Mhalik\Projects\Psuechef\Frontend\bin\Debug\net8.0-windows\Resources\minimize_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz481.png
-C:\Users\Mhalik\Projects\Psuechef\Frontend\obj\Debug\net8.0-windows\Pseuchef.Properties.Resources.resources
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Resources\close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz48.png
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Resources\close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz481.png
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Resources\close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz482.png
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Resources\food_bank_24dp_E3E3E3_FILL0_wght200_GRAD200_opsz24.png
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Resources\minimize_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz48.png
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Resources\minimize_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz481.png
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Pseuchef.exe
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Pseuchef.deps.json
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Pseuchef.runtimeconfig.json
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Pseuchef.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Pseuchef.pdb
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Guna.UI2.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\System.Management.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\runtimes\win\lib\net7.0\System.Management.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Pseuchef.AI.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Pseuchef.Backend.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Pseuchef.Backend.pdb
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\bin\Debug\net8.0-windows\Pseuchef.AI.pdb
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.csproj.AssemblyReference.cache
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.Properties.Resources.resources
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.UI.AddItemForm.resources
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.UI.Form1.resources
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.UI.RecipeDetailForm.resources
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.csproj.GenerateResource.cache
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.csproj.CoreCompileInputs.cache
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.sourcelink.json
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.csproj.Up2Date
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\refint\Pseuchef.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.pdb
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\Pseuchef.genruntimeconfig.cache
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Frontend\obj\Debug\net8.0-windows\ref\Pseuchef.dll

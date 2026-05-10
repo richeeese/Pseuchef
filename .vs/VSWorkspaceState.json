@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Frontend",
-    "\\Frontend\\Pseuchef",
-    "\\Frontend\\Pseuchef\\Pseuchef",
-    "\\Pseuchef"
+    ""
   ],
-  "SelectedNode": "\\Frontend\\Pseuchef\\Pseuchef",
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }

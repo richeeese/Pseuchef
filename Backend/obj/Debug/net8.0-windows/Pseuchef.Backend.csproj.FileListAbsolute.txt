@@ -1,11 +1,13 @@
-C:\Users\Mhalik\Projects\Psuechef\Backend\bin\Debug\net8.0-windows\Pseuchef.Backend.deps.json
-C:\Users\Mhalik\Projects\Psuechef\Backend\bin\Debug\net8.0-windows\Pseuchef.Backend.dll
-C:\Users\Mhalik\Projects\Psuechef\Backend\bin\Debug\net8.0-windows\Pseuchef.Backend.pdb
-C:\Users\Mhalik\Projects\Psuechef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Mhalik\Projects\Psuechef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.AssemblyInfoInputs.cache
-C:\Users\Mhalik\Projects\Psuechef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.AssemblyInfo.cs
-C:\Users\Mhalik\Projects\Psuechef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.csproj.CoreCompileInputs.cache
-C:\Users\Mhalik\Projects\Psuechef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.dll
-C:\Users\Mhalik\Projects\Psuechef\Backend\obj\Debug\net8.0-windows\refint\Pseuchef.Backend.dll
-C:\Users\Mhalik\Projects\Psuechef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.pdb
-C:\Users\Mhalik\Projects\Psuechef\Backend\obj\Debug\net8.0-windows\ref\Pseuchef.Backend.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\bin\Debug\net8.0-windows\Pseuchef.Backend.deps.json
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\bin\Debug\net8.0-windows\Pseuchef.Backend.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\bin\Debug\net8.0-windows\Pseuchef.Backend.pdb
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.csproj.AssemblyReference.cache
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.AssemblyInfoInputs.cache
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.AssemblyInfo.cs
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.csproj.CoreCompileInputs.cache
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.sourcelink.json
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\obj\Debug\net8.0-windows\refint\Pseuchef.Backend.dll
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.pdb
+C:\Users\Ritzy Celestial\source\repos\Pseuchef\Backend\obj\Debug\net8.0-windows\ref\Pseuchef.Backend.dll
