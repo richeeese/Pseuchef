@@ -5,7 +5,7 @@ using Pseuchef.Models;
 
 namespace Pseuchef.Interfaces
 {
-    internal interface IRecipeService
+    public interface IRecipeService
     {
         public List<Recipe> Search(List<string> inventory, UserProfile profile);
     }

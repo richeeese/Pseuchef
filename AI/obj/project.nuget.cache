@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+coFrCF0+cc=",
+  "dgSpecHash": "SuuuG9zDduE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\AI\\Pseuchef.AI.csproj",
+  "projectFilePath": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\AI\\Pseuchef.AI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mhalik\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.26\\microsoft.windowsdesktop.app.ref.8.0.26.nupkg.sha512",
     "C:\\Users\\Mhalik\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.26\\microsoft.netcore.app.ref.8.0.26.nupkg.sha512",

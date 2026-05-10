@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pseuchef")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f27fce0942b46784be92ad6f8f56b4ccd76d6f9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pseuchef")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pseuchef")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

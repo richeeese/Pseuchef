@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1mwBsC/yI4w=",
+  "dgSpecHash": "lawBVes7GFI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\Frontend\\Pseuchef.csproj",
+  "projectFilePath": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\Pseuchef.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mhalik\\.nuget\\packages\\guna.ui2.winforms\\2.0.4.7\\guna.ui2.winforms.2.0.4.7.nupkg.sha512",
     "C:\\Users\\Mhalik\\.nuget\\packages\\system.codedom\\7.0.0\\system.codedom.7.0.0.nupkg.sha512",

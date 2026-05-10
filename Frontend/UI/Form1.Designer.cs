@@ -31,67 +31,61 @@ namespace Pseuchef.UI
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges43 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges44 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges45 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges46 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges47 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges48 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges53 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges54 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges49 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges50 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges51 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges52 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges53 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges54 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges59 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges60 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges55 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges56 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges57 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges58 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges59 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges60 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges61 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges62 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges63 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -106,6 +100,18 @@ namespace Pseuchef.UI
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges72 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges73 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges74 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges75 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges76 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges77 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges78 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges79 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges80 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tableLayoutPanel1 = new TableLayoutPanel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             pnlVirtualPantry = new Guna.UI2.WinForms.Guna2Panel();
@@ -190,6 +196,14 @@ namespace Pseuchef.UI
             mnuFilterFresh = new ToolStripMenuItem();
             mnuFilterExpiring = new ToolStripMenuItem();
             mnuFilterUseNow = new ToolStripMenuItem();
+            tlpShoppingList = new TableLayoutPanel();
+            lblShoppingTitle = new Label();
+            pnlShoppingActions = new TableLayoutPanel();
+            txtShoppingSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            btnClearBought = new Guna.UI2.WinForms.Guna2Button();
+            dgvShoppingList = new DataGridView();
+            colBought = new DataGridViewCheckBoxColumn();
             tableLayoutPanel1.SuspendLayout();
             guna2Panel1.SuspendLayout();
             pnlVirtualPantry.SuspendLayout();
@@ -208,10 +222,14 @@ namespace Pseuchef.UI
             tlpAlertInner.SuspendLayout();
             pnlRecipeSection.SuspendLayout();
             tlpRecipeInner.SuspendLayout();
+            pnlNutritionTracker.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             guna2Panel2.SuspendLayout();
             cmsRowActions.SuspendLayout();
             cmsFilter.SuspendLayout();
+            tlpShoppingList.SuspendLayout();
+            pnlShoppingActions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvShoppingList).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -236,30 +254,30 @@ namespace Pseuchef.UI
             guna2Panel1.BackColor = Color.White;
             guna2Panel1.BorderColor = Color.Black;
             guna2Panel1.BorderThickness = 3;
+            guna2Panel1.Controls.Add(pnlNutritionTracker);
+            guna2Panel1.Controls.Add(pnlDashboard);
             guna2Panel1.Controls.Add(pnlVirtualPantry);
             guna2Panel1.Controls.Add(pnlRecipeDiscovery);
-            guna2Panel1.Controls.Add(pnlDashboard);
             guna2Panel1.Controls.Add(pnlChefbotAI);
-            guna2Panel1.Controls.Add(pnlNutritionTracker);
             guna2Panel1.Controls.Add(pnlShoppingList);
-            guna2Panel1.CustomizableEdges = customizableEdges35;
+            guna2Panel1.CustomizableEdges = customizableEdges41;
             guna2Panel1.Dock = DockStyle.Fill;
             guna2Panel1.Location = new Point(230, 40);
             guna2Panel1.Margin = new Padding(10);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.Padding = new Padding(10);
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges36;
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges42;
             guna2Panel1.Size = new Size(960, 750);
             guna2Panel1.TabIndex = 0;
             // 
             // pnlVirtualPantry
             // 
             pnlVirtualPantry.Controls.Add(tlpPantryTab);
-            pnlVirtualPantry.CustomizableEdges = customizableEdges9;
+            pnlVirtualPantry.CustomizableEdges = customizableEdges27;
             pnlVirtualPantry.Dock = DockStyle.Fill;
             pnlVirtualPantry.Location = new Point(10, 10);
             pnlVirtualPantry.Name = "pnlVirtualPantry";
-            pnlVirtualPantry.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            pnlVirtualPantry.ShadowDecoration.CustomizableEdges = customizableEdges28;
             pnlVirtualPantry.Size = new Size(940, 730);
             pnlVirtualPantry.TabIndex = 1;
             // 
@@ -300,11 +318,11 @@ namespace Pseuchef.UI
             pnlPantryToolbar.Controls.Add(btnPantryAddItem);
             pnlPantryToolbar.Controls.Add(btnFilter);
             pnlPantryToolbar.Controls.Add(txtPantrySearch);
-            pnlPantryToolbar.CustomizableEdges = customizableEdges7;
+            pnlPantryToolbar.CustomizableEdges = customizableEdges25;
             pnlPantryToolbar.Dock = DockStyle.Fill;
             pnlPantryToolbar.Location = new Point(13, 55);
             pnlPantryToolbar.Name = "pnlPantryToolbar";
-            pnlPantryToolbar.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            pnlPantryToolbar.ShadowDecoration.CustomizableEdges = customizableEdges26;
             pnlPantryToolbar.Size = new Size(908, 38);
             pnlPantryToolbar.TabIndex = 1;
             // 
@@ -313,7 +331,7 @@ namespace Pseuchef.UI
             btnPantryAddItem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnPantryAddItem.CustomBorderColor = Color.FromArgb(26, 26, 26);
             btnPantryAddItem.CustomBorderThickness = new Padding(2);
-            btnPantryAddItem.CustomizableEdges = customizableEdges1;
+            btnPantryAddItem.CustomizableEdges = customizableEdges19;
             btnPantryAddItem.DisabledState.BorderColor = Color.DarkGray;
             btnPantryAddItem.DisabledState.CustomBorderColor = Color.DarkGray;
             btnPantryAddItem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -323,7 +341,7 @@ namespace Pseuchef.UI
             btnPantryAddItem.ForeColor = Color.FromArgb(245, 245, 240);
             btnPantryAddItem.Location = new Point(778, 1);
             btnPantryAddItem.Name = "btnPantryAddItem";
-            btnPantryAddItem.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnPantryAddItem.ShadowDecoration.CustomizableEdges = customizableEdges20;
             btnPantryAddItem.Size = new Size(130, 36);
             btnPantryAddItem.TabIndex = 2;
             btnPantryAddItem.Text = "+ Add Item";
@@ -332,7 +350,7 @@ namespace Pseuchef.UI
             // 
             btnFilter.CustomBorderColor = Color.FromArgb(26, 26, 26);
             btnFilter.CustomBorderThickness = new Padding(2);
-            btnFilter.CustomizableEdges = customizableEdges3;
+            btnFilter.CustomizableEdges = customizableEdges21;
             btnFilter.DisabledState.BorderColor = Color.DarkGray;
             btnFilter.DisabledState.CustomBorderColor = Color.DarkGray;
             btnFilter.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -342,7 +360,7 @@ namespace Pseuchef.UI
             btnFilter.ForeColor = Color.FromArgb(26, 26, 26);
             btnFilter.Location = new Point(228, 2);
             btnFilter.Name = "btnFilter";
-            btnFilter.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnFilter.ShadowDecoration.CustomizableEdges = customizableEdges22;
             btnFilter.Size = new Size(120, 36);
             btnFilter.TabIndex = 1;
             btnFilter.Text = "Filter ▾";
@@ -351,7 +369,7 @@ namespace Pseuchef.UI
             // 
             txtPantrySearch.BorderColor = Color.FromArgb(26, 26, 26);
             txtPantrySearch.BorderThickness = 2;
-            txtPantrySearch.CustomizableEdges = customizableEdges5;
+            txtPantrySearch.CustomizableEdges = customizableEdges23;
             txtPantrySearch.DefaultText = "";
             txtPantrySearch.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPantrySearch.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -365,7 +383,7 @@ namespace Pseuchef.UI
             txtPantrySearch.Name = "txtPantrySearch";
             txtPantrySearch.PlaceholderText = "Search Items...";
             txtPantrySearch.SelectedText = "";
-            txtPantrySearch.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtPantrySearch.ShadowDecoration.CustomizableEdges = customizableEdges24;
             txtPantrySearch.Size = new Size(220, 35);
             txtPantrySearch.TabIndex = 0;
             txtPantrySearch.TextOffset = new Point(0, -5);
@@ -437,11 +455,11 @@ namespace Pseuchef.UI
             // pnlRecipeDiscovery
             // 
             pnlRecipeDiscovery.Controls.Add(tlpRecipeDiscovery);
-            pnlRecipeDiscovery.CustomizableEdges = customizableEdges17;
+            pnlRecipeDiscovery.CustomizableEdges = customizableEdges35;
             pnlRecipeDiscovery.Dock = DockStyle.Fill;
             pnlRecipeDiscovery.Location = new Point(10, 10);
             pnlRecipeDiscovery.Name = "pnlRecipeDiscovery";
-            pnlRecipeDiscovery.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            pnlRecipeDiscovery.ShadowDecoration.CustomizableEdges = customizableEdges36;
             pnlRecipeDiscovery.Size = new Size(940, 730);
             pnlRecipeDiscovery.TabIndex = 2;
             // 
@@ -482,11 +500,11 @@ namespace Pseuchef.UI
             // pnlRecipeFilters
             // 
             pnlRecipeFilters.BackColor = Color.FromArgb(0, 0, 0, 0);
-            pnlRecipeFilters.CustomizableEdges = customizableEdges11;
+            pnlRecipeFilters.CustomizableEdges = customizableEdges29;
             pnlRecipeFilters.Dock = DockStyle.Fill;
             pnlRecipeFilters.Location = new Point(13, 113);
             pnlRecipeFilters.Name = "pnlRecipeFilters";
-            pnlRecipeFilters.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            pnlRecipeFilters.ShadowDecoration.CustomizableEdges = customizableEdges30;
             pnlRecipeFilters.Size = new Size(914, 46);
             pnlRecipeFilters.TabIndex = 2;
             // 
@@ -522,7 +540,7 @@ namespace Pseuchef.UI
             // 
             txtRecipeSearch.BorderColor = Color.FromArgb(26, 26, 26);
             txtRecipeSearch.BorderThickness = 2;
-            txtRecipeSearch.CustomizableEdges = customizableEdges13;
+            txtRecipeSearch.CustomizableEdges = customizableEdges31;
             txtRecipeSearch.DefaultText = "";
             txtRecipeSearch.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtRecipeSearch.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -537,7 +555,7 @@ namespace Pseuchef.UI
             txtRecipeSearch.Name = "txtRecipeSearch";
             txtRecipeSearch.PlaceholderText = "Search recipes...";
             txtRecipeSearch.SelectedText = "";
-            txtRecipeSearch.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            txtRecipeSearch.ShadowDecoration.CustomizableEdges = customizableEdges32;
             txtRecipeSearch.Size = new Size(393, 38);
             txtRecipeSearch.TabIndex = 1;
             // 
@@ -559,7 +577,7 @@ namespace Pseuchef.UI
             btnSurpriseMe.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btnSurpriseMe.CustomBorderColor = Color.Black;
             btnSurpriseMe.CustomBorderThickness = new Padding(2);
-            btnSurpriseMe.CustomizableEdges = customizableEdges15;
+            btnSurpriseMe.CustomizableEdges = customizableEdges33;
             btnSurpriseMe.DisabledState.BorderColor = Color.DarkGray;
             btnSurpriseMe.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSurpriseMe.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -569,7 +587,7 @@ namespace Pseuchef.UI
             btnSurpriseMe.ForeColor = Color.Black;
             btnSurpriseMe.Location = new Point(519, 3);
             btnSurpriseMe.Name = "btnSurpriseMe";
-            btnSurpriseMe.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            btnSurpriseMe.ShadowDecoration.CustomizableEdges = customizableEdges34;
             btnSurpriseMe.Size = new Size(161, 48);
             btnSurpriseMe.TabIndex = 3;
             btnSurpriseMe.Text = "🎲  Surprise Me";
@@ -578,11 +596,11 @@ namespace Pseuchef.UI
             // pnlDashboard
             // 
             pnlDashboard.Controls.Add(tlpDashboard);
-            pnlDashboard.CustomizableEdges = customizableEdges27;
+            pnlDashboard.CustomizableEdges = customizableEdges17;
             pnlDashboard.Dock = DockStyle.Fill;
             pnlDashboard.Location = new Point(10, 10);
             pnlDashboard.Name = "pnlDashboard";
-            pnlDashboard.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            pnlDashboard.ShadowDecoration.CustomizableEdges = customizableEdges18;
             pnlDashboard.Size = new Size(940, 730);
             pnlDashboard.TabIndex = 0;
             // 
@@ -626,12 +644,12 @@ namespace Pseuchef.UI
             pnlPantrySection.BorderColor = Color.Black;
             pnlPantrySection.BorderThickness = 2;
             pnlPantrySection.Controls.Add(tlpPantryInner);
-            pnlPantrySection.CustomizableEdges = customizableEdges21;
+            pnlPantrySection.CustomizableEdges = customizableEdges11;
             pnlPantrySection.Dock = DockStyle.Fill;
             pnlPantrySection.Location = new Point(10, 58);
             pnlPantrySection.Margin = new Padding(0, 0, 6, 6);
             pnlPantrySection.Name = "pnlPantrySection";
-            pnlPantrySection.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            pnlPantrySection.ShadowDecoration.CustomizableEdges = customizableEdges12;
             pnlPantrySection.Size = new Size(362, 358);
             pnlPantrySection.TabIndex = 1;
             // 
@@ -691,7 +709,7 @@ namespace Pseuchef.UI
             tlpPantryInner.SetColumnSpan(btnAdd, 2);
             btnAdd.CustomBorderColor = Color.Black;
             btnAdd.CustomBorderThickness = new Padding(2);
-            btnAdd.CustomizableEdges = customizableEdges19;
+            btnAdd.CustomizableEdges = customizableEdges9;
             btnAdd.DisabledState.BorderColor = Color.DarkGray;
             btnAdd.DisabledState.CustomBorderColor = Color.DarkGray;
             btnAdd.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -703,7 +721,7 @@ namespace Pseuchef.UI
             btnAdd.Location = new Point(13, 277);
             btnAdd.Name = "btnAdd";
             btnAdd.Padding = new Padding(0, 3, 0, 0);
-            btnAdd.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            btnAdd.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnAdd.Size = new Size(336, 38);
             btnAdd.TabIndex = 5;
             btnAdd.Text = "+ Add Item ";
@@ -738,12 +756,12 @@ namespace Pseuchef.UI
             pnlAlertSection.BorderColor = Color.Black;
             pnlAlertSection.BorderThickness = 2;
             pnlAlertSection.Controls.Add(tlpAlertInner);
-            pnlAlertSection.CustomizableEdges = customizableEdges23;
+            pnlAlertSection.CustomizableEdges = customizableEdges13;
             pnlAlertSection.Dock = DockStyle.Fill;
             pnlAlertSection.Location = new Point(384, 58);
             pnlAlertSection.Margin = new Padding(6, 0, 0, 6);
             pnlAlertSection.Name = "pnlAlertSection";
-            pnlAlertSection.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            pnlAlertSection.ShadowDecoration.CustomizableEdges = customizableEdges14;
             pnlAlertSection.Size = new Size(546, 358);
             pnlAlertSection.TabIndex = 2;
             // 
@@ -798,12 +816,12 @@ namespace Pseuchef.UI
             tlpDashboard.SetColumnSpan(pnlRecipeSection, 2);
             pnlRecipeSection.Controls.Add(tlpRecipeInner);
             pnlRecipeSection.Controls.Add(label3);
-            pnlRecipeSection.CustomizableEdges = customizableEdges25;
+            pnlRecipeSection.CustomizableEdges = customizableEdges15;
             pnlRecipeSection.Dock = DockStyle.Fill;
             pnlRecipeSection.Location = new Point(10, 428);
             pnlRecipeSection.Margin = new Padding(0, 6, 0, 0);
             pnlRecipeSection.Name = "pnlRecipeSection";
-            pnlRecipeSection.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            pnlRecipeSection.ShadowDecoration.CustomizableEdges = customizableEdges16;
             pnlRecipeSection.Size = new Size(920, 292);
             pnlRecipeSection.TabIndex = 3;
             // 
@@ -856,31 +874,32 @@ namespace Pseuchef.UI
             // 
             // pnlChefbotAI
             // 
-            pnlChefbotAI.CustomizableEdges = customizableEdges29;
+            pnlChefbotAI.CustomizableEdges = customizableEdges37;
             pnlChefbotAI.Dock = DockStyle.Fill;
             pnlChefbotAI.Location = new Point(10, 10);
             pnlChefbotAI.Name = "pnlChefbotAI";
-            pnlChefbotAI.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            pnlChefbotAI.ShadowDecoration.CustomizableEdges = customizableEdges38;
             pnlChefbotAI.Size = new Size(940, 730);
             pnlChefbotAI.TabIndex = 5;
             // 
             // pnlNutritionTracker
             // 
-            pnlNutritionTracker.CustomizableEdges = customizableEdges31;
+            pnlNutritionTracker.Controls.Add(tlpShoppingList);
+            pnlNutritionTracker.CustomizableEdges = customizableEdges7;
             pnlNutritionTracker.Dock = DockStyle.Fill;
             pnlNutritionTracker.Location = new Point(10, 10);
             pnlNutritionTracker.Name = "pnlNutritionTracker";
-            pnlNutritionTracker.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            pnlNutritionTracker.ShadowDecoration.CustomizableEdges = customizableEdges8;
             pnlNutritionTracker.Size = new Size(940, 730);
             pnlNutritionTracker.TabIndex = 4;
             // 
             // pnlShoppingList
             // 
-            pnlShoppingList.CustomizableEdges = customizableEdges33;
+            pnlShoppingList.CustomizableEdges = customizableEdges39;
             pnlShoppingList.Dock = DockStyle.Fill;
             pnlShoppingList.Location = new Point(10, 10);
             pnlShoppingList.Name = "pnlShoppingList";
-            pnlShoppingList.ShadowDecoration.CustomizableEdges = customizableEdges34;
+            pnlShoppingList.ShadowDecoration.CustomizableEdges = customizableEdges40;
             pnlShoppingList.Size = new Size(940, 730);
             pnlShoppingList.TabIndex = 3;
             // 
@@ -914,7 +933,7 @@ namespace Pseuchef.UI
             // 
             // btnDashboard
             // 
-            btnDashboard.CustomizableEdges = customizableEdges37;
+            btnDashboard.CustomizableEdges = customizableEdges43;
             btnDashboard.DisabledState.BorderColor = Color.DarkGray;
             btnDashboard.DisabledState.CustomBorderColor = Color.DarkGray;
             btnDashboard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -929,7 +948,7 @@ namespace Pseuchef.UI
             btnDashboard.Margin = new Padding(3, 8, 3, 8);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.RightToLeft = RightToLeft.Yes;
-            btnDashboard.ShadowDecoration.CustomizableEdges = customizableEdges38;
+            btnDashboard.ShadowDecoration.CustomizableEdges = customizableEdges44;
             btnDashboard.Size = new Size(199, 47);
             btnDashboard.TabIndex = 0;
             btnDashboard.Text = "Dashboard";
@@ -938,7 +957,7 @@ namespace Pseuchef.UI
             // 
             // btnVirtualPantry
             // 
-            btnVirtualPantry.CustomizableEdges = customizableEdges39;
+            btnVirtualPantry.CustomizableEdges = customizableEdges45;
             btnVirtualPantry.DisabledState.BorderColor = Color.DarkGray;
             btnVirtualPantry.DisabledState.CustomBorderColor = Color.DarkGray;
             btnVirtualPantry.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -954,7 +973,7 @@ namespace Pseuchef.UI
             btnVirtualPantry.Margin = new Padding(3, 8, 3, 8);
             btnVirtualPantry.Name = "btnVirtualPantry";
             btnVirtualPantry.RightToLeft = RightToLeft.No;
-            btnVirtualPantry.ShadowDecoration.CustomizableEdges = customizableEdges40;
+            btnVirtualPantry.ShadowDecoration.CustomizableEdges = customizableEdges46;
             btnVirtualPantry.Size = new Size(199, 47);
             btnVirtualPantry.TabIndex = 1;
             btnVirtualPantry.Text = "Pantry";
@@ -964,7 +983,7 @@ namespace Pseuchef.UI
             // 
             // btnRecipeDiscovery
             // 
-            btnRecipeDiscovery.CustomizableEdges = customizableEdges41;
+            btnRecipeDiscovery.CustomizableEdges = customizableEdges47;
             btnRecipeDiscovery.DisabledState.BorderColor = Color.DarkGray;
             btnRecipeDiscovery.DisabledState.CustomBorderColor = Color.DarkGray;
             btnRecipeDiscovery.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -979,7 +998,7 @@ namespace Pseuchef.UI
             btnRecipeDiscovery.Margin = new Padding(3, 8, 3, 8);
             btnRecipeDiscovery.Name = "btnRecipeDiscovery";
             btnRecipeDiscovery.RightToLeft = RightToLeft.No;
-            btnRecipeDiscovery.ShadowDecoration.CustomizableEdges = customizableEdges42;
+            btnRecipeDiscovery.ShadowDecoration.CustomizableEdges = customizableEdges48;
             btnRecipeDiscovery.Size = new Size(199, 47);
             btnRecipeDiscovery.TabIndex = 2;
             btnRecipeDiscovery.Text = "Recipes";
@@ -989,7 +1008,7 @@ namespace Pseuchef.UI
             // 
             // btnShoppingList
             // 
-            btnShoppingList.CustomizableEdges = customizableEdges43;
+            btnShoppingList.CustomizableEdges = customizableEdges49;
             btnShoppingList.DisabledState.BorderColor = Color.DarkGray;
             btnShoppingList.DisabledState.CustomBorderColor = Color.DarkGray;
             btnShoppingList.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1005,7 +1024,7 @@ namespace Pseuchef.UI
             btnShoppingList.Margin = new Padding(3, 8, 3, 8);
             btnShoppingList.Name = "btnShoppingList";
             btnShoppingList.RightToLeft = RightToLeft.No;
-            btnShoppingList.ShadowDecoration.CustomizableEdges = customizableEdges44;
+            btnShoppingList.ShadowDecoration.CustomizableEdges = customizableEdges50;
             btnShoppingList.Size = new Size(199, 47);
             btnShoppingList.TabIndex = 3;
             btnShoppingList.Text = "Shopping List";
@@ -1015,7 +1034,7 @@ namespace Pseuchef.UI
             // 
             // btnNutritionTracker
             // 
-            btnNutritionTracker.CustomizableEdges = customizableEdges45;
+            btnNutritionTracker.CustomizableEdges = customizableEdges51;
             btnNutritionTracker.DisabledState.BorderColor = Color.DarkGray;
             btnNutritionTracker.DisabledState.CustomBorderColor = Color.DarkGray;
             btnNutritionTracker.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1031,7 +1050,7 @@ namespace Pseuchef.UI
             btnNutritionTracker.Margin = new Padding(3, 8, 3, 8);
             btnNutritionTracker.Name = "btnNutritionTracker";
             btnNutritionTracker.RightToLeft = RightToLeft.No;
-            btnNutritionTracker.ShadowDecoration.CustomizableEdges = customizableEdges46;
+            btnNutritionTracker.ShadowDecoration.CustomizableEdges = customizableEdges52;
             btnNutritionTracker.Size = new Size(199, 47);
             btnNutritionTracker.TabIndex = 4;
             btnNutritionTracker.Text = "Nutrition";
@@ -1041,7 +1060,7 @@ namespace Pseuchef.UI
             // 
             // btnChefbotAI
             // 
-            btnChefbotAI.CustomizableEdges = customizableEdges47;
+            btnChefbotAI.CustomizableEdges = customizableEdges53;
             btnChefbotAI.DisabledState.BorderColor = Color.DarkGray;
             btnChefbotAI.DisabledState.CustomBorderColor = Color.DarkGray;
             btnChefbotAI.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1057,7 +1076,7 @@ namespace Pseuchef.UI
             btnChefbotAI.Margin = new Padding(3, 8, 3, 8);
             btnChefbotAI.Name = "btnChefbotAI";
             btnChefbotAI.RightToLeft = RightToLeft.No;
-            btnChefbotAI.ShadowDecoration.CustomizableEdges = customizableEdges48;
+            btnChefbotAI.ShadowDecoration.CustomizableEdges = customizableEdges54;
             btnChefbotAI.Size = new Size(199, 47);
             btnChefbotAI.TabIndex = 5;
             btnChefbotAI.Text = "Chefbot AI";
@@ -1069,17 +1088,17 @@ namespace Pseuchef.UI
             // 
             guna2Panel2.Controls.Add(btnMinimize);
             guna2Panel2.Controls.Add(btnClose);
-            guna2Panel2.CustomizableEdges = customizableEdges53;
+            guna2Panel2.CustomizableEdges = customizableEdges59;
             guna2Panel2.Dock = DockStyle.Fill;
             guna2Panel2.Location = new Point(223, 3);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges54;
+            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges60;
             guna2Panel2.Size = new Size(974, 24);
             guna2Panel2.TabIndex = 2;
             // 
             // btnMinimize
             // 
-            btnMinimize.CustomizableEdges = customizableEdges49;
+            btnMinimize.CustomizableEdges = customizableEdges55;
             btnMinimize.DisabledState.BorderColor = Color.DarkGray;
             btnMinimize.DisabledState.CustomBorderColor = Color.DarkGray;
             btnMinimize.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1093,7 +1112,7 @@ namespace Pseuchef.UI
             btnMinimize.ImageSize = new Size(24, 24);
             btnMinimize.Location = new Point(926, 0);
             btnMinimize.Name = "btnMinimize";
-            btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges50;
+            btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges56;
             btnMinimize.Size = new Size(24, 24);
             btnMinimize.TabIndex = 1;
             btnMinimize.Text = "guna2Button2";
@@ -1101,7 +1120,7 @@ namespace Pseuchef.UI
             // 
             // btnClose
             // 
-            btnClose.CustomizableEdges = customizableEdges51;
+            btnClose.CustomizableEdges = customizableEdges57;
             btnClose.DisabledState.BorderColor = Color.DarkGray;
             btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
             btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1116,7 +1135,7 @@ namespace Pseuchef.UI
             btnClose.Location = new Point(950, 0);
             btnClose.Margin = new Padding(30, 3, 3, 3);
             btnClose.Name = "btnClose";
-            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges52;
+            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges58;
             btnClose.Size = new Size(24, 24);
             btnClose.TabIndex = 0;
             btnClose.Text = "guna2Button1";
@@ -1124,111 +1143,111 @@ namespace Pseuchef.UI
             // 
             // btnFilterApply
             // 
-            btnFilterApply.CustomizableEdges = customizableEdges55;
+            btnFilterApply.CustomizableEdges = customizableEdges61;
             btnFilterApply.Font = new Font("Segoe UI", 9F);
             btnFilterApply.ForeColor = Color.White;
             btnFilterApply.Location = new Point(0, 0);
             btnFilterApply.Name = "btnFilterApply";
-            btnFilterApply.ShadowDecoration.CustomizableEdges = customizableEdges56;
+            btnFilterApply.ShadowDecoration.CustomizableEdges = customizableEdges62;
             btnFilterApply.Size = new Size(180, 45);
             btnFilterApply.TabIndex = 0;
             // 
             // btnFilterClear
             // 
-            btnFilterClear.CustomizableEdges = customizableEdges57;
+            btnFilterClear.CustomizableEdges = customizableEdges63;
             btnFilterClear.Font = new Font("Segoe UI", 9F);
             btnFilterClear.ForeColor = Color.White;
             btnFilterClear.Location = new Point(0, 0);
             btnFilterClear.Name = "btnFilterClear";
-            btnFilterClear.ShadowDecoration.CustomizableEdges = customizableEdges58;
+            btnFilterClear.ShadowDecoration.CustomizableEdges = customizableEdges64;
             btnFilterClear.Size = new Size(180, 45);
             btnFilterClear.TabIndex = 0;
             // 
             // btnFilterUseNow
             // 
-            btnFilterUseNow.CustomizableEdges = customizableEdges59;
+            btnFilterUseNow.CustomizableEdges = customizableEdges65;
             btnFilterUseNow.Font = new Font("Segoe UI", 9F);
             btnFilterUseNow.ForeColor = Color.White;
             btnFilterUseNow.Location = new Point(0, 0);
             btnFilterUseNow.Name = "btnFilterUseNow";
-            btnFilterUseNow.ShadowDecoration.CustomizableEdges = customizableEdges60;
+            btnFilterUseNow.ShadowDecoration.CustomizableEdges = customizableEdges66;
             btnFilterUseNow.Size = new Size(180, 45);
             btnFilterUseNow.TabIndex = 0;
             // 
             // btnFilterExpiring
             // 
-            btnFilterExpiring.CustomizableEdges = customizableEdges61;
+            btnFilterExpiring.CustomizableEdges = customizableEdges67;
             btnFilterExpiring.Font = new Font("Segoe UI", 9F);
             btnFilterExpiring.ForeColor = Color.White;
             btnFilterExpiring.Location = new Point(0, 0);
             btnFilterExpiring.Name = "btnFilterExpiring";
-            btnFilterExpiring.ShadowDecoration.CustomizableEdges = customizableEdges62;
+            btnFilterExpiring.ShadowDecoration.CustomizableEdges = customizableEdges68;
             btnFilterExpiring.Size = new Size(180, 45);
             btnFilterExpiring.TabIndex = 0;
             // 
             // btnFilterFresh
             // 
-            btnFilterFresh.CustomizableEdges = customizableEdges63;
+            btnFilterFresh.CustomizableEdges = customizableEdges69;
             btnFilterFresh.Font = new Font("Segoe UI", 9F);
             btnFilterFresh.ForeColor = Color.White;
             btnFilterFresh.Location = new Point(0, 0);
             btnFilterFresh.Name = "btnFilterFresh";
-            btnFilterFresh.ShadowDecoration.CustomizableEdges = customizableEdges64;
+            btnFilterFresh.ShadowDecoration.CustomizableEdges = customizableEdges70;
             btnFilterFresh.Size = new Size(180, 45);
             btnFilterFresh.TabIndex = 0;
             // 
             // btnFilterPantry
             // 
-            btnFilterPantry.CustomizableEdges = customizableEdges65;
+            btnFilterPantry.CustomizableEdges = customizableEdges71;
             btnFilterPantry.Font = new Font("Segoe UI", 9F);
             btnFilterPantry.ForeColor = Color.White;
             btnFilterPantry.Location = new Point(0, 0);
             btnFilterPantry.Name = "btnFilterPantry";
-            btnFilterPantry.ShadowDecoration.CustomizableEdges = customizableEdges66;
+            btnFilterPantry.ShadowDecoration.CustomizableEdges = customizableEdges72;
             btnFilterPantry.Size = new Size(180, 45);
             btnFilterPantry.TabIndex = 0;
             // 
             // btnFilterVeggies
             // 
-            btnFilterVeggies.CustomizableEdges = customizableEdges67;
+            btnFilterVeggies.CustomizableEdges = customizableEdges73;
             btnFilterVeggies.Font = new Font("Segoe UI", 9F);
             btnFilterVeggies.ForeColor = Color.White;
             btnFilterVeggies.Location = new Point(0, 0);
             btnFilterVeggies.Name = "btnFilterVeggies";
-            btnFilterVeggies.ShadowDecoration.CustomizableEdges = customizableEdges68;
+            btnFilterVeggies.ShadowDecoration.CustomizableEdges = customizableEdges74;
             btnFilterVeggies.Size = new Size(180, 45);
             btnFilterVeggies.TabIndex = 0;
             // 
             // btnFilterDairy
             // 
-            btnFilterDairy.CustomizableEdges = customizableEdges69;
+            btnFilterDairy.CustomizableEdges = customizableEdges75;
             btnFilterDairy.Font = new Font("Segoe UI", 9F);
             btnFilterDairy.ForeColor = Color.White;
             btnFilterDairy.Location = new Point(0, 0);
             btnFilterDairy.Name = "btnFilterDairy";
-            btnFilterDairy.ShadowDecoration.CustomizableEdges = customizableEdges70;
+            btnFilterDairy.ShadowDecoration.CustomizableEdges = customizableEdges76;
             btnFilterDairy.Size = new Size(180, 45);
             btnFilterDairy.TabIndex = 0;
             // 
             // btnFilterMeat
             // 
-            btnFilterMeat.CustomizableEdges = customizableEdges71;
+            btnFilterMeat.CustomizableEdges = customizableEdges77;
             btnFilterMeat.Font = new Font("Segoe UI", 9F);
             btnFilterMeat.ForeColor = Color.White;
             btnFilterMeat.Location = new Point(0, 0);
             btnFilterMeat.Name = "btnFilterMeat";
-            btnFilterMeat.ShadowDecoration.CustomizableEdges = customizableEdges72;
+            btnFilterMeat.ShadowDecoration.CustomizableEdges = customizableEdges78;
             btnFilterMeat.Size = new Size(180, 45);
             btnFilterMeat.TabIndex = 0;
             // 
             // btnFilterAll
             // 
-            btnFilterAll.CustomizableEdges = customizableEdges73;
+            btnFilterAll.CustomizableEdges = customizableEdges79;
             btnFilterAll.Font = new Font("Segoe UI", 9F);
             btnFilterAll.ForeColor = Color.White;
             btnFilterAll.Location = new Point(0, 0);
             btnFilterAll.Name = "btnFilterAll";
-            btnFilterAll.ShadowDecoration.CustomizableEdges = customizableEdges74;
+            btnFilterAll.ShadowDecoration.CustomizableEdges = customizableEdges80;
             btnFilterAll.Size = new Size(180, 45);
             btnFilterAll.TabIndex = 0;
             // 
@@ -1353,6 +1372,142 @@ namespace Pseuchef.UI
             mnuFilterUseNow.Size = new Size(180, 40);
             mnuFilterUseNow.Text = "Use Now";
             // 
+            // tlpShoppingList
+            // 
+            tlpShoppingList.ColumnCount = 1;
+            tlpShoppingList.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpShoppingList.Controls.Add(lblShoppingTitle, 0, 0);
+            tlpShoppingList.Controls.Add(pnlShoppingActions, 0, 1);
+            tlpShoppingList.Controls.Add(dgvShoppingList, 0, 2);
+            tlpShoppingList.Dock = DockStyle.Fill;
+            tlpShoppingList.Location = new Point(0, 0);
+            tlpShoppingList.Name = "tlpShoppingList";
+            tlpShoppingList.Padding = new Padding(10, 16, 20, 16);
+            tlpShoppingList.RightToLeft = RightToLeft.No;
+            tlpShoppingList.RowCount = 3;
+            tlpShoppingList.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tlpShoppingList.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tlpShoppingList.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpShoppingList.Size = new Size(940, 730);
+            tlpShoppingList.TabIndex = 0;
+            // 
+            // lblShoppingTitle
+            // 
+            lblShoppingTitle.AutoSize = true;
+            lblShoppingTitle.BackColor = Color.FromArgb(0, 0, 0, 0);
+            lblShoppingTitle.Dock = DockStyle.Fill;
+            lblShoppingTitle.Font = new Font("Space Grotesk", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblShoppingTitle.ImageAlign = ContentAlignment.BottomLeft;
+            lblShoppingTitle.Location = new Point(13, 16);
+            lblShoppingTitle.Name = "lblShoppingTitle";
+            lblShoppingTitle.Size = new Size(904, 48);
+            lblShoppingTitle.TabIndex = 0;
+            lblShoppingTitle.Text = "Shopping List";
+            // 
+            // pnlShoppingActions
+            // 
+            pnlShoppingActions.ColumnCount = 3;
+            pnlShoppingActions.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            pnlShoppingActions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 240F));
+            pnlShoppingActions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 240F));
+            pnlShoppingActions.Controls.Add(btnClearBought, 2, 0);
+            pnlShoppingActions.Controls.Add(txtShoppingSearch, 0, 0);
+            pnlShoppingActions.Controls.Add(guna2Button1, 1, 0);
+            pnlShoppingActions.Dock = DockStyle.Fill;
+            pnlShoppingActions.Location = new Point(13, 67);
+            pnlShoppingActions.Name = "pnlShoppingActions";
+            pnlShoppingActions.RowCount = 1;
+            pnlShoppingActions.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            pnlShoppingActions.Size = new Size(904, 54);
+            pnlShoppingActions.TabIndex = 1;
+            // 
+            // txtShoppingSearch
+            // 
+            txtShoppingSearch.BorderColor = Color.FromArgb(26, 26, 26);
+            txtShoppingSearch.BorderThickness = 2;
+            txtShoppingSearch.CustomizableEdges = customizableEdges3;
+            txtShoppingSearch.DefaultText = "";
+            txtShoppingSearch.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtShoppingSearch.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtShoppingSearch.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtShoppingSearch.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtShoppingSearch.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtShoppingSearch.Font = new Font("Google Sans", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtShoppingSearch.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtShoppingSearch.Location = new Point(3, 6);
+            txtShoppingSearch.Margin = new Padding(3, 6, 3, 6);
+            txtShoppingSearch.Name = "txtShoppingSearch";
+            txtShoppingSearch.PlaceholderText = "Search items...";
+            txtShoppingSearch.SelectedText = "";
+            txtShoppingSearch.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtShoppingSearch.Size = new Size(280, 40);
+            txtShoppingSearch.TabIndex = 0;
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            guna2Button1.CustomizableEdges = customizableEdges5;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = Color.FromArgb(26, 26, 26);
+            guna2Button1.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2Button1.ForeColor = Color.FromArgb(245, 245, 240);
+            guna2Button1.Location = new Point(434, 6);
+            guna2Button1.Margin = new Padding(3, 6, 3, 6);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            guna2Button1.Size = new Size(220, 42);
+            guna2Button1.TabIndex = 1;
+            guna2Button1.Text = "+ Add Item";
+            guna2Button1.TextOffset = new Point(0, 4);
+            // 
+            // btnClearBought
+            // 
+            btnClearBought.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            btnClearBought.CustomBorderColor = Color.FromArgb(26, 26, 26);
+            btnClearBought.CustomBorderThickness = new Padding(2);
+            btnClearBought.CustomizableEdges = customizableEdges1;
+            btnClearBought.DisabledState.BorderColor = Color.DarkGray;
+            btnClearBought.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnClearBought.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnClearBought.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnClearBought.FillColor = Color.White;
+            btnClearBought.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClearBought.ForeColor = Color.FromArgb(26, 26, 26);
+            btnClearBought.Location = new Point(674, 6);
+            btnClearBought.Margin = new Padding(3, 6, 3, 6);
+            btnClearBought.Name = "btnClearBought";
+            btnClearBought.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnClearBought.Size = new Size(220, 42);
+            btnClearBought.TabIndex = 2;
+            btnClearBought.Text = "✓ Clear Bought";
+            btnClearBought.TextOffset = new Point(0, 4);
+            // 
+            // dgvShoppingList
+            // 
+            dgvShoppingList.AllowUserToAddRows = false;
+            dgvShoppingList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvShoppingList.Columns.AddRange(new DataGridViewColumn[] { colBought });
+            dgvShoppingList.Dock = DockStyle.Fill;
+            dgvShoppingList.Location = new Point(13, 127);
+            dgvShoppingList.Name = "dgvShoppingList";
+            dgvShoppingList.ReadOnly = true;
+            dgvShoppingList.RowHeadersVisible = false;
+            dgvShoppingList.RowHeadersWidth = 51;
+            dgvShoppingList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvShoppingList.Size = new Size(904, 584);
+            dgvShoppingList.TabIndex = 2;
+            // 
+            // colBought
+            // 
+            colBought.HeaderText = "Column1";
+            colBought.MinimumWidth = 6;
+            colBought.Name = "colBought";
+            colBought.ReadOnly = true;
+            colBought.Width = 125;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1392,10 +1547,15 @@ namespace Pseuchef.UI
             pnlRecipeSection.PerformLayout();
             tlpRecipeInner.ResumeLayout(false);
             tlpRecipeInner.PerformLayout();
+            pnlNutritionTracker.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);
             cmsRowActions.ResumeLayout(false);
             cmsFilter.ResumeLayout(false);
+            tlpShoppingList.ResumeLayout(false);
+            tlpShoppingList.PerformLayout();
+            pnlShoppingActions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvShoppingList).EndInit();
             ResumeLayout(false);
         }
 
@@ -1496,5 +1656,13 @@ namespace Pseuchef.UI
         private TableLayoutPanel tableLayoutPanel3;
         private Label lblRecipeCount;
         private Guna.UI2.WinForms.Guna2Button btnSurpriseMe;
+        private TableLayoutPanel tlpShoppingList;
+        private Label lblShoppingTitle;
+        private TableLayoutPanel pnlShoppingActions;
+        private Guna.UI2.WinForms.Guna2TextBox txtShoppingSearch;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button btnClearBought;
+        private DataGridView dgvShoppingList;
+        private DataGridViewCheckBoxColumn colBought;
     }
 }

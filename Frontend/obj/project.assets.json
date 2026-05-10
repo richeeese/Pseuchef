@@ -191,11 +191,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mhalik\\Projects\\Psuechef\\Frontend\\Pseuchef.csproj",
+      "projectUniqueName": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\Pseuchef.csproj",
       "projectName": "Pseuchef",
-      "projectPath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\Frontend\\Pseuchef.csproj",
+      "projectPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\Pseuchef.csproj",
       "packagesPath": "C:\\Users\\Mhalik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\Frontend\\obj\\",
+      "outputPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Frontend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Mhalik\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -213,11 +213,11 @@
           "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\Mhalik\\Projects\\Psuechef\\AI\\Pseuchef.AI.csproj": {
-              "projectPath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\AI\\Pseuchef.AI.csproj"
+            "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\AI\\Pseuchef.AI.csproj": {
+              "projectPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\AI\\Pseuchef.AI.csproj"
             },
-            "C:\\Users\\Mhalik\\Projects\\Psuechef\\Backend\\Pseuchef.Backend.csproj": {
-              "projectPath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\Backend\\Pseuchef.Backend.csproj"
+            "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Pseuchef.Backend.csproj": {
+              "projectPath": "C:\\Users\\Mhalik\\Projects\\Pseuchef1\\Backend\\Pseuchef.Backend.csproj"
             }
           }
         }
