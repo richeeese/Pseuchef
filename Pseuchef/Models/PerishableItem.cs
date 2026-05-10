@@ -14,27 +14,27 @@ namespace Pseuchef.Models
             this.expiryDate = expiryDate;
         }
 
-        public void expiryAlert()
+        public void ExpiryAlert()
         {
         
         }
 
-        public DateOnly getExpiryDate()
+        public DateOnly GetExpiryDate()
         {
             return this.expiryDate;
         }
 
-        public void setExpiryDate(DateOnly expiryDate)
+        public void SetExpiryDate(DateOnly expiryDate)
         {
             this.expiryDate = expiryDate;
         }
 
-        public bool isExpired()
+        public bool IsExpired()
         {
             return this.expiryDate < DateOnly.FromDateTime(DateTime.Now);
         }
 
-        public int getDaysRemaining()
+        public int GetDaysRemaining()
         {
             return (this.expiryDate.ToDateTime(TimeOnly.MinValue) - DateTime.Now).Days;
         }

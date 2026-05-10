@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Pseuchef.Models;
+using Pseuchef.Interfaces;
+
+namespace Pseuchef.Services.Strategies
+{
+    // checks if dish is safe to eat based on preferences/restrictions
+    public interface IFoodSafetyStrategy
+    {
+        bool IsSafe(FoodItem item);
+
+        string GetDescription();
+    }
+
+    public class ExcludedIngredientsCheckStrategy : IFoodSafetyStrategy
+    {
+        private List<string> excludedIngredients;
+
+        public ExcludedIngredientsCheckStrategy(List<string> excludedIngredients)
+        {
+            this.excludedIngredients = excludedIngredients ?? new List<string>();
+        }
+
+        public bool IsSafe(FoodItem item)
+        {
+            if (item == null)
+                return false;
+
+            return !excludedIngredients.Any(ex => 
+                ex.Equals(item.ItemName, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public string GetDescription()
+        {
+            return "Check against excluded ingredients list";
+        }
+    }
+}

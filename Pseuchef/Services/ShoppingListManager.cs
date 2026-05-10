@@ -9,7 +9,8 @@ namespace Pseuchef.Services
     {
         public List<FoodItem> generateList(Recipe recipe, VirtualFridge vfridge)
         {
-
+            // TODO: implement shopping list generation logic
+            return new List<FoodItem>();
         }
 
         public void exportToText(List<FoodItem> list, string txt)

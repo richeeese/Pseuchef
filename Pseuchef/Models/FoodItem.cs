@@ -5,15 +5,15 @@ using Pseuchef.Enums;
 
 namespace Pseuchef.Models
 {
-    internal class FoodItem
+    public class FoodItem
     {
-        private string itemName { get; set; }
-        private FoodCategory category { get; set; }
-        private bool isCooked { get; set; }
-        private bool isFrozen { get; set; }
-        private double calorieCount { get; set; }
+        public string itemName { get; private set; }
+        public FoodCategory category { get; private set; }
+        public bool isCooked { get; private set; }
+        public bool isFrozen { get; private set; }
+        public double calorieCount { get; private set; } = 0;
 
-        protected FoodItem(string itemName, FoodCategory category, bool isCooked, bool isFrozen, double calorieCount)
+        public FoodItem(string itemName, FoodCategory category, bool isCooked, bool isFrozen, double calorieCount)
         {
             this.itemName = itemName;
             this.category = category;
@@ -63,7 +63,7 @@ namespace Pseuchef.Models
             }
         }
 
-        public FoodItem clone()
+        public FoodItem Clone()
         {
             return new FoodItem(itemName, category, isCooked, isFrozen, calorieCount);
         }
