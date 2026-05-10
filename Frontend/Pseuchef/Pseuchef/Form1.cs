@@ -41,6 +41,11 @@ namespace Pseuchef
         private List<(string name, string duration, string servings,
                       int match, int total, string[] tags)> _allRecipes;
 
+        // [MOCK] Per-recipe detail data — TODO (Ritzy): replace with IRecipeService.GetDetail(id)
+        private Dictionary<string, (
+            List<(string name, string qty, bool inPantry)> ingredients,
+            List<string> steps)> _recipeDetails;
+
         // Tracks the row index when ⋮ is clicked
         private int _actionRowIndex = -1;
 
@@ -1004,6 +1009,8 @@ namespace Pseuchef
         /// </summary>
         private void LoadMockRecipeDiscovery()
         {
+            InitRecipeDetails();
+
             // [MOCK] Tags drive the filter chip logic below
             _allRecipes = new List<(string, string, string, int, int, string[])>
     {
@@ -1027,6 +1034,138 @@ namespace Pseuchef
     };
 
             RenderRecipeCards(_allRecipes);
+        }
+
+        /// <summary>
+        /// Populates _recipeDetails with mock ingredient lists and steps.
+        /// [MOCK] TODO (Ritzy): Replace with IRecipeService.GetDetail(id)
+        /// TODO (Regina): steps and ingredient data can come from AI/API here
+        /// </summary>
+        private void InitRecipeDetails()
+        {
+            _recipeDetails = new Dictionary<string, (
+                List<(string, string, bool)>, List<string>)>
+            {
+                ["Lemon Herb Chicken"] = (
+                    new List<(string, string, bool)>
+                    {
+                ("Chicken thighs", "500 g",    true),
+                ("Lemon",          "2 pcs",    true),
+                ("Garlic",         "3 cloves", true),
+                ("Olive oil",      "2 tbsp",   true),
+                ("Fresh herbs",    "1 cup",    true),
+                    },
+                    new List<string>
+                    {
+                "Preheat oven to 200°C (390°F).",
+                "Season chicken thighs with salt and pepper on both sides.",
+                "Heat olive oil in an oven-safe pan over medium-high heat.",
+                "Sear chicken skin-side down for 4–5 minutes until golden.",
+                "Flip, add garlic and fresh herbs to the pan.",
+                "Transfer pan to oven and bake for 20–25 minutes.",
+                "Squeeze fresh lemon juice over chicken before serving.",
+                    }
+                ),
+
+                ["Mushroom Cream Pasta"] = (
+                    new List<(string, string, bool)>
+                    {
+                ("Pasta",       "200 g",    false),
+                ("Mushrooms",   "250 g",    false),
+                ("Heavy cream", "200 ml",   true),
+                ("Garlic",      "2 cloves", true),
+                ("Parmesan",    "50 g",     false),
+                ("Olive oil",   "1 tbsp",   true),
+                    },
+                    new List<string>
+                    {
+                "Cook pasta per package instructions. Reserve 1 cup pasta water.",
+                "Slice mushrooms and mince garlic.",
+                "Heat olive oil in a pan, sauté garlic for 1 minute.",
+                "Add mushrooms and cook until golden, about 5–6 minutes.",
+                "Pour in heavy cream and simmer 3 minutes until thickened.",
+                "Toss in drained pasta, adding pasta water to loosen if needed.",
+                "Finish with grated parmesan and season to taste.",
+                    }
+                ),
+
+                ["Garlic Butter Shrimp"] = (
+                    new List<(string, string, bool)>
+                    {
+                ("Shrimp",      "300 g",    false),
+                ("Butter",      "3 tbsp",   false),
+                ("Garlic",      "4 cloves", true),
+                ("Lemon juice", "1 tbsp",   false),
+                ("Parsley",     "2 tbsp",   false),
+                    },
+                    new List<string>
+                    {
+                "Peel and devein shrimp. Pat dry with paper towels.",
+                "Melt butter in a large skillet over medium-high heat.",
+                "Add minced garlic and cook for 1 minute until fragrant.",
+                "Add shrimp in a single layer, cook 1–2 minutes per side.",
+                "Squeeze lemon juice over shrimp and toss to coat.",
+                "Garnish with fresh parsley and serve immediately.",
+                    }
+                ),
+
+                ["Greek Yogurt Parfait"] = (
+                    new List<(string, string, bool)>
+                    {
+                ("Greek yogurt", "200 g",  true),
+                ("Granola",      "50 g",   true),
+                ("Honey",        "1 tbsp", false),
+                    },
+                    new List<string>
+                    {
+                "Spoon Greek yogurt into a glass or bowl.",
+                "Add a generous layer of granola on top.",
+                "Drizzle honey over the granola.",
+                "Repeat layers if desired. Serve immediately.",
+                    }
+                ),
+
+                ["Asparagus Stir Fry"] = (
+                    new List<(string, string, bool)>
+                    {
+                ("Asparagus", "10 pcs",    true),
+                ("Garlic",    "2 cloves",  true),
+                ("Olive oil", "2 tbsp",    true),
+                ("Soy sauce", "1 tbsp",    true),
+                    },
+                    new List<string>
+                    {
+                "Trim woody ends off asparagus, cut into 2-inch pieces.",
+                "Heat olive oil in a wok or skillet over high heat.",
+                "Add minced garlic and stir-fry for 30 seconds.",
+                "Add asparagus and stir-fry 3–4 minutes until tender-crisp.",
+                "Drizzle soy sauce, toss well, and serve hot.",
+                    }
+                ),
+
+                ["Beef Tacos"] = (
+                    new List<(string, string, bool)>
+                    {
+                ("Ground beef",    "400 g",  false),
+                ("Taco shells",    "8 pcs",  false),
+                ("Onion",          "1 pc",   true),
+                ("Tomato",         "2 pcs",  false),
+                ("Lettuce",        "2 cups", false),
+                ("Cheese",         "100 g",  false),
+                ("Sour cream",     "50 g",   false),
+                ("Taco seasoning", "1 pkt",  true),
+                    },
+                    new List<string>
+                    {
+                "Brown ground beef in a skillet over medium-high heat.",
+                "Drain excess fat. Add taco seasoning and ¼ cup water.",
+                "Simmer 3–4 minutes until the sauce thickens.",
+                "Warm taco shells according to package instructions.",
+                "Fill shells with seasoned beef.",
+                "Top with tomato, lettuce, cheese, and sour cream.",
+                    }
+                ),
+            };
         }
 
         /// <summary>
@@ -1170,6 +1309,23 @@ namespace Pseuchef
                 BorderRadius = 0,
                 Font = new Font("Google Sans", 8, FontStyle.Bold)
                 // TODO (Ritzy): wire Click to open recipe detail view
+            };
+
+            // Capture for lambda
+            string cName = recipeName;
+            string cDuration = duration;
+            string cServings = servings;
+            int cMatch = matchCount;
+            int cTotal = totalIngredients;
+
+            btnCook.Click += (s, e) =>
+            {
+                _recipeDetails.TryGetValue(cName, out var detail);
+                using var popup = new RecipeDetailForm(
+                    cName, cDuration, cServings, cMatch, cTotal,
+                    detail.ingredients ?? new(),
+                    detail.steps ?? new());
+                popup.ShowDialog(this);
             };
 
             // ── Neobrutalist card border ──
@@ -1446,6 +1602,17 @@ namespace Pseuchef
                 ForeColor = AppColors.OffWhite,
                 BorderRadius = 0
                 // TODO (Ritzy): wire to recipe detail view
+            };
+
+            btnCook.Click += (s, e) =>
+            {
+                _recipeDetails.TryGetValue(recipe.name, out var detail);
+                using var popup = new RecipeDetailForm(
+                    recipe.name, recipe.duration, recipe.servings,
+                    recipe.match, recipe.total,
+                    detail.ingredients ?? new(),
+                    detail.steps ?? new());
+                popup.ShowDialog(this);
             };
 
             pnlDetails.Controls.Add(lblName);
