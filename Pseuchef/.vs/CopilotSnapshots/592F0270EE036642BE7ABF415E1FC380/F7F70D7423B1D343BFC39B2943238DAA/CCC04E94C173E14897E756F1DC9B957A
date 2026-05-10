@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using Pseuchef.Models;
+
+namespace Pseuchef.Interfaces
+{
+    /// <summary>
+    /// Strategy interface for sorting inventory by different criteria.
+    /// </summary>
+    public interface IInventorySortStrategy
+    {
+        /// <summary>
+        /// Sorts a list of food items based on the strategy's criteria.
+        /// </summary>
+        /// <param name="items">The list of food items to sort</param>
+        /// <returns>A sorted list of food items</returns>
+        List<FoodItem> Sort(List<FoodItem> items);
+
+        /// <summary>
+        /// Gets a description of how items are sorted.
+        /// </summary>
+        string GetDescription();
+    }
+}

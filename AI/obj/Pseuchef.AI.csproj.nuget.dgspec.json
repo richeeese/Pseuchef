@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mhalik\\Projects\\Psuechef\\AI\\Pseuchef.AI.csproj": {}
+    "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\AI\\Pseuchef.AI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mhalik\\Projects\\Psuechef\\AI\\Pseuchef.AI.csproj": {
+    "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\AI\\Pseuchef.AI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mhalik\\Projects\\Psuechef\\AI\\Pseuchef.AI.csproj",
+        "projectUniqueName": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\AI\\Pseuchef.AI.csproj",
         "projectName": "Pseuchef.AI",
-        "projectPath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\AI\\Pseuchef.AI.csproj",
-        "packagesPath": "C:\\Users\\Mhalik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\AI\\obj\\",
+        "projectPath": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\AI\\Pseuchef.AI.csproj",
+        "packagesPath": "C:\\Users\\Ritzy Celestial\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\AI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Mhalik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ritzy Celestial\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,8 +33,8 @@
             "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\Mhalik\\Projects\\Psuechef\\Backend\\Pseuchef.Backend.csproj": {
-                "projectPath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\Backend\\Pseuchef.Backend.csproj"
+              "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Pseuchef.Backend.csproj": {
+                "projectPath": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Pseuchef.Backend.csproj"
               }
             }
           }
@@ -45,7 +49,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net8.0-windows": {
@@ -65,15 +69,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.26, 8.0.26]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.26, 8.0.26]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.26, 8.0.26]"
+              "version": "[8.0.25, 8.0.25]"
             }
           ],
           "frameworkReferences": {
@@ -84,21 +88,25 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300-preview.0.26177.108/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Mhalik\\Projects\\Psuechef\\Backend\\Pseuchef.Backend.csproj": {
+    "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Pseuchef.Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mhalik\\Projects\\Psuechef\\Backend\\Pseuchef.Backend.csproj",
+        "projectUniqueName": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Pseuchef.Backend.csproj",
         "projectName": "Pseuchef.Backend",
-        "projectPath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\Backend\\Pseuchef.Backend.csproj",
-        "packagesPath": "C:\\Users\\Mhalik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mhalik\\Projects\\Psuechef\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\Pseuchef.Backend.csproj",
+        "packagesPath": "C:\\Users\\Ritzy Celestial\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ritzy Celestial\\source\\repos\\Pseuchef\\Backend\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Mhalik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ritzy Celestial\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -125,7 +133,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net8.0-windows": {
@@ -145,15 +153,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.26, 8.0.26]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.26, 8.0.26]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.26, 8.0.26]"
+              "version": "[8.0.25, 8.0.25]"
             }
           ],
           "frameworkReferences": {
@@ -164,7 +172,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300-preview.0.26177.108/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

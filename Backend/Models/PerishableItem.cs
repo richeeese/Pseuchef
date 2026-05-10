@@ -5,11 +5,11 @@ using Pseuchef.Enums;
 
 namespace Pseuchef.Models
 {
-    internal class PerishableItem : FoodItem
+    public class PerishableItem : FoodItem
     {
         private DateOnly expiryDate;
 
-        PerishableItem(string itemName, FoodCategory category, bool isCooked, bool isFrozen, double calorieCount, DateOnly expiryDate): base(itemName, category, isCooked, isFrozen, calorieCount)
+        public PerishableItem(string itemName, FoodCategory category, bool isCooked, bool isFrozen, double calorieCount, DateOnly expiryDate): base(itemName, category, isCooked, isFrozen, calorieCount)
         {
             this.expiryDate = expiryDate;
         }

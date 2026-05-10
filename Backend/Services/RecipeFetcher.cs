@@ -6,7 +6,7 @@ using Pseuchef.Models;
 
 namespace Pseuchef.Services
 {
-    internal class RecipeFetcher : IRecipeService
+    public class RecipeFetcher : IRecipeService
     {
         public List<Recipe> Search(List<string> inventory, UserProfile profile)
         {

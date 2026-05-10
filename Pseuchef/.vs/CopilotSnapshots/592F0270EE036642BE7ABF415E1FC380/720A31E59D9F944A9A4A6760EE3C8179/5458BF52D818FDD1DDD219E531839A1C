@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Pseuchef.Models;
+using Pseuchef.Interfaces;
+
+namespace Pseuchef.Services.Strategies
+{
+    /// <summary>
+    /// Calculates total calories from a list of food items.
+    /// This is an optional feature that can be enabled/disabled as needed.
+    /// </summary>
+    public class CalorieCalculationStrategy : ICalculationStrategy
+    {
+        public double Calculate(List<FoodItem> items)
+        {
+            if (items == null || !items.Any())
+                return 0;
+
+            return items.Sum(item => item.calorieCount);
+        }
+
+        public string GetDescription()
+        {
+            return "Total Calories";
+        }
+    }
+}
