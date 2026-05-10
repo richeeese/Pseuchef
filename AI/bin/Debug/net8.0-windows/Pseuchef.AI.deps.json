@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Pseuchef.AI/1.0.0": {
+        "dependencies": {
+          "Pseuchef.Backend": "1.0.0"
+        },
+        "runtime": {
+          "Pseuchef.AI.dll": {}
+        }
+      },
+      "Pseuchef.Backend/1.0.0": {
+        "runtime": {
+          "Pseuchef.Backend.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Pseuchef.AI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Pseuchef.Backend/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

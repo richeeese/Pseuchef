@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Pseuchef</RootNamespace>
+    <AssemblyName>Pseuchef</AssemblyName>
+  </PropertyGroup>
+
+  <!-- Guna UI2 library -->
+  <ItemGroup>
+    <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4.7" />
+  </ItemGroup>
+
+  <!-- Reference to Backend project so UI can use Models, Services, Enums -->
+  <ItemGroup>
+    <ProjectReference Include="..\Backend\Pseuchef.Backend.csproj" />
+  </ItemGroup>
+
+  <!-- Reference to AI project so UI can call Regina's services -->
+  <ItemGroup>
+    <ProjectReference Include="..\AI\Pseuchef.AI.csproj" />
+  </ItemGroup>
+
+  <!-- Designer-generated resource files -->
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- PNG resources (icons used in UI) -->
+  <ItemGroup>
+    <Content Include="Resources\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

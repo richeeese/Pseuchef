@@ -1,0 +1,183 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Pseuchef.Models;
+using Pseuchef.Interfaces;
+using Pseuchef.Services.Strategies;
+
+namespace Pseuchef.Services
+{
+    public class VirtualFridge
+    {
+        private List<FoodItem> inventory;
+
+        public VirtualFridge()
+        {
+            inventory = new List<FoodItem>();
+        }
+
+        /// <summary>
+        /// Adds a food item to the fridge.
+        /// </summary>
+        public void AddItem(FoodItem item)
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item), "Item cannot be null");
+            inventory.Add(item);
+        }
+
+        /// <summary>
+        /// Removes a food item from the fridge.
+        /// </summary>
+        public void RemoveItem(FoodItem item)
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item), "Item cannot be null");
+            inventory.Remove(item);
+        }
+
+        /// <summary>
+        /// Updates an existing item in the fridge.
+        /// </summary>
+        public void UpdateItem(FoodItem oldItem, FoodItem newItem)
+        {
+            if (oldItem == null)
+                throw new ArgumentNullException(nameof(oldItem), "Old item cannot be null");
+            if (newItem == null)
+                throw new ArgumentNullException(nameof(newItem), "New item cannot be null");
+
+            int index = inventory.IndexOf(oldItem);
+            if (index >= 0)
+                inventory[index] = newItem;
+        }
+
+        /// <summary>
+        /// Gets a read-only view of the current inventory.
+        /// </summary>
+        public IReadOnlyList<FoodItem> GetInventory()
+        {
+            return inventory.AsReadOnly();
+        }
+
+        /// <summary>
+        /// Gets the total number of items in the fridge.
+        /// </summary>
+        public int GetItemCount()
+        {
+            return inventory.Count;
+        }
+
+        /// <summary>
+        /// Checks if the fridge is empty.
+        /// </summary>
+        public bool IsEmpty()
+        {
+            return inventory.Count == 0;
+        }
+
+        /// <summary>
+        /// Clears all items from the fridge.
+        /// </summary>
+        public void ClearInventory()
+        {
+            inventory.Clear();
+        }
+
+        /// <summary>
+        /// Filters inventory using a specific filter strategy.
+        /// </summary>
+        public List<FoodItem> FilterItems(IFoodItemFilterStrategy filterStrategy)
+        {
+            if (filterStrategy == null)
+                throw new ArgumentNullException(nameof(filterStrategy), "Filter strategy cannot be null");
+
+            return filterStrategy.Filter(inventory);
+        }
+
+        /// <summary>
+        /// Sorts inventory using a specific sort strategy.
+        /// </summary>
+        public List<FoodItem> SortItems(IInventorySortStrategy sortStrategy)
+        {
+            if (sortStrategy == null)
+                throw new ArgumentNullException(nameof(sortStrategy), "Sort strategy cannot be null");
+
+            return sortStrategy.Sort(inventory);
+        }
+
+        /// <summary>
+        /// Calculates a metric from the inventory using a specific calculation strategy.
+        /// </summary>
+        public double CalculateMetric(ICalculationStrategy calculationStrategy)
+        {
+            if (calculationStrategy == null)
+                throw new ArgumentNullException(nameof(calculationStrategy), "Calculation strategy cannot be null");
+
+            return calculationStrategy.Calculate(inventory);
+        }
+
+        /// <summary>
+        /// Gets items that are expiring soon (for PerishableItems).
+        /// </summary>
+        public List<FoodItem> GetExpiringItems(int daysUntilExpiry = 3)
+        {
+            if (daysUntilExpiry < 0)
+                throw new ArgumentException("Days until expiry cannot be negative", nameof(daysUntilExpiry));
+
+            var expiringStrategy = new ExpiringItemFilterStrategy(daysUntilExpiry);
+            return FilterItems(expiringStrategy);
+        }
+
+        /// <summary>
+        /// Gets items by a specific food category.
+        /// </summary>
+        public List<FoodItem> GetItemsByCategory(Enums.FoodCategory category)
+        {
+            var categoryStrategy = new CategoryFilterStrategy(category);
+            return FilterItems(categoryStrategy);
+        }
+
+        /// <summary>
+        /// Gets items sorted by expiry date (soonest first).
+        /// </summary>
+        public List<FoodItem> GetItemsSortedByExpiry()
+        {
+            var expiryStrategy = new SortByExpiryStrategy();
+            return SortItems(expiryStrategy);
+        }
+
+        /// <summary>
+        /// Calculates total calories from all items in the inventory.
+        /// This is optional and can be disabled if nutrition tracking is removed.
+        /// </summary>
+        public double CalculateTotalCalories()
+        {
+            var calorieStrategy = new CalorieCalculationStrategy();
+            return CalculateMetric(calorieStrategy);
+        }
+
+        /// <summary>
+        /// Finds all expired items in the fridge (for PerishableItems).
+        /// </summary>
+        public List<FoodItem> FindExpiredItems()
+        {
+            return inventory.OfType<PerishableItem>()
+                .Where(item => item.IsExpired())
+                .Cast<FoodItem>()
+                .ToList();
+        }
+
+        /// <summary>
+        /// Removes all expired items from the fridge.
+        /// </summary>
+        public int RemoveExpiredItems()
+        {
+            var expiredItems = FindExpiredItems();
+            foreach (var item in expiredItems)
+            {
+                RemoveItem(item);
+            }
+            return expiredItems.Count;
+        }
+    }
+}
