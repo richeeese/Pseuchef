@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< Updated upstream
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -259,19 +260,47 @@
             btnAddMissing.Size = new Size(360, 36);
             btnAddMissing.TabIndex = 0;
             btnAddMissing.Text = "+ Add Missing to Shopping List";
+=======
+            tlpMain = new TableLayoutPanel();
+            SuspendLayout();
+            // 
+            // tlpMain
+            // 
+            tlpMain.ColumnCount = 2;
+            tlpMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpMain.Dock = DockStyle.Fill;
+            tlpMain.Location = new Point(2, 2);
+            tlpMain.Name = "tlpMain";
+            tlpMain.RowCount = 2;
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpMain.Size = new Size(716, 516);
+            tlpMain.TabIndex = 0;
+>>>>>>> Stashed changes
             // 
             // RecipeDetailForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+<<<<<<< Updated upstream
             BackColor = Color.FromArgb(26, 26, 26);
             ClientSize = new Size(720, 540);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
+=======
+            BackColor = Color.FromArgb(245, 245, 240);
+            ClientSize = new Size(720, 520);
+            Controls.Add(tlpMain);
+            FormBorderStyle = FormBorderStyle.None;
+            MaximizeBox = false;
+            MinimizeBox = false;
+>>>>>>> Stashed changes
             Name = "RecipeDetailForm";
             Padding = new Padding(2);
             StartPosition = FormStartPosition.CenterParent;
             Text = "RecipeDetailForm";
+<<<<<<< Updated upstream
             tableLayoutPanel1.ResumeLayout(false);
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();
@@ -283,11 +312,14 @@
             pnlInstructions.ResumeLayout(false);
             pnlInstructions.PerformLayout();
             pnlFooter.ResumeLayout(false);
+=======
+>>>>>>> Stashed changes
             ResumeLayout(false);
         }
 
         #endregion
 
+<<<<<<< Updated upstream
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel pnlHeader;
         private Label lblRecipeName;
@@ -302,5 +334,8 @@
         private Label lblInstructionsTitle;
         private TableLayoutPanel pnlFooter;
         private Guna.UI2.WinForms.Guna2Button btnAddMissing;
+=======
+        private TableLayoutPanel tlpMain;
+>>>>>>> Stashed changes
     }
 }
