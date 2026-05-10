@@ -7,9 +7,9 @@ namespace Pseuchef.Models
 {
     public class Recipe
     {
-        public string RecipeTitle { get; private set; }
-        public List<string> IngredientsNeeded { get; private set; }
-        public double PrepTime { get; private set; }
+        public string recipeTitle { get; private set; }
+        public List<string> ingredientsNeeded { get; private set; }
+        public double prepTime { get; private set; }
 
         public Recipe(string title, List<string> ingredients, double time)
         {
@@ -18,25 +18,25 @@ namespace Pseuchef.Models
             if (time < 0)
                 throw new ArgumentException("Prep time cannot be negative", nameof(time));
 
-            RecipeTitle = title;
-            IngredientsNeeded = ingredients ?? new List<string>();
-            PrepTime = time;
+            recipeTitle = title;
+            ingredientsNeeded = ingredients ?? new List<string>();
+            prepTime = time;
         }
 
-        public string GetTitle() => RecipeTitle;
+        public string GetTitle() => recipeTitle;
 
-        public IReadOnlyList<string> GetIngredients() => IngredientsNeeded.AsReadOnly();
+        public IReadOnlyList<string> GetIngredients() => ingredientsNeeded.AsReadOnly();
 
-        public double GetPrepTime() => PrepTime;
+        public double GetPrepTime() => prepTime;
 
-        public int GetIngredientCount() => IngredientsNeeded.Count;
+        public int GetIngredientCount() => ingredientsNeeded.Count;
 
         public bool ContainsIngredient(string ingredient)
         {
             if (string.IsNullOrWhiteSpace(ingredient))
                 return false;
 
-            return IngredientsNeeded.Any(ing => 
+            return ingredientsNeeded.Any(ing => 
                 ing.Equals(ingredient, StringComparison.OrdinalIgnoreCase));
         }
 
@@ -44,18 +44,18 @@ namespace Pseuchef.Models
         {
             var recipeDisplay = new StringBuilder();
             recipeDisplay.AppendLine("========================================");
-            recipeDisplay.AppendLine($"Recipe: {RecipeTitle}");
+            recipeDisplay.AppendLine($"Recipe: {recipeTitle}");
             recipeDisplay.AppendLine("========================================");
-            recipeDisplay.AppendLine($"Preparation Time: {PrepTime} minutes");
+            recipeDisplay.AppendLine($"Preparation Time: {prepTime} minutes");
             recipeDisplay.AppendLine($"Number of Ingredients: {GetIngredientCount()}");
 
-            if (IngredientsNeeded.Count > 0)
+            if (ingredientsNeeded.Count > 0)
             {
                 recipeDisplay.AppendLine();
                 recipeDisplay.AppendLine("Ingredients:");
-                for (int i = 0; i < IngredientsNeeded.Count; i++)
+                for (int i = 0; i < ingredientsNeeded.Count; i++)
                 {
-                    recipeDisplay.AppendLine($"  {i + 1}. {IngredientsNeeded[i]}");
+                    recipeDisplay.AppendLine($"  {i + 1}. {ingredientsNeeded[i]}");
                 }
             }
             else
@@ -75,7 +75,7 @@ namespace Pseuchef.Models
 
         public override string ToString()
         {
-            return $"{RecipeTitle} ({GetIngredientCount()} ingredients, {PrepTime} min)";
+            return $"{recipeTitle} ({GetIngredientCount()} ingredients, {prepTime} min)";
         }
     }
 }
