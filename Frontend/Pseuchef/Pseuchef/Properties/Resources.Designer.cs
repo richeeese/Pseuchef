@@ -73,6 +73,16 @@ namespace Pseuchef.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz481 {
+            get {
+                object obj = ResourceManager.GetObject("close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz481", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap food_bank_24dp_E3E3E3_FILL0_wght200_GRAD200_opsz24 {
             get {
                 object obj = ResourceManager.GetObject("food_bank_24dp_E3E3E3_FILL0_wght200_GRAD200_opsz24", resourceCulture);

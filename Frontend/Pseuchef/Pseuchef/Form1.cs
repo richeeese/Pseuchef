@@ -26,8 +26,20 @@ namespace Pseuchef
         private int _expiringSoon = 4;
         private int _fresh = 6;
 
+        // Tracks whether the grid is showing a single surprise pick
+        private bool _surpriseMode = false;
+
         // Tracks the currently active sidebar button
         private Guna2Button _activeButton = null;
+        private HashSet<string> _activeCategoryFilters = new HashSet<string>();
+        private HashSet<string> _activeStatusFilters = new HashSet<string>();
+
+        // Tracks the active filter chip on the Recipe Discovery tab
+        private string _activeRecipeFilter = "All";
+
+        // [MOCK] Full recipe list — TODO (Ritzy): replace with IRecipeService call
+        private List<(string name, string duration, string servings,
+                      int match, int total, string[] tags)> _allRecipes;
 
         // Tracks the row index when ⋮ is clicked
         private int _actionRowIndex = -1;
@@ -58,11 +70,22 @@ namespace Pseuchef
             dgvPantryTab.CellMouseEnter += (s, ev) => dgvPantryTab.InvalidateCell(ev.ColumnIndex, ev.RowIndex);
             dgvPantryTab.CellMouseLeave += (s, ev) => dgvPantryTab.InvalidateCell(ev.ColumnIndex, ev.RowIndex);
 
+            btnPantryAddItem.Click += btnPantryAddItem_Click;
+
             // Style context menu
             cmsRowActions.BackColor = Color.White;
             cmsRowActions.ForeColor = AppColors.Dark;
             cmsRowActions.Font = new Font("Google Sans", 9);
             mnuDelete.ForeColor = AppColors.Red;
+
+            cmsFilter.BackColor = Color.White;
+            cmsFilter.ForeColor = AppColors.Dark;
+            cmsFilter.Font = new Font("Google Sans", 9);
+
+            // Color code status items
+            mnuFilterFresh.ForeColor = AppColors.Green;
+            mnuFilterExpiring.ForeColor = AppColors.Yellow;
+            mnuFilterUseNow.ForeColor = AppColors.Red;
 
             // Paint neobrutalist offset shadows behind the 3 dashboard section panels
             tlpDashboard.Paint += (s, ev) =>
@@ -86,12 +109,62 @@ namespace Pseuchef
             };
             tlpPantryTab.Invalidate();
 
+            // Paint hard offset shadows behind each recipe card
+            flpRecipeGrid.Paint += (s, ev) =>
+            {
+                foreach (Control c in flpRecipeGrid.Controls)
+                    DrawPanelShadow(ev.Graphics, c, offset: 4);
+            };
+
             txtPantrySearch.TextChanged += (s, ev) =>
             {
                 // Update placeholder visibility hint
                 txtPantrySearch.PlaceholderText = txtPantrySearch.Text.Length > 0
                     ? ""
                     : "Search items...";
+            };
+
+            btnFilter.Click += (s, e) =>
+            {
+                var pos = btnFilter.PointToScreen(new Point(0, btnFilter.Height));
+                cmsFilter.Show(pos);
+            };
+
+            // All — clears everything
+            mnuFilterAll.Click += (s, e) =>
+            {
+                _activeCategoryFilters.Clear();
+                _activeStatusFilters.Clear();
+                ApplyPantryFilters();
+            };
+
+            // Category filters — toggle on/off
+            mnuFilterMeat.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Meat"); ApplyPantryFilters(); };
+            mnuFilterDairy.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Dairy"); ApplyPantryFilters(); };
+            mnuFilterVeggies.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Veggies"); ApplyPantryFilters(); };
+            mnuFilterPantry.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Pantry"); ApplyPantryFilters(); };
+
+            // Status filters — toggle on/off
+            mnuFilterFresh.Click += (s, e) => { ToggleFilter(_activeStatusFilters, "Fresh"); ApplyPantryFilters(); };
+            mnuFilterExpiring.Click += (s, e) => { ToggleFilter(_activeStatusFilters, "Expiring Soon"); ApplyPantryFilters(); };
+            mnuFilterUseNow.Click += (s, e) => { ToggleFilter(_activeStatusFilters, "Use Now"); ApplyPantryFilters(); };
+
+            // ── Recipe Discovery tab setup ──
+            StyleRecipeFilterChips();
+
+            txtRecipeSearch.TextChanged += (s, ev) => ApplyRecipeFilters();
+
+            txtRecipeSearch.FocusedState.BorderColor = AppColors.Green;
+            txtRecipeSearch.BorderColor = AppColors.Dark;
+            txtRecipeSearch.BorderThickness = 2;
+
+            btnSurpriseMe.Click += btnSurpriseMe_Click;
+
+            // "← Show all" resets surprise mode when user starts typing again
+            txtRecipeSearch.TextChanged += (s, ev) =>
+            {
+                if (_surpriseMode) ExitSurpriseMode();
+                ApplyRecipeFilters();
             };
 
         }
@@ -107,6 +180,7 @@ namespace Pseuchef
             // (FlowLayoutPanel ClientSize is only reliable after OnShown)
             LoadMockAlerts();
             LoadMockRecipes();
+            LoadMockRecipeDiscovery();
         }
 
         // ============================================================
@@ -697,9 +771,36 @@ namespace Pseuchef
         private void mnuEdit_Click(object sender, EventArgs e)
         {
             if (_actionRowIndex < 0) return;
+
+            // Read current row values
             string itemName = dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value.ToString();
-            MessageBox.Show($"Edit: {itemName}\n\nTODO: Open edit dialog.",
-                "Edit Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string category = dgvPantryTab.Rows[_actionRowIndex].Cells["colCategory"].Value.ToString();
+            string quantity = dgvPantryTab.Rows[_actionRowIndex].Cells["colQuantity"].Value.ToString();
+            string expiry = dgvPantryTab.Rows[_actionRowIndex].Cells["colExpiry"].Value.ToString();
+
+            // Open AddItemForm in edit mode
+            using var editForm = new AddItemForm(itemName, category, quantity, expiry);
+
+            if (editForm.ShowDialog(this) == DialogResult.OK)
+            {
+                // Update the row with new values
+                int daysLeft = (DateTime.Parse(editForm.ExpiryDate) - DateTime.Today).Days;
+
+                string status = daysLeft <= 1 ? "🔴 Use Now"
+                              : daysLeft <= 3 ? "🟡 Expiring Soon"
+                              : "🟢 Fresh";
+
+                dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value = editForm.ItemName;
+                dgvPantryTab.Rows[_actionRowIndex].Cells["colCategory"].Value = editForm.Category;
+                dgvPantryTab.Rows[_actionRowIndex].Cells["colQuantity"].Value = editForm.Quantity;
+                dgvPantryTab.Rows[_actionRowIndex].Cells["colExpiry"].Value = editForm.ExpiryDate;
+                dgvPantryTab.Rows[_actionRowIndex].Cells["colStatus"].Value = status;
+
+                // Repaint to update badge colors
+                dgvPantryTab.InvalidateRow(_actionRowIndex);
+
+                // TODO (Ritzy): Also call pantryService.UpdateItem(id, updatedItem) here
+            }
         }
 
         /// <summary>
@@ -725,6 +826,69 @@ namespace Pseuchef
             }
         }
 
+        /// <summary>
+        /// Filters dgvPantryTab by search text, category, and status.
+        /// All three filters work together (AND logic).
+        /// TODO (Ritzy): When real data is loaded, call this after binding.
+        /// </summary>
+        private void ApplyPantryFilters()
+        {
+            string query = txtPantrySearch.Text.Trim().ToLower();
+            dgvPantryTab.ClearSelection();
+
+            foreach (DataGridViewRow row in dgvPantryTab.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string itemName = row.Cells["colItemName"].Value?.ToString().ToLower() ?? "";
+                string category = row.Cells["colCategory"].Value?.ToString() ?? "";
+                string status = row.Cells["colStatus"].Value?.ToString() ?? "";
+
+                bool matchesSearch = string.IsNullOrEmpty(query)
+                                  || itemName.Contains(query)
+                                  || category.ToLower().Contains(query);
+
+                // If no category filters active, show all; otherwise must match one
+                bool matchesCategory = _activeCategoryFilters.Count == 0
+                                    || _activeCategoryFilters.Contains(category);
+
+                // If no status filters active, show all; otherwise must match one
+                bool matchesStatus = _activeStatusFilters.Count == 0
+                                  || _activeStatusFilters.Any(f => status.Contains(f));
+
+                row.Visible = matchesSearch && matchesCategory && matchesStatus;
+            }
+
+            // Count total active filters
+            int activeCount = _activeCategoryFilters.Count + _activeStatusFilters.Count;
+
+            btnFilter.Text = activeCount > 0 ? $"Filter ▾ ({activeCount})" : "Filter ▾";
+            btnFilter.FillColor = activeCount > 0 ? AppColors.Green : Color.Transparent;
+            btnFilter.ForeColor = activeCount > 0 ? AppColors.OffWhite : AppColors.Dark;
+            btnFilter.CustomBorderColor = AppColors.Dark;
+
+            UpdateFilterMenuCheckmarks();
+        }
+
+        /// <summary>
+        /// Adds a ✓ checkmark next to the currently active filter menu item.
+        /// </summary>
+        private void UpdateFilterMenuCheckmarks()
+        {
+            // Category checkmarks
+            mnuFilterAll.Text = (_activeCategoryFilters.Count == 0 && _activeStatusFilters.Count == 0)
+                                    ? "✓ All" : "All";
+            mnuFilterMeat.Text = _activeCategoryFilters.Contains("Meat") ? "✓ Meat" : "Meat";
+            mnuFilterDairy.Text = _activeCategoryFilters.Contains("Dairy") ? "✓ Dairy" : "Dairy";
+            mnuFilterVeggies.Text = _activeCategoryFilters.Contains("Veggies") ? "✓ Veggies" : "Veggies";
+            mnuFilterPantry.Text = _activeCategoryFilters.Contains("Pantry") ? "✓ Pantry" : "Pantry";
+
+            // Status checkmarks
+            mnuFilterFresh.Text = _activeStatusFilters.Contains("Fresh") ? "✓ Fresh" : "Fresh";
+            mnuFilterExpiring.Text = _activeStatusFilters.Contains("Expiring Soon") ? "✓ Expiring Soon" : "Expiring Soon";
+            mnuFilterUseNow.Text = _activeStatusFilters.Contains("Use Now") ? "✓ Use Now" : "Use Now";
+        }
+
         // ============================================================
         // DESIGNER-GENERATED STUBS
         // Kept to prevent designer from throwing missing method errors
@@ -734,24 +898,586 @@ namespace Pseuchef
         private void dgvPantry_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void lblDashboardTitle_Click(object sender, EventArgs e) { }
 
-        private void txtPantrySearch_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Toggles a filter value in a HashSet.
+        /// If already present — removes it. If not — adds it.
+        /// </summary>
+        private void ToggleFilter(HashSet<string> filterSet, string value)
         {
-            string query = txtPantrySearch.Text.Trim().ToLower();
+            if (filterSet.Contains(value))
+                filterSet.Remove(value);
+            else
+                filterSet.Add(value);
+        }
 
-            dgvPantryTab.ClearSelection();
+        private void btnPantryAddItem_Click(object sender, EventArgs e)
+        {
+            using var addForm = new AddItemForm();
 
-            foreach (DataGridViewRow row in dgvPantryTab.Rows)
+            // ShowDialog makes it a modal — blocks until closed
+            if (addForm.ShowDialog(this) == DialogResult.OK)
             {
-                if (row.IsNewRow) continue;
+                // Calculate days left for status badge
+                int daysLeft = (DateTime.Parse(addForm.ExpiryDate) - DateTime.Today).Days;
 
-                string itemName = row.Cells["colItemName"].Value?.ToString().ToLower() ?? "";
-                string category = row.Cells["colCategory"].Value?.ToString().ToLower() ?? "";
+                string status = daysLeft <= 1 ? "🔴 Use Now"
+                              : daysLeft <= 3 ? "🟡 Expiring Soon"
+                              : "🟢 Fresh";
 
-                row.Visible = string.IsNullOrEmpty(query)
-                           || itemName.Contains(query)
-                           || category.Contains(query);
+                // Add the new row to the table
+                dgvPantryTab.Rows.Add(
+                    addForm.ItemName,
+                    addForm.Category,
+                    addForm.Quantity,
+                    addForm.ExpiryDate,
+                    status,
+                    "⋮"
+                );
+
+                // TODO (Ritzy): Also call pantryService.AddItem(item) here
+            }
+        }
+
+        // ============================================================
+        // RECIPE DISCOVERY — Filter Chips
+        // ============================================================
+
+        /// <summary>
+        /// Generates the filter chip row (All, From My Pantry, Quick,
+        /// Healthy, Budget-Friendly) and adds them to pnlRecipeFilters.
+        /// Chips are created in code so they're easy to restyle or extend.
+        /// </summary>
+        private void StyleRecipeFilterChips()
+        {
+            var filters = new[] { "All", "From My Pantry", "Quick", "Healthy", "Budget-Friendly" };
+
+            pnlRecipeFilters.Controls.Clear();
+            int xOffset = 0;
+
+            foreach (var label in filters)
+            {
+                bool isActive = label == _activeRecipeFilter;
+
+                var chip = new Guna2Button
+                {
+                    Name = $"chip_{label.Replace(" ", "")}",
+                    Text = label,
+                    Font = new Font("Google Sans", 8, FontStyle.Bold),
+                    Size = new Size(TextRenderer.MeasureText(label,
+                                    new Font("Google Sans", 8, FontStyle.Bold)).Width + 24, 32),
+                    Location = new Point(xOffset, 8),
+                    FillColor = isActive ? AppColors.Dark : Color.White,
+                    ForeColor = isActive ? AppColors.OffWhite : AppColors.Dark,
+                    BorderRadius = 0,
+                    CustomBorderColor = AppColors.Dark,
+                    CustomBorderThickness = new Padding(2),
+                    CheckedState = { FillColor = AppColors.Dark, ForeColor = AppColors.OffWhite }
+                };
+
+                string captured = label; // capture for lambda
+                chip.Click += (s, e) =>
+                {
+                    _activeRecipeFilter = captured;
+                    RefreshRecipeFilterChips();
+                    ApplyRecipeFilters();
+                };
+
+                pnlRecipeFilters.Controls.Add(chip);
+                xOffset += chip.Width + 8;
+            }
+        }
+
+        // ============================================================
+        // RECIPE DISCOVERY — Load + Render
+        // ============================================================
+
+        /// <summary>
+        /// Initialises the full mock recipe list and renders cards.
+        /// Called from OnShown so flpRecipeGrid has its real ClientSize.
+        ///
+        /// [MOCK] TODO (Ritzy): Replace _allRecipes list with:
+        ///   _allRecipes = recipeService.GetAll()
+        ///       .Select(r => (r.Name, r.Duration, r.Servings,
+        ///                     r.MatchCount, r.TotalIngredients, r.Tags))
+        ///       .ToList();
+        /// TODO (Regina): AI recommendation scores plug in here
+        /// </summary>
+        private void LoadMockRecipeDiscovery()
+        {
+            // [MOCK] Tags drive the filter chip logic below
+            _allRecipes = new List<(string, string, string, int, int, string[])>
+    {
+        ("Lemon Herb Chicken",    "35 min", "4 servings", 5, 5,
+            new[] { "From My Pantry", "Healthy" }),
+
+        ("Mushroom Cream Pasta",  "25 min", "2 servings", 3, 6,
+            new[] { "Quick", "Budget-Friendly" }),
+
+        ("Garlic Butter Shrimp",  "20 min", "2 servings", 1, 5,
+            new[] { "Quick", "From My Pantry" }),
+
+        ("Greek Yogurt Parfait",  "10 min", "1 serving",  2, 3,
+            new[] { "Quick", "Healthy", "Budget-Friendly" }),
+
+        ("Asparagus Stir Fry",   "15 min", "2 servings", 4, 4,
+            new[] { "From My Pantry", "Healthy", "Quick" }),
+
+        ("Beef Tacos",           "30 min", "4 servings", 2, 8,
+            new[] { "Budget-Friendly" }),
+    };
+
+            RenderRecipeCards(_allRecipes);
+        }
+
+        /// <summary>
+        /// Clears flpRecipeGrid and rebuilds cards from the supplied list.
+        /// Card width is computed to fill 3 columns with 12px gutters.
+        /// </summary>
+        /// <summary>
+        /// Clears flpRecipeGrid and rebuilds cards from the supplied list.
+        /// Card width is computed to fill exactly 3 columns with 12px gutters.
+        /// Horizontal scroll is suppressed — vertical only.
+        /// </summary>
+        private void RenderRecipeCards(
+            List<(string name, string duration, string servings,
+                  int match, int total, string[] tags)> recipes)
+        {
+            flpRecipeGrid.Controls.Clear();
+            flpRecipeGrid.Padding = new Padding(0, 8, 0, 8);
+
+            // ── Fix 1: Suppress horizontal scrollbar ──────────────────────────
+            // WinForms trick: set AutoScroll false, lock horizontal, re-enable.
+            // This keeps vertical scroll while completely hiding the horizontal one.
+            flpRecipeGrid.AutoScroll = false;
+            flpRecipeGrid.HorizontalScroll.Maximum = 0;
+            flpRecipeGrid.HorizontalScroll.Enabled = false;
+            flpRecipeGrid.HorizontalScroll.Visible = false;
+            flpRecipeGrid.AutoScroll = true;
+
+            // ── Fix 2: Exact card width calculation ───────────────────────────
+            // Always subtract the vertical scrollbar width (even when not yet
+            // visible) so the 3rd card never nudges past the edge.
+            // Then subtract only the 2 gutters *between* the 3 cards (not after).
+            int scrollbar = SystemInformation.VerticalScrollBarWidth; // typically 17px
+            int rightPad = 10; // breathing room so shadow clears the scrollbar track
+            int available = flpRecipeGrid.ClientSize.Width - scrollbar - rightPad;
+            int gutter = 12;
+            int cardWidth = (available - (gutter * 2)) / 3;
+            int cardHeight = 254;
+
+            foreach (var (name, duration, servings, match, total, _) in recipes)
+            {
+                var card = CreateDiscoveryCard(name, duration, servings,
+                                               match, total, cardWidth, cardHeight);
+
+                int cardIndex = flpRecipeGrid.Controls.Count; // count before Add
+                int rightMargin = ((cardIndex % 3) == 2) ? 0 : gutter; // 3rd card (index 2,5,8…) gets 0
+                card.Margin = new Padding(0, 0, rightMargin, 16);
+                flpRecipeGrid.Controls.Add(card);
             }
 
+            // At the bottom of RenderRecipeCards(), after the foreach:
+            UpdateRecipeCount(recipes.Count);
+        }
+
+        /// <summary>
+        /// Builds a single Recipe Discovery card.
+        /// Identical visual language to dashboard cards but taller,
+        /// with a hard offset shadow painted by the parent FlowLayoutPanel.
+        /// </summary>
+        private Panel CreateDiscoveryCard(string recipeName, string duration,
+            string servings, int matchCount, int totalIngredients,
+            int cardWidth, int cardHeight)
+        {
+            var card = new Panel
+            {
+                Width = cardWidth,
+                Height = cardHeight,
+                Margin = new Padding(0, 0, 12, 16),
+                BackColor = Color.White
+            };
+
+            // ── Image placeholder (top 45% of card) ──
+            int imgHeight = (int)(cardHeight * 0.45);
+
+            var imgPlaceholder = new Panel
+            {
+                Width = cardWidth,
+                Height = imgHeight,
+                Location = new Point(0, 0),
+                BackColor = Color.FromArgb(240, 240, 235)
+            };
+
+            var lblIcon = new Label
+            {
+                Text = "🍽",
+                Font = new Font("Segoe UI Emoji", 28),
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent
+                // TODO (Regina): swap with actual recipe image from API
+            };
+            imgPlaceholder.Controls.Add(lblIcon);
+
+            // ── Recipe name ──
+            var lblName = new Label
+            {
+                Text = recipeName,
+                Font = new Font("Google Sans", 9, FontStyle.Bold),
+                ForeColor = AppColors.Dark,
+                Location = new Point(10, imgHeight + 8),
+                Size = new Size(cardWidth - 20, 20),
+                AutoSize = false
+            };
+
+            // ── Duration · Servings ──
+            var lblMeta = new Label
+            {
+                Text = $"⏱ {duration}  ·  🍽 {servings}",
+                Font = new Font("Google Sans", 8),
+                ForeColor = Color.FromArgb(130, 130, 130),
+                Location = new Point(10, imgHeight + 30),
+                Size = new Size(cardWidth - 20, 20),
+                AutoSize = false
+            };
+
+            // ── Ingredient match badge ──
+            Color matchColor = matchCount == totalIngredients ? AppColors.Green
+                             : matchCount >= totalIngredients / 2 ? AppColors.Yellow
+                             : AppColors.Red;
+
+            var lblMatch = new Label
+            {
+                Text = $"✓ {matchCount}/{totalIngredients} ingredients in pantry",
+                Font = new Font("Google Sans", 7, FontStyle.Bold),
+                ForeColor = matchColor,
+                BackColor = Color.FromArgb(28, matchColor.R, matchColor.G, matchColor.B),
+                Location = new Point(10, imgHeight + 54),
+                Size = new Size(cardWidth - 20, 22),
+                AutoSize = false,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Padding = new Padding(4, 0, 0, 0)
+            };
+
+            // ── Cook Now button ──
+            var btnCook = new Guna2Button
+            {
+                Text = "Cook Now →",
+                Size = new Size(cardWidth - 20, 32),
+                Location = new Point(10, cardHeight - 44),
+                FillColor = AppColors.Orange,
+                ForeColor = AppColors.OffWhite,
+                BorderRadius = 0,
+                Font = new Font("Google Sans", 8, FontStyle.Bold)
+                // TODO (Ritzy): wire Click to open recipe detail view
+            };
+
+            // ── Neobrutalist card border ──
+            card.Paint += (s, e) =>
+            {
+                using var pen = new Pen(AppColors.Dark, 2);
+                e.Graphics.DrawRectangle(pen, 1, 1, card.Width - 2, card.Height - 2);
+            };
+
+            imgPlaceholder.Paint += (s, e) =>
+            {
+                using var pen = new Pen(AppColors.Dark, 3);
+                e.Graphics.DrawRectangle(pen, 0, 0, imgPlaceholder.Width - 1,
+                                                    imgPlaceholder.Height - 1);
+            };
+
+            card.Controls.Add(lblName);
+            card.Controls.Add(lblMeta);
+            card.Controls.Add(lblMatch);
+            card.Controls.Add(btnCook);
+            card.Controls.Add(imgPlaceholder); // last = renders on top (z-order)
+            return card;
+        }
+
+        /// <summary>
+        /// Filters _allRecipes by the active chip and search text,
+        /// then re-renders the card grid.
+        ///
+        /// Chip filter: "All" shows everything; others match against recipe tags.
+        /// Search filter: matches on recipe name (case-insensitive).
+        /// Both filters are AND'd together.
+        /// </summary>
+        private void ApplyRecipeFilters()
+        {
+            if (_allRecipes == null) return;
+
+            string query = txtRecipeSearch.Text.Trim().ToLower();
+
+            var filtered = _allRecipes.Where(r =>
+            {
+                bool matchesChip = _activeRecipeFilter == "All"
+                                || r.tags.Contains(_activeRecipeFilter);
+
+                bool matchesSearch = string.IsNullOrEmpty(query)
+                                  || r.name.ToLower().Contains(query);
+
+                return matchesChip && matchesSearch;
+            }).ToList();
+
+            RenderRecipeCards(filtered);
+        }
+
+        /// <summary>
+        /// Repaints all chips to reflect the current _activeRecipeFilter.
+        /// Called whenever the user clicks a chip.
+        /// </summary>
+        private void RefreshRecipeFilterChips()
+        {
+            foreach (Control c in pnlRecipeFilters.Controls)
+            {
+                if (c is not Guna2Button chip) continue;
+
+                bool isActive = chip.Text == _activeRecipeFilter;
+                chip.FillColor = isActive ? AppColors.Dark : Color.White;
+                chip.ForeColor = isActive ? AppColors.OffWhite : AppColors.Dark;
+            }
+        }
+
+        /// <summary>
+        /// Updates the recipe count label to match the current rendered list.
+        /// Called at the end of RenderRecipeCards().
+        /// </summary>
+        private void UpdateRecipeCount(int count)
+        {
+            lblRecipeCount.Text = count == 1 ? "1 recipe" : $"{count} recipes";
+        }
+
+        // ============================================================
+        // RECIPE DISCOVERY — Surprise Me
+        // ============================================================
+
+        /// <summary>
+        /// Picks a random recipe from the currently active filtered pool,
+        /// clears the grid, and renders it as a single featured card.
+        /// Entering surprise mode also updates the chip row to show a
+        /// "← Back" hint so the user knows how to return.
+        /// </summary>
+        private void btnSurpriseMe_Click(object sender, EventArgs e)
+        {
+            // Pull from filtered pool if a chip/search is active,
+            // otherwise use the full list
+            string query = txtRecipeSearch.Text.Trim().ToLower();
+
+            var pool = _allRecipes.Where(r =>
+            {
+                bool chip = _activeRecipeFilter == "All"
+                           || r.tags.Contains(_activeRecipeFilter);
+                bool search = string.IsNullOrEmpty(query)
+                           || r.name.ToLower().Contains(query);
+                return chip && search;
+            }).ToList();
+
+            if (pool.Count == 0)
+            {
+                lblRecipeCount.Text = "No recipes to surprise with!";
+                return;
+            }
+
+            // Pick at random
+            var pick = pool[new Random().Next(pool.Count)];
+
+            // Enter surprise mode — render just the one card, featured
+            _surpriseMode = true;
+            RenderSurpriseCard(pick);
+        }
+
+        /// <summary>
+        /// Renders a single recipe as a large centered "featured" card
+        /// with a surprise banner above it and a Back button below.
+        /// </summary>
+        /// <summary>
+        /// Renders the surprise pick as a horizontal featured card —
+        /// image panel on the left (~40%), recipe details on the right (~60%).
+        /// Header row has the surprise label left and Back button right.
+        /// </summary>
+        private void RenderSurpriseCard(
+            (string name, string duration, string servings,
+             int match, int total, string[] tags) recipe)
+        {
+            flpRecipeGrid.Controls.Clear();
+
+            int scrollbar = SystemInformation.VerticalScrollBarWidth;
+            int rightPad = 10;
+            int fullWidth = flpRecipeGrid.ClientSize.Width - scrollbar - rightPad;
+
+            // ── Row 0: Header bar (label left, back button right) ────────────
+            var pnlSurpriseHeader = new Panel
+            {
+                Width = fullWidth,
+                Height = 44,
+                BackColor = AppColors.Dark,     // this bleeds as the border
+                Margin = new Padding(0, 4, 0, 16),
+                Padding = new Padding(2)      // gap = border thickness
+            };
+            var pnlHeaderInner = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.White
+            };
+            pnlSurpriseHeader.Controls.Add(pnlHeaderInner);
+
+            var lblBanner = new Label
+            {
+                Text = "🎲  Surprise pick!",
+                Font = new Font("Google Sans", 10, FontStyle.Bold),
+                ForeColor = AppColors.Orange,
+                BackColor = Color.Transparent,   // transparent is fine on a White panel
+                AutoSize = true,
+                Location = new Point(12, 10)    // ← was (0, 8)
+            };
+
+            var btnBack = new Guna2Button
+            {
+                Text = "← Show all recipes",
+                Font = new Font("Google Sans", 8, FontStyle.Bold),
+                Size = new Size(148, 32),
+                FillColor = Color.White,
+                ForeColor = AppColors.Dark,
+                BorderRadius = 0,
+                CustomBorderColor = AppColors.Dark,
+                CustomBorderThickness = new Padding(2)
+            };
+            // Anchor to right edge of the header panel
+            btnBack.Location = new Point(fullWidth - btnBack.Width - 8, 6);
+            btnBack.Click += (s, e) => ExitSurpriseMode();
+
+            pnlHeaderInner.Controls.Add(lblBanner);
+            pnlHeaderInner.Controls.Add(btnBack);
+            flpRecipeGrid.Controls.Add(pnlSurpriseHeader);
+
+            // ── Row 1: Horizontal featured card ──────────────────────────────
+            int cardHeight = 300;
+            int imgWidth = (int)(fullWidth * 0.40);
+            int detailWidth = fullWidth - imgWidth;
+
+            var cardOuter = new Panel
+            {
+                Width = fullWidth,
+                Height = cardHeight,
+                Margin = new Padding(0, 0, 0, 0),
+                BackColor = AppColors.Dark,  // bleeds as 2px border
+                Padding = new Padding(2)
+            };
+
+            var card = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.White
+            };
+            cardOuter.Controls.Add(card);
+
+            // Left — image placeholder
+            var imgPanel = new Panel
+            {
+                Width = imgWidth,
+                Height = cardHeight,
+                Location = new Point(0, 0),
+                BackColor = Color.FromArgb(240, 240, 235)
+            };
+
+            var lblIcon = new Label
+            {
+                Text = "🍽",
+                Font = new Font("Segoe UI Emoji", 36),
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent
+            };
+            imgPanel.Controls.Add(lblIcon);
+
+            // Right — recipe details
+            var pnlDetails = new Panel
+            {
+                Width = detailWidth,
+                Height = cardHeight,
+                Location = new Point(imgWidth, 0),
+                BackColor = Color.White
+            };
+
+            var lblName = new Label
+            {
+                Text = recipe.name,
+                Font = new Font("Google Sans", 20, FontStyle.Bold),
+                ForeColor = AppColors.Dark,
+                Location = new Point(16, 24),
+                Size = new Size(detailWidth - 24, 56),
+                AutoSize = false
+            };
+
+            var lblMeta = new Label
+            {
+                Text = $"⏱ {recipe.duration}   ·   🍽 {recipe.servings}",
+                Font = new Font("Google Sans", 9),
+                ForeColor = Color.FromArgb(130, 130, 130),
+                Location = new Point(16, 88),
+                Size = new Size(detailWidth - 24, 22),
+                AutoSize = false
+            };
+
+            Color matchColor = recipe.match == recipe.total ? AppColors.Green
+                             : recipe.match >= recipe.total / 2 ? AppColors.Yellow
+                             : AppColors.Red;
+
+            var lblMatch = new Label
+            {
+                Text = $"✓  {recipe.match}/{recipe.total} ingredients in pantry",
+                Font = new Font("Google Sans", 8, FontStyle.Bold),
+                ForeColor = matchColor,
+                BackColor = Color.FromArgb(28, matchColor.R, matchColor.G, matchColor.B),
+                Location = new Point(16, 118),
+                Size = new Size(detailWidth - 32, 26),
+                AutoSize = false,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Padding = new Padding(6, 0, 0, 0)
+            };
+
+            var btnCook = new Guna2Button
+            {
+                Text = "Cook Now →",
+                Font = new Font("Google Sans", 9, FontStyle.Bold),
+                Size = new Size(detailWidth - 32, 38),
+                Location = new Point(16, cardHeight - 56),
+                FillColor = AppColors.Orange,
+                ForeColor = AppColors.OffWhite,
+                BorderRadius = 0
+                // TODO (Ritzy): wire to recipe detail view
+            };
+
+            pnlDetails.Controls.Add(lblName);
+            pnlDetails.Controls.Add(lblMeta);
+            pnlDetails.Controls.Add(lblMatch);
+            pnlDetails.Controls.Add(btnCook);
+
+            // Card border + divider line between image and details
+            card.Paint += (s, e) =>
+            {
+                using var divPen = new Pen(AppColors.Dark, 1);
+                e.Graphics.DrawLine(divPen, imgWidth - 2, 0, imgWidth - 2, cardHeight);
+            };
+
+            card.Controls.Add(imgPanel);
+            card.Controls.Add(pnlDetails);
+            flpRecipeGrid.Controls.Add(cardOuter);
+
+            UpdateRecipeCount(1);
+        }
+
+        /// <summary>
+        /// Exits surprise mode and restores the full filtered grid.
+        /// </summary>
+        private void ExitSurpriseMode()
+        {
+            _surpriseMode = false;
+            ApplyRecipeFilters(); // re-renders with current chip + search state
+        }
+        private void txtPantrySearch_TextChanged(object sender, EventArgs e)
+        {
+            ApplyPantryFilters();
         }
     }
 }
