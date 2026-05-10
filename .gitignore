@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Hiding the spoonacular API
+Pseuchef/Services/Config.cs
