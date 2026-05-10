@@ -1,0 +1,12 @@
+<Solution>
+  <!--
+    Pseuchef Solution
+    ─────────────────────────────────────────
+    Frontend  → Mhalik  (WinForms UI)
+    Backend   → Ritzy   (Services, Models)
+    AI        → Regina  (AI/API integration)
+  -->
+  <Project Path="Frontend/Pseuchef.csproj" />
+  <Project Path="Backend/Pseuchef.Backend.csproj" />
+  <Project Path="AI/Pseuchef.AI.csproj" />
+</Solution>
