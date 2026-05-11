@@ -1,20 +1,91 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Pseuchef.Interfaces;
+﻿using System.Net.Http;
+using System.Text.Json;
 using Pseuchef.Models;
+using Pseuchef.Interfaces;
 
 namespace Pseuchef.Services
 {
     public class RecipeFetcher : IRecipeService
     {
+        private static readonly HttpClient _http = new HttpClient();
+
         public List<Recipe> Search(List<string> inventory, UserProfile profile)
         {
-            if (inventory == null) inventory = new List<string>();
-            if (profile == null) return new List<Recipe>();
+            if (inventory == null || inventory.Count == 0)
+                return new List<Recipe>();
 
-            // TODO: implement actual search logic using inventory and profile.
-            return new List<Recipe>();
+            string ingredients = string.Join(",+", inventory);
+            string searchUrl = "https://api.spoonacular.com/recipes/findByIngredients"
+                             + $"?ingredients={Uri.EscapeDataString(ingredients)}"
+                             + "&number=20"
+                             + "&ranking=2"
+                             + "&ignorePantry=true"
+                             + $"&apiKey={Config.SpoonacularApiKey}";
+
+            try
+            {
+                // ── Step 1: Get recipes + ingredient match data ──────────────────
+                var searchResponse = Task.Run(() => _http.GetStringAsync(searchUrl)).Result;
+                var searchJson = JsonDocument.Parse(searchResponse);
+
+                var recipes = new List<Recipe>();
+                var idToData = new Dictionary<int, (List<RecipeIngredient> ingredients, int matchCount)>();
+
+                foreach (var item in searchJson.RootElement.EnumerateArray())
+                {
+                    var ingredientList = new List<RecipeIngredient>();
+
+                    foreach (var ing in item.GetProperty("usedIngredients").EnumerateArray())
+                    {
+                        string name = ing.GetProperty("name").GetString() ?? "";
+                        if (!string.IsNullOrWhiteSpace(name))
+                            ingredientList.Add(new RecipeIngredient(name, usedCount: 1, missedCount: 0));
+                    }
+
+                    foreach (var ing in item.GetProperty("missedIngredients").EnumerateArray())
+                    {
+                        string name = ing.GetProperty("name").GetString() ?? "";
+                        if (!string.IsNullOrWhiteSpace(name))
+                            ingredientList.Add(new RecipeIngredient(name, usedCount: 0, missedCount: 1));
+                    }
+
+                    int matchCount = ingredientList.Count(i => i.usedCount > 0);
+                    if (matchCount < 1) continue; // skip zero-match recipes
+
+                    int id = item.GetProperty("id").GetInt32();
+                    idToData[id] = (ingredientList, matchCount);
+                }
+
+                if (idToData.Count == 0) return new List<Recipe>();
+
+                // ── Step 2: Bulk fetch prep time + servings for all recipe IDs ───
+                string ids = string.Join(",", idToData.Keys);
+                string bulkUrl = "https://api.spoonacular.com/recipes/informationBulk"
+                                + $"?ids={ids}"
+                                + $"&apiKey={Config.SpoonacularApiKey}";
+
+                var bulkResponse = Task.Run(() => _http.GetStringAsync(bulkUrl)).Result;
+                var bulkJson = JsonDocument.Parse(bulkResponse);
+
+                foreach (var item in bulkJson.RootElement.EnumerateArray())
+                {
+                    int id = item.GetProperty("id").GetInt32();
+                    string title = item.GetProperty("title").GetString() ?? "Unknown Recipe";
+                    double prepTime = item.TryGetProperty("readyInMinutes", out var t) ? t.GetDouble() : 0;
+                    string imageUrl = item.TryGetProperty("image", out var img) ? img.GetString() ?? "" : "";
+                    int servings = item.TryGetProperty("servings", out var s) ? s.GetInt32() : 0;
+
+                    if (!idToData.TryGetValue(id, out var data)) continue;
+
+                    recipes.Add(new Recipe(title, data.ingredients, prepTime, imageUrl, servings));
+                }
+
+                return recipes.Take(3).ToList();
+            }
+            catch
+            {
+                return new List<Recipe>();
+            }
         }
     }
 }

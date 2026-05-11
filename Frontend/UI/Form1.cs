@@ -12,6 +12,10 @@
 
 using Guna.UI2.WinForms;
 using System.Linq;
+using Pseuchef.Models;
+using Pseuchef.Services;
+using Pseuchef.Interfaces;
+using Pseuchef.Enums;
 
 namespace Pseuchef.UI
 {
@@ -22,9 +26,20 @@ namespace Pseuchef.UI
         // TODO (Ritzy): Replace with real counts from IPantryService
         // e.g. _useNow = pantryService.GetExpiringCount(maxDays: 1);
         // ─────────────────────────────────────────────
-        private int _useNow = 2;
-        private int _expiringSoon = 4;
-        private int _fresh = 6;
+        private int _useNow => _fridge.GetExpiringItems(1).Count;
+        private int _expiringSoon => _fridge.GetExpiringItems(3).Count - _fridge.GetExpiringItems(1).Count;
+        private int _fresh => Math.Max(0, _fridge.GetInventory().Count - _fridge.GetExpiringItems(3).Count);
+
+        private readonly IRecipeService _recipeService = new RecipeFetcher();
+
+        private readonly VirtualFridge _fridge = new VirtualFridge();
+        private readonly UserProfile _userProfile = new UserProfile(
+            "User",
+            new List<DietaryRestriction>(),
+            new List<string>(),
+            2000,
+            true
+        );
 
         // Tracks whether the grid is showing a single surprise pick
         private bool _surpriseMode = false;
@@ -39,7 +54,7 @@ namespace Pseuchef.UI
 
         // [MOCK] Full recipe list — TODO (Ritzy): replace with IRecipeService call
         private List<(string name, string duration, string servings,
-                      int match, int total, string[] tags)> _allRecipes;
+              int match, int total, string[] tags, string imageUrl)> _allRecipes;
 
         // [MOCK] Per-recipe detail data — TODO (Ritzy): replace with IRecipeService.GetDetail(id)
         private Dictionary<string, (
@@ -172,7 +187,6 @@ namespace Pseuchef.UI
                 ApplyRecipeFilters();
             };
 
-            // ── Dashboard + Add Item ──
             btnAdd.Click += (s, e) =>
             {
                 using var addForm = new AddItemForm();
@@ -183,15 +197,31 @@ namespace Pseuchef.UI
                                   : daysLeft <= 3 ? "🟡 Expiring Soon"
                                   : "🟢 Fresh";
 
-                    // Add to pantry tab so data is consistent
-                    dgvPantryTab.Rows.Add(
+                    // Save to VirtualFridge
+                    var newItem = new PerishableItem(
+                        addForm.ItemName,
+                        MapCategory(addForm.Category),
+                        false, false, 0,
+                        DateOnly.FromDateTime(DateTime.Parse(addForm.ExpiryDate))
+                    );
+                    _fridge.AddItem(newItem);
+
+                    // Add row to pantry grid and store Tag reference
+                    int rowIndex = dgvPantryTab.Rows.Add(
                         addForm.ItemName, addForm.Category,
                         addForm.Quantity, addForm.ExpiryDate,
                         status, "⋮");
+                    dgvPantryTab.Rows[rowIndex].Tag = newItem;
 
-                    // TODO (Ritzy): call pantryService.AddItem(item) here
+                    // Refresh donut chart AND alerts
+                    SetupDonutChart();
+                    pnlDonutChart.Refresh();
+                    LoadAlerts();
+                    LoadMockRecipes();
+                    LoadRecipeDiscovery();
+
+                    UpdateLastAdded(addForm.ItemName, addForm.Quantity);
                 }
-                UpdateLastAdded(addForm.ItemName, addForm.Quantity);
             };
 
         }
@@ -205,9 +235,7 @@ namespace Pseuchef.UI
 
             // Load dashboard content after layout is finalized
             // (FlowLayoutPanel ClientSize is only reliable after OnShown)
-            LoadMockAlerts();
-            LoadMockRecipes();
-            LoadMockRecipeDiscovery();
+            LoadAlerts();
         }
 
         // ============================================================
@@ -221,8 +249,7 @@ namespace Pseuchef.UI
         {
             var navButtons = new[]
             {
-                btnDashboard, btnVirtualPantry, btnRecipeDiscovery,
-                btnShoppingList, btnNutritionTracker, btnChefbotAI
+                btnDashboard, btnVirtualPantry, btnRecipeDiscovery, btnChefbotAI
             };
 
             foreach (var btn in navButtons)
@@ -257,8 +284,6 @@ namespace Pseuchef.UI
         private void btnDashboard_Click(object sender, EventArgs e) { SetActiveButton(btnDashboard); ShowPanel(pnlDashboard); }
         private void btnVirtualPantry_Click(object sender, EventArgs e) { SetActiveButton(btnVirtualPantry); ShowPanel(pnlVirtualPantry); }
         private void btnRecipeDiscovery_Click(object sender, EventArgs e) { SetActiveButton(btnRecipeDiscovery); ShowPanel(pnlRecipeDiscovery); }
-        private void btnShoppingList_Click(object sender, EventArgs e) { SetActiveButton(btnShoppingList); ShowPanel(pnlShoppingList); }
-        private void btnNutritionTracker_Click(object sender, EventArgs e) { SetActiveButton(btnNutritionTracker); ShowPanel(pnlNutritionTracker); }
         private void btnChefbotAI_Click(object sender, EventArgs e) { SetActiveButton(btnChefbotAI); ShowPanel(pnlChefbotAI); }
 
         // ============================================================
@@ -399,6 +424,38 @@ namespace Pseuchef.UI
                 flpAlerts.Controls.Add(CreateAlertCard(item, days));
         }
 
+        private void LoadAlerts()
+        {
+            flpAlerts.WrapContents = false;
+            flpAlerts.FlowDirection = FlowDirection.TopDown;
+            flpAlerts.Padding = new Padding(0);
+            flpAlerts.Margin = new Padding(0);
+            flpAlerts.Controls.Clear();
+
+            var expiringItems = _fridge.GetExpiringItems(7)
+                .OfType<PerishableItem>()
+                .Select(i => (item: i.itemName, days: i.GetDaysRemaining()))
+                .OrderBy(a => a.days)
+                .Take(5)
+                .ToList();
+
+            if (expiringItems.Count == 0)
+            {
+                flpAlerts.Controls.Add(new Label
+                {
+                    Text = "✅ Nothing expiring soon!",
+                    Font = new Font("Google Sans", 9),
+                    ForeColor = AppColors.Green,
+                    Margin = new Padding(8, 8, 0, 0),
+                    AutoSize = true
+                });
+                return;
+            }
+
+            foreach (var (item, days) in expiringItems)
+                flpAlerts.Controls.Add(CreateAlertCard(item, days));
+        }
+
         /// <summary>
         /// Builds a single alert card with colored left accent bar,
         /// item name, urgency text, and a color-coded Use button.
@@ -503,16 +560,42 @@ namespace Pseuchef.UI
             flpRecipeCards.Controls.Clear();
             flpRecipeCards.Padding = new Padding(8, 6, 8, 6);
 
-            // [MOCK] Hardcoded recipe data
-            var recipes = new List<(string name, string duration, string servings, int match, int total)>
-            {
-                ("Lemon Herb Chicken",   "35 min", "4 servings", 5, 5),
-                ("Mushroom Cream Pasta", "25 min", "2 servings", 3, 6),
-                ("Garlic Butter Shrimp", "20 min", "2 servings", 1, 5),
-            };
+            var inventoryNames = _fridge.GetInventory()
+                .Select(f => f.itemName)
+                .ToList();
 
-            foreach (var (name, duration, servings, match, total) in recipes)
-                flpRecipeCards.Controls.Add(CreateRecipeCard(name, duration, servings, match, total));
+            // Call real API — falls back to mock if fridge is empty or key not set
+            var apiRecipes = _recipeService.Search(inventoryNames, _userProfile);
+
+            if (apiRecipes.Count > 0)
+            {
+                foreach (var recipe in apiRecipes.Take(3))
+                {
+                    int match = recipe.GetIngredients().Count(i => i.usedCount > 0);
+                    int total = recipe.GetIngredients().Count;
+                    string duration = recipe.GetPrepTime() > 0
+                        ? $"{(int)recipe.GetPrepTime()} min" : "— min";
+                    string servingsText = recipe.GetServings() > 0
+                        ? $"{recipe.GetServings()} servings" : "— servings";
+
+                    flpRecipeCards.Controls.Add(
+                        CreateRecipeCard(recipe.GetTitle(), duration, servingsText,
+                                         match, total, recipe.GetImageUrl())); // ← pass image
+                }
+            }
+            else
+            {
+                flpRecipeCards.Controls.Add(new Label
+                {
+                    Text = inventoryNames.Count == 0
+                        ? "Add items to your pantry to get recipe recommendations!"
+                        : "No matching recipes found. Try adding more items.",
+                    Font = new Font("Google Sans", 9),
+                    ForeColor = Color.Gray,
+                    Margin = new Padding(8),
+                    AutoSize = true
+                });
+            }
         }
 
         /// <summary>
@@ -520,7 +603,8 @@ namespace Pseuchef.UI
         /// ingredient match badge, and Cook Now button.
         /// </summary>
         private Panel CreateRecipeCard(string recipeName, string duration,
-                                       string servings, int matchCount, int totalIngredients)
+                                        string servings, int matchCount, int totalIngredients,
+                                        string imageUrl = "")
         {
             int cardWidth = (flpRecipeCards.ClientSize.Width - 32) / 3;
 
@@ -532,7 +616,6 @@ namespace Pseuchef.UI
                 BackColor = Color.White
             };
 
-            // Top half: image area — TODO (Regina): replace with real recipe image
             var imgPlaceholder = new Panel
             {
                 Width = cardWidth,
@@ -542,15 +625,59 @@ namespace Pseuchef.UI
                 Margin = new Padding(0)
             };
 
-            var lblIcon = new Label
+            // Try to load real image, fall back to emoji if unavailable
+            if (!string.IsNullOrWhiteSpace(imageUrl))
             {
-                Text = "🍽",
-                Font = new Font("Segoe UI Emoji", 24),
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter,
-                BackColor = Color.Transparent
-            };
-            imgPlaceholder.Controls.Add(lblIcon);
+                var pb = new PictureBox
+                {
+                    Dock = DockStyle.Fill,
+                    SizeMode = PictureBoxSizeMode.Normal,
+                    BackColor = Color.FromArgb(240, 240, 235)
+                };
+
+                // Draw the cropped image
+                pb.Paint += (s, ev) =>
+                {
+                    if (pb.Image != null)
+                    {
+                        var img = pb.Image;
+                        float srcRatio = (float)img.Width / img.Height;
+                        float dstRatio = (float)pb.Width / pb.Height;
+                        Rectangle srcRect;
+                        if (srcRatio > dstRatio)
+                        {
+                            int srcW = (int)(img.Height * dstRatio);
+                            srcRect = new Rectangle((img.Width - srcW) / 2, 0, srcW, img.Height);
+                        }
+                        else
+                        {
+                            int srcH = (int)(img.Width / dstRatio);
+                            srcRect = new Rectangle(0, (img.Height - srcH) / 2, img.Width, srcH);
+                        }
+                        ev.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        ev.Graphics.DrawImage(img, pb.ClientRectangle, srcRect, GraphicsUnit.Pixel);
+                    }
+
+                    // ✅ Draw the black border ON TOP of the image (inside pb.Paint)
+                    using var pen = new Pen(AppColors.Dark, 3);
+                    ev.Graphics.DrawRectangle(pen, 0, 0, pb.Width - 1, pb.Height - 1);
+                };
+
+                pb.LoadCompleted += (s, ev) => pb.Invalidate();
+                pb.LoadAsync(imageUrl);
+                imgPlaceholder.Controls.Add(pb);
+            }
+            else
+            {
+                imgPlaceholder.Controls.Add(new Label
+                {
+                    Text = "🍽",
+                    Font = new Font("Segoe UI Emoji", 24),
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    BackColor = Color.Transparent
+                });
+            }
 
             var lblName = new Label
             {
@@ -620,12 +747,6 @@ namespace Pseuchef.UI
                 e.Graphics.DrawRectangle(pen, 1, 1, card.Width - 2, card.Height - 3);
             };
 
-            imgPlaceholder.Paint += (s, e) =>
-            {
-                using var pen = new Pen(AppColors.Dark, 2);
-                e.Graphics.DrawRectangle(pen, 1, 1, card.Width - 2, card.Height - 2);
-            };
-
             card.Controls.Add(lblName);
             card.Controls.Add(lblMeta);
             card.Controls.Add(lblMatch);
@@ -654,6 +775,19 @@ namespace Pseuchef.UI
             using var brush = new SolidBrush(AppColors.Dark);
             g.FillRectangle(brush, shadowRect);
         }
+
+        private FoodCategory MapCategory(string display) => display switch
+        {
+            "Meat" => FoodCategory.Meat,
+            "Dairy" => FoodCategory.Dairy,
+            "Veggies" => FoodCategory.Vegetables,
+            "Pantry" => FoodCategory.CannedGoods,
+            "Poultry" => FoodCategory.Poultry,
+            "Fish" => FoodCategory.Fish,
+            "Produce" => FoodCategory.Produce,
+            "Grains" => FoodCategory.Grains,
+            _ => FoodCategory.Produce
+        };
 
         // ============================================================
         // PANTRY TAB
@@ -709,23 +843,29 @@ namespace Pseuchef.UI
         {
             dgvPantryTab.Rows.Clear();
 
-            // [MOCK] Hardcoded pantry items
-            var items = new List<(string name, string category, string qty, string expiry, int daysLeft)>
+            foreach (var item in _fridge.GetInventory())
             {
-                ("Chicken Thighs", "Meat",    "1 kg",   DateTime.Today.AddDays(10).ToString("yyyy-MM-dd"), 10),
-                ("Heavy Cream",    "Dairy",   "200 ml", DateTime.Today.AddDays(2).ToString("yyyy-MM-dd"),   2),
-                ("Asparagus",      "Veggies", "10 pcs", DateTime.Today.AddDays(0).ToString("yyyy-MM-dd"),   0),
-                ("Garlic",         "Veggies", "1 bulb", DateTime.Today.AddDays(14).ToString("yyyy-MM-dd"), 14),
-                ("Olive Oil",      "Pantry",  "500 ml", DateTime.Today.AddDays(60).ToString("yyyy-MM-dd"), 60),
-                ("Greek Yogurt",   "Dairy",   "200 g",  DateTime.Today.AddDays(3).ToString("yyyy-MM-dd"),   3),
-            };
+                string expiry = "—";
+                string status = "🟢 Fresh";
 
-            foreach (var (name, category, qty, expiry, daysLeft) in items)
-            {
-                string status = daysLeft <= 1 ? "🔴 Use Now"
-                              : daysLeft <= 3 ? "🟡 Expiring Soon"
+                if (item is PerishableItem p)
+                {
+                    int days = p.GetDaysRemaining();
+                    expiry = p.GetExpiryDate().ToString("yyyy-MM-dd");
+                    status = days <= 1 ? "🔴 Use Now"
+                              : days <= 3 ? "🟡 Expiring Soon"
                               : "🟢 Fresh";
-                dgvPantryTab.Rows.Add(name, category, qty, expiry, status, "⋮");
+                }
+
+                int rowIndex = dgvPantryTab.Rows.Add(
+                    item.itemName,
+                    item.category.ToString(),
+                    "1",
+                    expiry,
+                    status,
+                    "⋮"
+                );
+                dgvPantryTab.Rows[rowIndex].Tag = item; // store reference for Edit/Delete
             }
         }
 
@@ -855,7 +995,20 @@ namespace Pseuchef.UI
                 // Repaint to update badge colors
                 dgvPantryTab.InvalidateRow(_actionRowIndex);
 
-                // TODO (Ritzy): Also call pantryService.UpdateItem(id, updatedItem) here
+                var oldItem = dgvPantryTab.Rows[_actionRowIndex].Tag as FoodItem;
+                if (oldItem != null)
+                {
+                    var newItem = new PerishableItem(
+                        editForm.ItemName,
+                        MapCategory(editForm.Category),
+                        oldItem.isCooked,
+                        oldItem.isFrozen,
+                        oldItem.calorieCount,
+                        DateOnly.FromDateTime(DateTime.Parse(editForm.ExpiryDate))
+                    );
+                    _fridge.UpdateItem(oldItem, newItem);
+                    dgvPantryTab.Rows[_actionRowIndex].Tag = newItem;
+                }
             }
         }
 
@@ -866,6 +1019,9 @@ namespace Pseuchef.UI
         private void mnuDelete_Click(object sender, EventArgs e)
         {
             if (_actionRowIndex < 0) return;
+
+            var item = dgvPantryTab.Rows[_actionRowIndex].Tag as FoodItem;
+            if (item != null) _fridge.RemoveItem(item);
 
             string itemName = dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value.ToString();
             var confirm = MessageBox.Show(
@@ -970,29 +1126,35 @@ namespace Pseuchef.UI
         {
             using var addForm = new AddItemForm();
 
-            // ShowDialog makes it a modal — blocks until closed
             if (addForm.ShowDialog(this) == DialogResult.OK)
             {
-                // Calculate days left for status badge
                 int daysLeft = (DateTime.Parse(addForm.ExpiryDate) - DateTime.Today).Days;
-
                 string status = daysLeft <= 1 ? "🔴 Use Now"
                               : daysLeft <= 3 ? "🟡 Expiring Soon"
                               : "🟢 Fresh";
 
-                // Add the new row to the table
-                dgvPantryTab.Rows.Add(
+                var newItem = new PerishableItem(
                     addForm.ItemName,
-                    addForm.Category,
-                    addForm.Quantity,
-                    addForm.ExpiryDate,
-                    status,
-                    "⋮"
+                    MapCategory(addForm.Category),
+                    false, false, 0,
+                    DateOnly.FromDateTime(DateTime.Parse(addForm.ExpiryDate))
                 );
+                _fridge.AddItem(newItem);
 
-                // TODO (Ritzy): Also call pantryService.AddItem(item) here
+                // Add row AND store tag in one step
+                int rowIndex = dgvPantryTab.Rows.Add(
+                    addForm.ItemName, addForm.Category,
+                    addForm.Quantity, addForm.ExpiryDate,
+                    status, "⋮");
+                dgvPantryTab.Rows[rowIndex].Tag = newItem; // safe — using returned index
+
+                SetupDonutChart();
+                pnlDonutChart.Refresh();
+                LoadAlerts();
+                LoadMockRecipes();
+                LoadRecipeDiscovery();
+                UpdateLastAdded(addForm.ItemName, addForm.Quantity);
             }
-            UpdateLastAdded(addForm.ItemName, addForm.Quantity);
         }
 
         // ============================================================
@@ -1006,7 +1168,7 @@ namespace Pseuchef.UI
         /// </summary>
         private void StyleRecipeFilterChips()
         {
-            var filters = new[] { "All", "From My Pantry", "Quick", "Healthy", "Budget-Friendly" };
+            var filters = new[] { "All", "Quick",};
 
             pnlRecipeFilters.Controls.Clear();
             int xOffset = 0;
@@ -1059,31 +1221,58 @@ namespace Pseuchef.UI
         ///       .ToList();
         /// TODO (Regina): AI recommendation scores plug in here
         /// </summary>
-        private void LoadMockRecipeDiscovery()
+        private void LoadRecipeDiscovery()
         {
-            InitRecipeDetails();
+            var inventoryNames = _fridge.GetInventory()
+                .Select(f => f.itemName)
+                .ToList();
 
-            // [MOCK] Tags drive the filter chip logic below
-            _allRecipes = new List<(string, string, string, int, int, string[])>
-    {
-        ("Lemon Herb Chicken",    "35 min", "4 servings", 5, 5,
-            new[] { "From My Pantry", "Healthy" }),
+            var apiRecipes = _recipeService.Search(inventoryNames, _userProfile);
 
-        ("Mushroom Cream Pasta",  "25 min", "2 servings", 3, 6,
-            new[] { "Quick", "Budget-Friendly" }),
+            if (apiRecipes.Count > 0)
+            {
+                // Build _recipeDetails from API data
+                _recipeDetails = new Dictionary<string, (
+                    List<(string name, string qty, bool inPantry)> ingredients,
+                    List<string> steps)>();
 
-        ("Garlic Butter Shrimp",  "20 min", "2 servings", 1, 5,
-            new[] { "Quick", "From My Pantry" }),
+                _allRecipes = apiRecipes.Take(3).Select(recipe =>
+                {
+                    int match = recipe.GetIngredients().Count(i => i.usedCount > 0);
+                    int total = recipe.GetIngredients().Count;
 
-        ("Greek Yogurt Parfait",  "10 min", "1 serving",  2, 3,
-            new[] { "Quick", "Healthy", "Budget-Friendly" }),
+                    // Build ingredient detail list from API data
+                    var ingredientList = recipe.GetIngredients()
+                        .Select(i => (i.ingredientName, "—", i.usedCount > 0))
+                        .ToList();
 
-        ("Asparagus Stir Fry",   "15 min", "2 servings", 4, 4,
-            new[] { "From My Pantry", "Healthy", "Quick" }),
+                    // Steps not available from findByIngredients endpoint
+                    _recipeDetails[recipe.GetTitle()] = (ingredientList, new List<string>
+            {
+                "Full recipe steps not available from this endpoint.",
+                "Search for this recipe online for complete instructions."
+            });
 
-        ("Beef Tacos",           "30 min", "4 servings", 2, 8,
-            new[] { "Budget-Friendly" }),
-    };
+                    // Compute filter chip tags based on match ratio
+                    var tags = new List<string>();
+                    if (total > 0 && match == total) tags.Add("From My Pantry");
+                    if (total <= 5) tags.Add("Quick");
+                    if (total > 0 && (double)match / total >= 0.7) tags.Add("Budget-Friendly");
+
+                    string duration = recipe.GetPrepTime() > 0
+                        ? $"{(int)recipe.GetPrepTime()} min" : "— min";
+                    string servingsText = recipe.GetServings() > 0
+                        ? $"{recipe.GetServings()} servings" : "— servings";
+
+                    return (recipe.GetTitle(), duration, servingsText, match, total, tags.ToArray(), recipe.GetImageUrl());
+                }).ToList();
+            }
+            else
+            {
+                // Fridge is empty or API key not set — show empty state
+                _allRecipes = new List<(string, string, string, int, int, string[], string)>();
+                _recipeDetails = new Dictionary<string, (List<(string, string, bool)>, List<string>)>();
+            }
 
             RenderRecipeCards(_allRecipes);
         }
@@ -1231,7 +1420,7 @@ namespace Pseuchef.UI
         /// </summary>
         private void RenderRecipeCards(
             List<(string name, string duration, string servings,
-                  int match, int total, string[] tags)> recipes)
+                int match, int total, string[] tags, string imageUrl)> recipes)
         {
             flpRecipeGrid.Controls.Clear();
             flpRecipeGrid.Padding = new Padding(0, 8, 0, 8);
@@ -1256,10 +1445,10 @@ namespace Pseuchef.UI
             int cardWidth = (available - (gutter * 2)) / 3;
             int cardHeight = 254;
 
-            foreach (var (name, duration, servings, match, total, _) in recipes)
+            foreach (var (name, duration, servings, match, total, _, imageUrl) in recipes)
             {
                 var card = CreateDiscoveryCard(name, duration, servings,
-                                               match, total, cardWidth, cardHeight);
+                                   match, total, cardWidth, cardHeight, imageUrl);
 
                 int cardIndex = flpRecipeGrid.Controls.Count; // count before Add
                 int rightMargin = ((cardIndex % 3) == 2) ? 0 : gutter; // 3rd card (index 2,5,8…) gets 0
@@ -1278,7 +1467,7 @@ namespace Pseuchef.UI
         /// </summary>
         private Panel CreateDiscoveryCard(string recipeName, string duration,
             string servings, int matchCount, int totalIngredients,
-            int cardWidth, int cardHeight)
+            int cardWidth, int cardHeight, string imageUrl = "")
         {
             var card = new Panel
             {
@@ -1299,16 +1488,49 @@ namespace Pseuchef.UI
                 BackColor = Color.FromArgb(240, 240, 235)
             };
 
-            var lblIcon = new Label
+            if (!string.IsNullOrWhiteSpace(imageUrl))
             {
-                Text = "🍽",
-                Font = new Font("Segoe UI Emoji", 28),
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter,
-                BackColor = Color.Transparent
-                // TODO (Regina): swap with actual recipe image from API
-            };
-            imgPlaceholder.Controls.Add(lblIcon);
+                var pb = new PictureBox
+                {
+                    Dock = DockStyle.Fill,
+                    SizeMode = PictureBoxSizeMode.Normal,
+                    BackColor = Color.FromArgb(240, 240, 235)
+                };
+                pb.Paint += (s, ev) =>
+                {
+                    if (pb.Image == null) return;
+                    var img = pb.Image;
+                    float srcRatio = (float)img.Width / img.Height;
+                    float dstRatio = (float)pb.Width / pb.Height;
+                    Rectangle srcRect;
+                    if (srcRatio > dstRatio)
+                    {
+                        int srcW = (int)(img.Height * dstRatio);
+                        srcRect = new Rectangle((img.Width - srcW) / 2, 0, srcW, img.Height);
+                    }
+                    else
+                    {
+                        int srcH = (int)(img.Width / dstRatio);
+                        srcRect = new Rectangle(0, (img.Height - srcH) / 2, img.Width, srcH);
+                    }
+                    ev.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    ev.Graphics.DrawImage(img, pb.ClientRectangle, srcRect, GraphicsUnit.Pixel);
+                };
+                pb.LoadCompleted += (s, ev) => pb.Invalidate();
+                pb.LoadAsync(imageUrl);
+                imgPlaceholder.Controls.Add(pb);
+            }
+            else
+            {
+                imgPlaceholder.Controls.Add(new Label
+                {
+                    Text = "🍽",
+                    Font = new Font("Segoe UI Emoji", 28),
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    BackColor = Color.Transparent
+                });
+            }
 
             // ── Recipe name ──
             var lblName = new Label
@@ -1504,8 +1726,8 @@ namespace Pseuchef.UI
         /// Header row has the surprise label left and Back button right.
         /// </summary>
         private void RenderSurpriseCard(
-            (string name, string duration, string servings,
-             int match, int total, string[] tags) recipe)
+    (string name, string duration, string servings,
+     int match, int total, string[] tags, string imageUrl) recipe)
         {
             flpRecipeGrid.Controls.Clear();
 
@@ -1588,15 +1810,49 @@ namespace Pseuchef.UI
                 BackColor = Color.FromArgb(240, 240, 235)
             };
 
-            var lblIcon = new Label
+            if (!string.IsNullOrWhiteSpace(recipe.imageUrl))
             {
-                Text = "🍽",
-                Font = new Font("Segoe UI Emoji", 36),
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter,
-                BackColor = Color.Transparent
-            };
-            imgPanel.Controls.Add(lblIcon);
+                var pb = new PictureBox
+                {
+                    Dock = DockStyle.Fill,
+                    SizeMode = PictureBoxSizeMode.Normal,
+                    BackColor = Color.FromArgb(240, 240, 235)
+                };
+                pb.Paint += (s, ev) =>
+                {
+                    if (pb.Image == null) return;
+                    var img = pb.Image;
+                    float srcRatio = (float)img.Width / img.Height;
+                    float dstRatio = (float)pb.Width / pb.Height;
+                    Rectangle srcRect;
+                    if (srcRatio > dstRatio)
+                    {
+                        int srcW = (int)(img.Height * dstRatio);
+                        srcRect = new Rectangle((img.Width - srcW) / 2, 0, srcW, img.Height);
+                    }
+                    else
+                    {
+                        int srcH = (int)(img.Width / dstRatio);
+                        srcRect = new Rectangle(0, (img.Height - srcH) / 2, img.Width, srcH);
+                    }
+                    ev.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    ev.Graphics.DrawImage(img, pb.ClientRectangle, srcRect, GraphicsUnit.Pixel);
+                };
+                pb.LoadCompleted += (s, ev) => pb.Invalidate();
+                pb.LoadAsync(recipe.imageUrl);
+                imgPanel.Controls.Add(pb);
+            }
+            else
+            {
+                imgPanel.Controls.Add(new Label
+                {
+                    Text = "🍽",
+                    Font = new Font("Segoe UI Emoji", 36),
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    BackColor = Color.Transparent
+                });
+            }
 
             // Right — recipe details
             var pnlDetails = new Panel
@@ -1705,6 +1961,11 @@ namespace Pseuchef.UI
         }
 
         private void tlpShoppingList_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnlRecipeFilters_Paint(object sender, PaintEventArgs e)
         {
 
         }

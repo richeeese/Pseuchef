@@ -180,35 +180,6 @@
         Kk0L207pTC8AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btnShoppingList.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAXtJREFUaEPt
-        mD1Ow0AQhVNSUlJSUuYYKTlCOlo6SkpKSsqUlCkpKSk5Qo7AER4aaQcNz2N5Y+2PHc0nrRTvjp/ns+PI
-        zmYTBPUB8IH2fHEfs+DU1nA/ZwHgnQM7MP9KcFIvuK9sOAjAG4D7yuORD8p9ZcNBAPZcUxoAWz4o12TD
-        QSGQQREBDnCoJhICAgc4XI4AgKNO2n29NQuAHYCftLw188sXMI0rZQUUDvK+OtwkfR4IjDyerErAYx0C
-        AG50m1iNwF63idUIPOs2UVYAwG0ajDwpyvy1qf1rEsCBPp90I9U2E5jC/ozKI/YUp1S7SIE7XnR4TbXL
-        E8ipN3XLFJjYx94vzQTGbuKnNH/F+wgAXkztt7P+IPNpWMoKKBzknXkLneGBgMXUCSHgwkEhYDB1Qgj8
-        gwMcXJEQ6C1QghAQOMBh2QIKB9VsXAkBCwddgoC8fcmLec0xeOTmvrLhoF5wX9mM/IvWmk/u6yw4rTXc
-        zyw6XYkj9xEEFfgFE91pCO7lwL8AAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="btnNutritionTracker.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAqJJREFUaEPt
-        mSFz3DAQhQMDCwMDA/MTyhpYVhpWGtafUVhYWBgYWFgYGFhYGBj4MnsjO3ufdiX5fJmmU38zAda+lfad
-        ZVlyTk42NjY2/kskvbM/tr9JJN1IelKfR0kfmf/XkPTAChdwy/5SJH2RdOWur6zNXdvt/jYndJD0g9Ws
-        4DP738MKc+JzSWfu+nvRzDCfeO0R+c1xZiTdO+G1zUEmuuumAa9L+CnpAxvLmBZr8cTxdhzLgNcAe3gv
-        W1rErIaM2sQxDPg4uKHWoIhxo7EA7E+ntQYk3fm4I13jKQzi76kB1158sAFJpz7mSIs3KEasV/wOn7DG
-        wB8fK8zLcQYTXHtW/C82TCvkWgPkwcczmFTasuJ3d5ONxtSZN9DFFVG9rF5KbMO8XvElJ1qdLtYYIPUS
-        l8DEhOo5osDeHdZ4y9YWjc5eVoYOTAyoijdsSlOY3ZqM+VdmYH+oNswFYfFGVOsUGOW86C8Y4GAtmOtI
-        izeiZXsK2G6zxzxFoofOD9SDuYVm8RNMYjDaUNkhY6/zVzJwRl0EkxivBNyIFc0lRdS0KOeNiKaJaKZQ
-        M2TAoIjxHg0Tp9ROSPpEMTVVYaMGrHNqeiw1Ee1QqYkKGzXwSM0IS0xQYHskaiJRZuArhdGgI4yYsLMx
-        g7utBKEiM2BQWB02FtAzwUaDfeygqGMg+tbT3U5nNExEh6b4KwlVHQPVslY4aCoZDRN7MG+GwpYBI/l1
-        jNc0kd9lKnsGjGQqGflAHZJdgXFP7R5UjxgwmOSwY+fw3ej8+v0zBzMWGKh2igH2CbPatJWtSTYVJ/rF
-        G8waNTDRmE5rGF+embnUgBGdl1cQfhxLYfYhBowypaoj4ALu2OcQ7OVQA54F/+CwB779Of2tUF6C1QO9
-        sbGx8W/xDCIAJ0UXbwfoAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="btnChefbotAI.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAbpJREFUaEPt
