@@ -160,9 +160,12 @@ namespace Pseuchef.UI
 
             // Category filters — toggle on/off
             mnuFilterMeat.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Meat"); ApplyPantryFilters(); };
+            mnuFilterSeafood.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Seafood"); ApplyPantryFilters(); };
             mnuFilterDairy.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Dairy"); ApplyPantryFilters(); };
-            mnuFilterVeggies.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Veggies"); ApplyPantryFilters(); };
+            mnuFilterVegetable.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Vegetable"); ApplyPantryFilters(); };
+            mnuFilterFruit.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Fruit"); ApplyPantryFilters(); };
             mnuFilterPantry.Click += (s, e) => { ToggleFilter(_activeCategoryFilters, "Pantry"); ApplyPantryFilters(); };
+
 
             // Status filters — toggle on/off
             mnuFilterFresh.Click += (s, e) => { ToggleFilter(_activeStatusFilters, "Fresh"); ApplyPantryFilters(); };
@@ -1092,7 +1095,7 @@ namespace Pseuchef.UI
                                     ? "✓ All" : "All";
             mnuFilterMeat.Text = _activeCategoryFilters.Contains("Meat") ? "✓ Meat" : "Meat";
             mnuFilterDairy.Text = _activeCategoryFilters.Contains("Dairy") ? "✓ Dairy" : "Dairy";
-            mnuFilterVeggies.Text = _activeCategoryFilters.Contains("Veggies") ? "✓ Veggies" : "Veggies";
+            mnuFilterVegetable.Text = _activeCategoryFilters.Contains("Veggies") ? "✓ Veggies" : "Veggies";
             mnuFilterPantry.Text = _activeCategoryFilters.Contains("Pantry") ? "✓ Pantry" : "Pantry";
 
             // Status checkmarks

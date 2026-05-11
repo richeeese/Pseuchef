@@ -33,6 +33,16 @@ namespace Pseuchef.UI
             components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -41,28 +51,18 @@ namespace Pseuchef.UI
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -110,21 +110,12 @@ namespace Pseuchef.UI
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges76 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tableLayoutPanel1 = new TableLayoutPanel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            pnlRecipeDiscovery = new Guna.UI2.WinForms.Guna2Panel();
-            tlpRecipeDiscovery = new TableLayoutPanel();
-            lblRecipeHeader = new Label();
-            pnlRecipeFilters = new Guna.UI2.WinForms.Guna2Panel();
-            flpRecipeGrid = new FlowLayoutPanel();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            txtRecipeSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            lblRecipeCount = new Label();
-            btnSurpriseMe = new Guna.UI2.WinForms.Guna2Button();
             pnlDashboard = new Guna.UI2.WinForms.Guna2Panel();
-            lblLastAdded = new Label();
             tlpDashboard = new TableLayoutPanel();
             lblDashboardTitle = new Label();
             pnlPantrySection = new Guna.UI2.WinForms.Guna2Panel();
             tlpPantryInner = new TableLayoutPanel();
+            lblLastAdded = new Label();
             lblItemCount = new Label();
             lblPantryTitle = new Label();
             btnAdd = new Guna.UI2.WinForms.Guna2Button();
@@ -138,6 +129,15 @@ namespace Pseuchef.UI
             lblRecipeTitle = new Label();
             flpRecipeCards = new FlowLayoutPanel();
             label3 = new Label();
+            pnlRecipeDiscovery = new Guna.UI2.WinForms.Guna2Panel();
+            tlpRecipeDiscovery = new TableLayoutPanel();
+            lblRecipeHeader = new Label();
+            pnlRecipeFilters = new Guna.UI2.WinForms.Guna2Panel();
+            flpRecipeGrid = new FlowLayoutPanel();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            txtRecipeSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            lblRecipeCount = new Label();
+            btnSurpriseMe = new Guna.UI2.WinForms.Guna2Button();
             pnlNutritionTracker = new Guna.UI2.WinForms.Guna2Panel();
             pnlVirtualPantry = new Guna.UI2.WinForms.Guna2Panel();
             tlpPantryTab = new TableLayoutPanel();
@@ -191,7 +191,9 @@ namespace Pseuchef.UI
             mnuFilterAll = new ToolStripMenuItem();
             mnuFilterMeat = new ToolStripMenuItem();
             mnuFilterDairy = new ToolStripMenuItem();
-            mnuFilterVeggies = new ToolStripMenuItem();
+            mnuFilterVegetable = new ToolStripMenuItem();
+            mnuFilterFruit = new ToolStripMenuItem();
+            mnuFilterSeafood = new ToolStripMenuItem();
             mnuFilterPantry = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             mnuStatusHeader = new ToolStripMenuItem();
@@ -200,9 +202,6 @@ namespace Pseuchef.UI
             mnuFilterUseNow = new ToolStripMenuItem();
             tableLayoutPanel1.SuspendLayout();
             guna2Panel1.SuspendLayout();
-            pnlRecipeDiscovery.SuspendLayout();
-            tlpRecipeDiscovery.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
             pnlDashboard.SuspendLayout();
             tlpDashboard.SuspendLayout();
             pnlPantrySection.SuspendLayout();
@@ -212,6 +211,9 @@ namespace Pseuchef.UI
             tlpAlertInner.SuspendLayout();
             pnlRecipeSection.SuspendLayout();
             tlpRecipeInner.SuspendLayout();
+            pnlRecipeDiscovery.SuspendLayout();
+            tlpRecipeDiscovery.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
             pnlVirtualPantry.SuspendLayout();
             tlpPantryTab.SuspendLayout();
             pnlPantryToolbar.SuspendLayout();
@@ -248,10 +250,10 @@ namespace Pseuchef.UI
             guna2Panel1.BackColor = Color.White;
             guna2Panel1.BorderColor = Color.Black;
             guna2Panel1.BorderThickness = 3;
-            guna2Panel1.Controls.Add(pnlDashboard);
-            guna2Panel1.Controls.Add(pnlRecipeDiscovery);
-            guna2Panel1.Controls.Add(pnlNutritionTracker);
             guna2Panel1.Controls.Add(pnlVirtualPantry);
+            guna2Panel1.Controls.Add(pnlRecipeDiscovery);
+            guna2Panel1.Controls.Add(pnlDashboard);
+            guna2Panel1.Controls.Add(pnlNutritionTracker);
             guna2Panel1.Controls.Add(pnlChefbotAI);
             guna2Panel1.Controls.Add(pnlShoppingList);
             guna2Panel1.CustomizableEdges = customizableEdges41;
@@ -263,6 +265,284 @@ namespace Pseuchef.UI
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges42;
             guna2Panel1.Size = new Size(960, 750);
             guna2Panel1.TabIndex = 0;
+            // 
+            // pnlDashboard
+            // 
+            pnlDashboard.Controls.Add(tlpDashboard);
+            pnlDashboard.CustomizableEdges = customizableEdges27;
+            pnlDashboard.Dock = DockStyle.Fill;
+            pnlDashboard.Location = new Point(10, 10);
+            pnlDashboard.Name = "pnlDashboard";
+            pnlDashboard.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            pnlDashboard.Size = new Size(940, 730);
+            pnlDashboard.TabIndex = 0;
+            // 
+            // tlpDashboard
+            // 
+            tlpDashboard.BackColor = Color.FromArgb(0, 0, 0, 0);
+            tlpDashboard.ColumnCount = 2;
+            tlpDashboard.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tlpDashboard.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tlpDashboard.Controls.Add(lblDashboardTitle, 0, 0);
+            tlpDashboard.Controls.Add(pnlPantrySection, 0, 1);
+            tlpDashboard.Controls.Add(pnlAlertSection, 1, 1);
+            tlpDashboard.Controls.Add(pnlRecipeSection, 0, 2);
+            tlpDashboard.Dock = DockStyle.Fill;
+            tlpDashboard.Location = new Point(0, 0);
+            tlpDashboard.Name = "tlpDashboard";
+            tlpDashboard.Padding = new Padding(10);
+            tlpDashboard.RowCount = 3;
+            tlpDashboard.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tlpDashboard.RowStyles.Add(new RowStyle(SizeType.Percent, 55F));
+            tlpDashboard.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
+            tlpDashboard.Size = new Size(940, 730);
+            tlpDashboard.TabIndex = 0;
+            // 
+            // lblDashboardTitle
+            // 
+            lblDashboardTitle.AutoSize = true;
+            tlpDashboard.SetColumnSpan(lblDashboardTitle, 2);
+            lblDashboardTitle.Dock = DockStyle.Fill;
+            lblDashboardTitle.Font = new Font("Space Grotesk", 19.7999973F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDashboardTitle.Location = new Point(13, 10);
+            lblDashboardTitle.Name = "lblDashboardTitle";
+            lblDashboardTitle.Size = new Size(914, 48);
+            lblDashboardTitle.TabIndex = 0;
+            lblDashboardTitle.Text = "Dashboard";
+            lblDashboardTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // pnlPantrySection
+            // 
+            pnlPantrySection.BackColor = Color.White;
+            pnlPantrySection.BorderColor = Color.Black;
+            pnlPantrySection.BorderThickness = 2;
+            pnlPantrySection.Controls.Add(tlpPantryInner);
+            pnlPantrySection.CustomizableEdges = customizableEdges21;
+            pnlPantrySection.Dock = DockStyle.Fill;
+            pnlPantrySection.Location = new Point(10, 58);
+            pnlPantrySection.Margin = new Padding(0, 0, 6, 6);
+            pnlPantrySection.Name = "pnlPantrySection";
+            pnlPantrySection.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            pnlPantrySection.Size = new Size(362, 358);
+            pnlPantrySection.TabIndex = 1;
+            // 
+            // tlpPantryInner
+            // 
+            tlpPantryInner.BackColor = Color.Transparent;
+            tlpPantryInner.ColumnCount = 2;
+            tlpPantryInner.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpPantryInner.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpPantryInner.Controls.Add(lblLastAdded, 0, 3);
+            tlpPantryInner.Controls.Add(lblItemCount, 1, 0);
+            tlpPantryInner.Controls.Add(lblPantryTitle, 0, 0);
+            tlpPantryInner.Controls.Add(btnAdd, 0, 2);
+            tlpPantryInner.Controls.Add(pnlDonutChart, 0, 1);
+            tlpPantryInner.Dock = DockStyle.Fill;
+            tlpPantryInner.Location = new Point(0, 0);
+            tlpPantryInner.Name = "tlpPantryInner";
+            tlpPantryInner.Padding = new Padding(10);
+            tlpPantryInner.RowCount = 4;
+            tlpPantryInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tlpPantryInner.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpPantryInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 44F));
+            tlpPantryInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tlpPantryInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpPantryInner.Size = new Size(362, 358);
+            tlpPantryInner.TabIndex = 0;
+            // 
+            // lblLastAdded
+            // 
+            lblLastAdded.AutoSize = true;
+            lblLastAdded.Dock = DockStyle.Fill;
+            lblLastAdded.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblLastAdded.Location = new Point(13, 318);
+            lblLastAdded.Name = "lblLastAdded";
+            lblLastAdded.RightToLeft = RightToLeft.No;
+            lblLastAdded.Size = new Size(165, 30);
+            lblLastAdded.TabIndex = 6;
+            lblLastAdded.Text = "Last added: Asparagus · 10 pcs · just now";
+            lblLastAdded.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblItemCount
+            // 
+            lblItemCount.AutoSize = true;
+            lblItemCount.Dock = DockStyle.Fill;
+            lblItemCount.Font = new Font("Google Sans", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblItemCount.ForeColor = Color.FromArgb(26, 26, 26);
+            lblItemCount.Location = new Point(184, 15);
+            lblItemCount.Margin = new Padding(3, 5, 3, 0);
+            lblItemCount.Name = "lblItemCount";
+            lblItemCount.Size = new Size(165, 35);
+            lblItemCount.TabIndex = 3;
+            lblItemCount.Text = "📦 12 items";
+            lblItemCount.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblPantryTitle
+            // 
+            lblPantryTitle.AutoSize = true;
+            lblPantryTitle.Dock = DockStyle.Fill;
+            lblPantryTitle.Font = new Font("Space Grotesk", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPantryTitle.ForeColor = Color.FromArgb(26, 26, 26);
+            lblPantryTitle.Location = new Point(13, 10);
+            lblPantryTitle.Name = "lblPantryTitle";
+            lblPantryTitle.Size = new Size(165, 40);
+            lblPantryTitle.TabIndex = 2;
+            lblPantryTitle.Text = "Pantry";
+            lblPantryTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // btnAdd
+            // 
+            tlpPantryInner.SetColumnSpan(btnAdd, 2);
+            btnAdd.CustomBorderColor = Color.Black;
+            btnAdd.CustomBorderThickness = new Padding(2);
+            btnAdd.CustomizableEdges = customizableEdges19;
+            btnAdd.DisabledState.BorderColor = Color.DarkGray;
+            btnAdd.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAdd.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAdd.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAdd.Dock = DockStyle.Fill;
+            btnAdd.FillColor = Color.FromArgb(0, 0, 0, 0);
+            btnAdd.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAdd.ForeColor = Color.FromArgb(26, 26, 26);
+            btnAdd.Location = new Point(13, 277);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Padding = new Padding(0, 3, 0, 0);
+            btnAdd.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            btnAdd.Size = new Size(336, 38);
+            btnAdd.TabIndex = 5;
+            btnAdd.Text = "+ Add Item ";
+            // 
+            // pnlDonutChart
+            // 
+            tlpPantryInner.SetColumnSpan(pnlDonutChart, 2);
+            pnlDonutChart.Dock = DockStyle.Fill;
+            pnlDonutChart.Location = new Point(13, 53);
+            pnlDonutChart.Name = "pnlDonutChart";
+            pnlDonutChart.Size = new Size(336, 218);
+            pnlDonutChart.TabIndex = 7;
+            pnlDonutChart.TabStop = false;
+            // 
+            // pnlAlertSection
+            // 
+            pnlAlertSection.BackColor = Color.White;
+            pnlAlertSection.BorderColor = Color.Black;
+            pnlAlertSection.BorderThickness = 2;
+            pnlAlertSection.Controls.Add(tlpAlertInner);
+            pnlAlertSection.CustomizableEdges = customizableEdges23;
+            pnlAlertSection.Dock = DockStyle.Fill;
+            pnlAlertSection.Location = new Point(384, 58);
+            pnlAlertSection.Margin = new Padding(6, 0, 0, 6);
+            pnlAlertSection.Name = "pnlAlertSection";
+            pnlAlertSection.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            pnlAlertSection.Size = new Size(546, 358);
+            pnlAlertSection.TabIndex = 2;
+            // 
+            // tlpAlertInner
+            // 
+            tlpAlertInner.BackColor = Color.Transparent;
+            tlpAlertInner.ColumnCount = 1;
+            tlpAlertInner.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpAlertInner.Controls.Add(lblAlertTitle, 0, 0);
+            tlpAlertInner.Controls.Add(flpAlerts, 0, 1);
+            tlpAlertInner.Dock = DockStyle.Fill;
+            tlpAlertInner.Location = new Point(0, 0);
+            tlpAlertInner.Name = "tlpAlertInner";
+            tlpAlertInner.Padding = new Padding(8);
+            tlpAlertInner.RowCount = 2;
+            tlpAlertInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tlpAlertInner.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpAlertInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpAlertInner.Size = new Size(546, 358);
+            tlpAlertInner.TabIndex = 0;
+            // 
+            // lblAlertTitle
+            // 
+            lblAlertTitle.AutoSize = true;
+            lblAlertTitle.Dock = DockStyle.Fill;
+            lblAlertTitle.Font = new Font("Space Grotesk", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAlertTitle.ForeColor = Color.FromArgb(26, 26, 26);
+            lblAlertTitle.Location = new Point(11, 8);
+            lblAlertTitle.Name = "lblAlertTitle";
+            lblAlertTitle.Size = new Size(524, 40);
+            lblAlertTitle.TabIndex = 1;
+            lblAlertTitle.Text = "Alert Center";
+            lblAlertTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // flpAlerts
+            // 
+            flpAlerts.AutoScroll = true;
+            flpAlerts.Dock = DockStyle.Fill;
+            flpAlerts.FlowDirection = FlowDirection.TopDown;
+            flpAlerts.Location = new Point(11, 51);
+            flpAlerts.Name = "flpAlerts";
+            flpAlerts.Padding = new Padding(4, 6, 4, 4);
+            flpAlerts.Size = new Size(524, 296);
+            flpAlerts.TabIndex = 2;
+            flpAlerts.WrapContents = false;
+            // 
+            // pnlRecipeSection
+            // 
+            pnlRecipeSection.BackColor = Color.White;
+            pnlRecipeSection.BorderColor = Color.Black;
+            pnlRecipeSection.BorderThickness = 2;
+            tlpDashboard.SetColumnSpan(pnlRecipeSection, 2);
+            pnlRecipeSection.Controls.Add(tlpRecipeInner);
+            pnlRecipeSection.Controls.Add(label3);
+            pnlRecipeSection.CustomizableEdges = customizableEdges25;
+            pnlRecipeSection.Dock = DockStyle.Fill;
+            pnlRecipeSection.Location = new Point(10, 428);
+            pnlRecipeSection.Margin = new Padding(0, 6, 0, 0);
+            pnlRecipeSection.Name = "pnlRecipeSection";
+            pnlRecipeSection.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            pnlRecipeSection.Size = new Size(920, 292);
+            pnlRecipeSection.TabIndex = 3;
+            // 
+            // tlpRecipeInner
+            // 
+            tlpRecipeInner.BackColor = Color.Transparent;
+            tlpRecipeInner.ColumnCount = 1;
+            tlpRecipeInner.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpRecipeInner.Controls.Add(lblRecipeTitle, 0, 0);
+            tlpRecipeInner.Controls.Add(flpRecipeCards, 0, 1);
+            tlpRecipeInner.Dock = DockStyle.Fill;
+            tlpRecipeInner.Location = new Point(0, 0);
+            tlpRecipeInner.Name = "tlpRecipeInner";
+            tlpRecipeInner.Padding = new Padding(8);
+            tlpRecipeInner.RowCount = 2;
+            tlpRecipeInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
+            tlpRecipeInner.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpRecipeInner.Size = new Size(920, 292);
+            tlpRecipeInner.TabIndex = 3;
+            // 
+            // lblRecipeTitle
+            // 
+            lblRecipeTitle.AutoSize = true;
+            lblRecipeTitle.Font = new Font("Space Grotesk", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRecipeTitle.Location = new Point(11, 8);
+            lblRecipeTitle.Name = "lblRecipeTitle";
+            lblRecipeTitle.Size = new Size(365, 36);
+            lblRecipeTitle.TabIndex = 0;
+            lblRecipeTitle.Text = "Recipe Recommendations";
+            lblRecipeTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // flpRecipeCards
+            // 
+            flpRecipeCards.Dock = DockStyle.Fill;
+            flpRecipeCards.Location = new Point(11, 47);
+            flpRecipeCards.Name = "flpRecipeCards";
+            flpRecipeCards.Padding = new Padding(4, 6, 4, 4);
+            flpRecipeCards.Size = new Size(898, 234);
+            flpRecipeCards.TabIndex = 1;
+            flpRecipeCards.WrapContents = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(405, 141);
+            label3.Name = "label3";
+            label3.Size = new Size(187, 20);
+            label3.TabIndex = 2;
+            label3.Text = "Recipe cards will load here";
             // 
             // pnlRecipeDiscovery
             // 
@@ -406,302 +686,24 @@ namespace Pseuchef.UI
             btnSurpriseMe.Text = "🎲  Surprise Me";
             btnSurpriseMe.TextOffset = new Point(0, 4);
             // 
-            // pnlDashboard
-            // 
-            pnlDashboard.Controls.Add(tlpDashboard);
-            pnlDashboard.CustomizableEdges = customizableEdges9;
-            pnlDashboard.Dock = DockStyle.Fill;
-            pnlDashboard.Location = new Point(10, 10);
-            pnlDashboard.Name = "pnlDashboard";
-            pnlDashboard.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            pnlDashboard.Size = new Size(940, 730);
-            pnlDashboard.TabIndex = 0;
-            // 
-            // lblLastAdded
-            // 
-            lblLastAdded.AutoSize = true;
-            lblLastAdded.Dock = DockStyle.Fill;
-            lblLastAdded.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblLastAdded.Location = new Point(13, 318);
-            lblLastAdded.Name = "lblLastAdded";
-            lblLastAdded.RightToLeft = RightToLeft.No;
-            lblLastAdded.Size = new Size(165, 30);
-            lblLastAdded.TabIndex = 6;
-            lblLastAdded.Text = "Last added: Asparagus · 10 pcs · just now";
-            lblLastAdded.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // tlpDashboard
-            // 
-            tlpDashboard.BackColor = Color.FromArgb(0, 0, 0, 0);
-            tlpDashboard.ColumnCount = 2;
-            tlpDashboard.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
-            tlpDashboard.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            tlpDashboard.Controls.Add(lblDashboardTitle, 0, 0);
-            tlpDashboard.Controls.Add(pnlPantrySection, 0, 1);
-            tlpDashboard.Controls.Add(pnlAlertSection, 1, 1);
-            tlpDashboard.Controls.Add(pnlRecipeSection, 0, 2);
-            tlpDashboard.Dock = DockStyle.Fill;
-            tlpDashboard.Location = new Point(0, 0);
-            tlpDashboard.Name = "tlpDashboard";
-            tlpDashboard.Padding = new Padding(10);
-            tlpDashboard.RowCount = 3;
-            tlpDashboard.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tlpDashboard.RowStyles.Add(new RowStyle(SizeType.Percent, 55F));
-            tlpDashboard.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
-            tlpDashboard.Size = new Size(940, 730);
-            tlpDashboard.TabIndex = 0;
-            // 
-            // lblDashboardTitle
-            // 
-            lblDashboardTitle.AutoSize = true;
-            tlpDashboard.SetColumnSpan(lblDashboardTitle, 2);
-            lblDashboardTitle.Dock = DockStyle.Fill;
-            lblDashboardTitle.Font = new Font("Space Grotesk", 19.7999973F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDashboardTitle.Location = new Point(13, 10);
-            lblDashboardTitle.Name = "lblDashboardTitle";
-            lblDashboardTitle.Size = new Size(914, 48);
-            lblDashboardTitle.TabIndex = 0;
-            lblDashboardTitle.Text = "Dashboard";
-            lblDashboardTitle.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // pnlPantrySection
-            // 
-            pnlPantrySection.BackColor = Color.White;
-            pnlPantrySection.BorderColor = Color.Black;
-            pnlPantrySection.BorderThickness = 2;
-            pnlPantrySection.Controls.Add(tlpPantryInner);
-            pnlPantrySection.CustomizableEdges = customizableEdges3;
-            pnlPantrySection.Dock = DockStyle.Fill;
-            pnlPantrySection.Location = new Point(10, 58);
-            pnlPantrySection.Margin = new Padding(0, 0, 6, 6);
-            pnlPantrySection.Name = "pnlPantrySection";
-            pnlPantrySection.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            pnlPantrySection.Size = new Size(362, 358);
-            pnlPantrySection.TabIndex = 1;
-            // 
-            // tlpPantryInner
-            // 
-            tlpPantryInner.BackColor = Color.Transparent;
-            tlpPantryInner.ColumnCount = 2;
-            tlpPantryInner.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpPantryInner.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpPantryInner.Controls.Add(lblLastAdded, 0, 3);
-            tlpPantryInner.Controls.Add(lblItemCount, 1, 0);
-            tlpPantryInner.Controls.Add(lblPantryTitle, 0, 0);
-            tlpPantryInner.Controls.Add(btnAdd, 0, 2);
-            tlpPantryInner.Controls.Add(pnlDonutChart, 0, 1);
-            tlpPantryInner.Dock = DockStyle.Fill;
-            tlpPantryInner.Location = new Point(0, 0);
-            tlpPantryInner.Name = "tlpPantryInner";
-            tlpPantryInner.Padding = new Padding(10);
-            tlpPantryInner.RowCount = 4;
-            tlpPantryInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tlpPantryInner.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpPantryInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 44F));
-            tlpPantryInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tlpPantryInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpPantryInner.Size = new Size(362, 358);
-            tlpPantryInner.TabIndex = 0;
-            // 
-            // lblItemCount
-            // 
-            lblItemCount.AutoSize = true;
-            lblItemCount.Dock = DockStyle.Fill;
-            lblItemCount.Font = new Font("Google Sans", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblItemCount.ForeColor = Color.FromArgb(26, 26, 26);
-            lblItemCount.Location = new Point(184, 15);
-            lblItemCount.Margin = new Padding(3, 5, 3, 0);
-            lblItemCount.Name = "lblItemCount";
-            lblItemCount.Size = new Size(165, 35);
-            lblItemCount.TabIndex = 3;
-            lblItemCount.Text = "📦 12 items";
-            lblItemCount.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblPantryTitle
-            // 
-            lblPantryTitle.AutoSize = true;
-            lblPantryTitle.Dock = DockStyle.Fill;
-            lblPantryTitle.Font = new Font("Space Grotesk", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPantryTitle.ForeColor = Color.FromArgb(26, 26, 26);
-            lblPantryTitle.Location = new Point(13, 10);
-            lblPantryTitle.Name = "lblPantryTitle";
-            lblPantryTitle.Size = new Size(165, 40);
-            lblPantryTitle.TabIndex = 2;
-            lblPantryTitle.Text = "Pantry";
-            lblPantryTitle.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // btnAdd
-            // 
-            tlpPantryInner.SetColumnSpan(btnAdd, 2);
-            btnAdd.CustomBorderColor = Color.Black;
-            btnAdd.CustomBorderThickness = new Padding(2);
-            btnAdd.CustomizableEdges = customizableEdges1;
-            btnAdd.DisabledState.BorderColor = Color.DarkGray;
-            btnAdd.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnAdd.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnAdd.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnAdd.Dock = DockStyle.Fill;
-            btnAdd.FillColor = Color.FromArgb(0, 0, 0, 0);
-            btnAdd.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAdd.ForeColor = Color.FromArgb(26, 26, 26);
-            btnAdd.Location = new Point(13, 277);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Padding = new Padding(0, 3, 0, 0);
-            btnAdd.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnAdd.Size = new Size(336, 38);
-            btnAdd.TabIndex = 5;
-            btnAdd.Text = "+ Add Item ";
-            // 
-            // pnlDonutChart
-            // 
-            tlpPantryInner.SetColumnSpan(pnlDonutChart, 2);
-            pnlDonutChart.Dock = DockStyle.Fill;
-            pnlDonutChart.Location = new Point(13, 53);
-            pnlDonutChart.Name = "pnlDonutChart";
-            pnlDonutChart.Size = new Size(336, 218);
-            pnlDonutChart.TabIndex = 7;
-            pnlDonutChart.TabStop = false;
-            // 
-            // pnlAlertSection
-            // 
-            pnlAlertSection.BackColor = Color.White;
-            pnlAlertSection.BorderColor = Color.Black;
-            pnlAlertSection.BorderThickness = 2;
-            pnlAlertSection.Controls.Add(tlpAlertInner);
-            pnlAlertSection.CustomizableEdges = customizableEdges5;
-            pnlAlertSection.Dock = DockStyle.Fill;
-            pnlAlertSection.Location = new Point(384, 58);
-            pnlAlertSection.Margin = new Padding(6, 0, 0, 6);
-            pnlAlertSection.Name = "pnlAlertSection";
-            pnlAlertSection.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            pnlAlertSection.Size = new Size(546, 358);
-            pnlAlertSection.TabIndex = 2;
-            // 
-            // tlpAlertInner
-            // 
-            tlpAlertInner.BackColor = Color.Transparent;
-            tlpAlertInner.ColumnCount = 1;
-            tlpAlertInner.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpAlertInner.Controls.Add(lblAlertTitle, 0, 0);
-            tlpAlertInner.Controls.Add(flpAlerts, 0, 1);
-            tlpAlertInner.Dock = DockStyle.Fill;
-            tlpAlertInner.Location = new Point(0, 0);
-            tlpAlertInner.Name = "tlpAlertInner";
-            tlpAlertInner.Padding = new Padding(8);
-            tlpAlertInner.RowCount = 2;
-            tlpAlertInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tlpAlertInner.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpAlertInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpAlertInner.Size = new Size(546, 358);
-            tlpAlertInner.TabIndex = 0;
-            // 
-            // lblAlertTitle
-            // 
-            lblAlertTitle.AutoSize = true;
-            lblAlertTitle.Dock = DockStyle.Fill;
-            lblAlertTitle.Font = new Font("Space Grotesk", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAlertTitle.ForeColor = Color.FromArgb(26, 26, 26);
-            lblAlertTitle.Location = new Point(11, 8);
-            lblAlertTitle.Name = "lblAlertTitle";
-            lblAlertTitle.Size = new Size(524, 40);
-            lblAlertTitle.TabIndex = 1;
-            lblAlertTitle.Text = "Alert Center";
-            lblAlertTitle.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // flpAlerts
-            // 
-            flpAlerts.AutoScroll = true;
-            flpAlerts.Dock = DockStyle.Fill;
-            flpAlerts.FlowDirection = FlowDirection.TopDown;
-            flpAlerts.Location = new Point(11, 51);
-            flpAlerts.Name = "flpAlerts";
-            flpAlerts.Padding = new Padding(4, 6, 4, 4);
-            flpAlerts.Size = new Size(524, 296);
-            flpAlerts.TabIndex = 2;
-            flpAlerts.WrapContents = false;
-            // 
-            // pnlRecipeSection
-            // 
-            pnlRecipeSection.BackColor = Color.White;
-            pnlRecipeSection.BorderColor = Color.Black;
-            pnlRecipeSection.BorderThickness = 2;
-            tlpDashboard.SetColumnSpan(pnlRecipeSection, 2);
-            pnlRecipeSection.Controls.Add(tlpRecipeInner);
-            pnlRecipeSection.Controls.Add(label3);
-            pnlRecipeSection.CustomizableEdges = customizableEdges7;
-            pnlRecipeSection.Dock = DockStyle.Fill;
-            pnlRecipeSection.Location = new Point(10, 428);
-            pnlRecipeSection.Margin = new Padding(0, 6, 0, 0);
-            pnlRecipeSection.Name = "pnlRecipeSection";
-            pnlRecipeSection.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            pnlRecipeSection.Size = new Size(920, 292);
-            pnlRecipeSection.TabIndex = 3;
-            // 
-            // tlpRecipeInner
-            // 
-            tlpRecipeInner.BackColor = Color.Transparent;
-            tlpRecipeInner.ColumnCount = 1;
-            tlpRecipeInner.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpRecipeInner.Controls.Add(lblRecipeTitle, 0, 0);
-            tlpRecipeInner.Controls.Add(flpRecipeCards, 0, 1);
-            tlpRecipeInner.Dock = DockStyle.Fill;
-            tlpRecipeInner.Location = new Point(0, 0);
-            tlpRecipeInner.Name = "tlpRecipeInner";
-            tlpRecipeInner.Padding = new Padding(8);
-            tlpRecipeInner.RowCount = 2;
-            tlpRecipeInner.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            tlpRecipeInner.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpRecipeInner.Size = new Size(920, 292);
-            tlpRecipeInner.TabIndex = 3;
-            // 
-            // lblRecipeTitle
-            // 
-            lblRecipeTitle.AutoSize = true;
-            lblRecipeTitle.Font = new Font("Space Grotesk", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRecipeTitle.Location = new Point(11, 8);
-            lblRecipeTitle.Name = "lblRecipeTitle";
-            lblRecipeTitle.Size = new Size(365, 36);
-            lblRecipeTitle.TabIndex = 0;
-            lblRecipeTitle.Text = "Recipe Recommendations";
-            lblRecipeTitle.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // flpRecipeCards
-            // 
-            flpRecipeCards.Dock = DockStyle.Fill;
-            flpRecipeCards.Location = new Point(11, 47);
-            flpRecipeCards.Name = "flpRecipeCards";
-            flpRecipeCards.Padding = new Padding(4, 6, 4, 4);
-            flpRecipeCards.Size = new Size(898, 234);
-            flpRecipeCards.TabIndex = 1;
-            flpRecipeCards.WrapContents = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(405, 141);
-            label3.Name = "label3";
-            label3.Size = new Size(187, 20);
-            label3.TabIndex = 2;
-            label3.Text = "Recipe cards will load here";
-            // 
             // pnlNutritionTracker
             // 
-            pnlNutritionTracker.CustomizableEdges = customizableEdges19;
+            pnlNutritionTracker.CustomizableEdges = customizableEdges29;
             pnlNutritionTracker.Dock = DockStyle.Fill;
             pnlNutritionTracker.Location = new Point(10, 10);
             pnlNutritionTracker.Name = "pnlNutritionTracker";
-            pnlNutritionTracker.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            pnlNutritionTracker.ShadowDecoration.CustomizableEdges = customizableEdges30;
             pnlNutritionTracker.Size = new Size(940, 730);
             pnlNutritionTracker.TabIndex = 4;
             // 
             // pnlVirtualPantry
             // 
             pnlVirtualPantry.Controls.Add(tlpPantryTab);
-            pnlVirtualPantry.CustomizableEdges = customizableEdges29;
+            pnlVirtualPantry.CustomizableEdges = customizableEdges9;
             pnlVirtualPantry.Dock = DockStyle.Fill;
             pnlVirtualPantry.Location = new Point(10, 10);
             pnlVirtualPantry.Name = "pnlVirtualPantry";
-            pnlVirtualPantry.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            pnlVirtualPantry.ShadowDecoration.CustomizableEdges = customizableEdges10;
             pnlVirtualPantry.Size = new Size(940, 730);
             pnlVirtualPantry.TabIndex = 1;
             // 
@@ -742,11 +744,11 @@ namespace Pseuchef.UI
             pnlPantryToolbar.Controls.Add(btnPantryAddItem);
             pnlPantryToolbar.Controls.Add(btnFilter);
             pnlPantryToolbar.Controls.Add(txtPantrySearch);
-            pnlPantryToolbar.CustomizableEdges = customizableEdges27;
+            pnlPantryToolbar.CustomizableEdges = customizableEdges7;
             pnlPantryToolbar.Dock = DockStyle.Fill;
             pnlPantryToolbar.Location = new Point(13, 55);
             pnlPantryToolbar.Name = "pnlPantryToolbar";
-            pnlPantryToolbar.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            pnlPantryToolbar.ShadowDecoration.CustomizableEdges = customizableEdges8;
             pnlPantryToolbar.Size = new Size(908, 38);
             pnlPantryToolbar.TabIndex = 1;
             // 
@@ -755,7 +757,7 @@ namespace Pseuchef.UI
             btnPantryAddItem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnPantryAddItem.CustomBorderColor = Color.FromArgb(26, 26, 26);
             btnPantryAddItem.CustomBorderThickness = new Padding(2);
-            btnPantryAddItem.CustomizableEdges = customizableEdges21;
+            btnPantryAddItem.CustomizableEdges = customizableEdges1;
             btnPantryAddItem.DisabledState.BorderColor = Color.DarkGray;
             btnPantryAddItem.DisabledState.CustomBorderColor = Color.DarkGray;
             btnPantryAddItem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -765,7 +767,7 @@ namespace Pseuchef.UI
             btnPantryAddItem.ForeColor = Color.FromArgb(245, 245, 240);
             btnPantryAddItem.Location = new Point(778, 1);
             btnPantryAddItem.Name = "btnPantryAddItem";
-            btnPantryAddItem.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            btnPantryAddItem.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnPantryAddItem.Size = new Size(130, 36);
             btnPantryAddItem.TabIndex = 2;
             btnPantryAddItem.Text = "+ Add Item";
@@ -774,7 +776,7 @@ namespace Pseuchef.UI
             // 
             btnFilter.CustomBorderColor = Color.FromArgb(26, 26, 26);
             btnFilter.CustomBorderThickness = new Padding(2);
-            btnFilter.CustomizableEdges = customizableEdges23;
+            btnFilter.CustomizableEdges = customizableEdges3;
             btnFilter.DisabledState.BorderColor = Color.DarkGray;
             btnFilter.DisabledState.CustomBorderColor = Color.DarkGray;
             btnFilter.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -784,7 +786,7 @@ namespace Pseuchef.UI
             btnFilter.ForeColor = Color.FromArgb(26, 26, 26);
             btnFilter.Location = new Point(228, 2);
             btnFilter.Name = "btnFilter";
-            btnFilter.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            btnFilter.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnFilter.Size = new Size(120, 36);
             btnFilter.TabIndex = 1;
             btnFilter.Text = "Filter ▾";
@@ -793,7 +795,7 @@ namespace Pseuchef.UI
             // 
             txtPantrySearch.BorderColor = Color.FromArgb(26, 26, 26);
             txtPantrySearch.BorderThickness = 2;
-            txtPantrySearch.CustomizableEdges = customizableEdges25;
+            txtPantrySearch.CustomizableEdges = customizableEdges5;
             txtPantrySearch.DefaultText = "";
             txtPantrySearch.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPantrySearch.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -807,7 +809,7 @@ namespace Pseuchef.UI
             txtPantrySearch.Name = "txtPantrySearch";
             txtPantrySearch.PlaceholderText = "Search Items...";
             txtPantrySearch.SelectedText = "";
-            txtPantrySearch.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            txtPantrySearch.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txtPantrySearch.Size = new Size(220, 35);
             txtPantrySearch.TabIndex = 0;
             txtPantrySearch.TextOffset = new Point(0, -5);
@@ -1047,14 +1049,13 @@ namespace Pseuchef.UI
             tableLayoutPanel2.Margin = new Padding(12, 10, 3, 10);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 7;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 21.87501F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 11.250001F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 11.250001F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 11.250001F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 11.250001F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 21.8749962F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 11.250001F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 18.71345F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.771931F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.771931F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.771931F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.771931F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 37.4269F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.771931F));
             tableLayoutPanel2.Size = new Size(205, 750);
             tableLayoutPanel2.TabIndex = 1;
             // 
@@ -1072,12 +1073,12 @@ namespace Pseuchef.UI
             btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
             btnDashboard.ImageAlign = HorizontalAlignment.Right;
             btnDashboard.ImageSize = new Size(25, 25);
-            btnDashboard.Location = new Point(3, 181);
+            btnDashboard.Location = new Point(3, 148);
             btnDashboard.Margin = new Padding(3, 8, 3, 8);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.RightToLeft = RightToLeft.Yes;
             btnDashboard.ShadowDecoration.CustomizableEdges = customizableEdges44;
-            btnDashboard.Size = new Size(199, 50);
+            btnDashboard.Size = new Size(199, 49);
             btnDashboard.TabIndex = 0;
             btnDashboard.Text = "Dashboard";
             btnDashboard.TextOffset = new Point(-4, 4);
@@ -1098,7 +1099,7 @@ namespace Pseuchef.UI
             btnVirtualPantry.ImageAlign = HorizontalAlignment.Left;
             btnVirtualPantry.ImageOffset = new Point(2, 0);
             btnVirtualPantry.ImageSize = new Size(25, 25);
-            btnVirtualPantry.Location = new Point(3, 266);
+            btnVirtualPantry.Location = new Point(3, 214);
             btnVirtualPantry.Margin = new Padding(3, 8, 3, 8);
             btnVirtualPantry.Name = "btnVirtualPantry";
             btnVirtualPantry.RightToLeft = RightToLeft.No;
@@ -1124,7 +1125,7 @@ namespace Pseuchef.UI
             btnRecipeDiscovery.Image = (Image)resources.GetObject("btnRecipeDiscovery.Image");
             btnRecipeDiscovery.ImageAlign = HorizontalAlignment.Left;
             btnRecipeDiscovery.ImageSize = new Size(25, 25);
-            btnRecipeDiscovery.Location = new Point(3, 350);
+            btnRecipeDiscovery.Location = new Point(3, 279);
             btnRecipeDiscovery.Margin = new Padding(3, 8, 3, 8);
             btnRecipeDiscovery.Name = "btnRecipeDiscovery";
             btnRecipeDiscovery.RightToLeft = RightToLeft.No;
@@ -1151,7 +1152,7 @@ namespace Pseuchef.UI
             btnChefbotAI.ImageAlign = HorizontalAlignment.Left;
             btnChefbotAI.ImageOffset = new Point(2, 0);
             btnChefbotAI.ImageSize = new Size(25, 25);
-            btnChefbotAI.Location = new Point(3, 434);
+            btnChefbotAI.Location = new Point(3, 344);
             btnChefbotAI.Margin = new Padding(3, 8, 3, 8);
             btnChefbotAI.Name = "btnChefbotAI";
             btnChefbotAI.RightToLeft = RightToLeft.No;
@@ -1368,7 +1369,7 @@ namespace Pseuchef.UI
             // cmsFilter
             // 
             cmsFilter.ImageScalingSize = new Size(20, 20);
-            cmsFilter.Items.AddRange(new ToolStripItem[] { mnuCategoryHeader, mnuFilterAll, mnuFilterMeat, mnuFilterDairy, mnuFilterVeggies, mnuFilterPantry, toolStripSeparator1, mnuStatusHeader, mnuFilterFresh, mnuFilterExpiring, mnuFilterUseNow });
+            cmsFilter.Items.AddRange(new ToolStripItem[] { mnuCategoryHeader, mnuFilterAll, mnuFilterMeat, mnuFilterDairy, mnuFilterVegetable, mnuFilterFruit, mnuFilterSeafood, mnuFilterPantry, toolStripSeparator1, mnuStatusHeader, mnuFilterFresh, mnuFilterExpiring, mnuFilterUseNow });
             cmsFilter.Name = "contextMenuStrip1";
             cmsFilter.Size = new Size(181, 410);
             // 
@@ -1402,12 +1403,26 @@ namespace Pseuchef.UI
             mnuFilterDairy.Size = new Size(180, 40);
             mnuFilterDairy.Text = "Dairy";
             // 
-            // mnuFilterVeggies
+            // mnuFilterVegetable
             // 
-            mnuFilterVeggies.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            mnuFilterVeggies.Name = "mnuFilterVeggies";
-            mnuFilterVeggies.Size = new Size(180, 40);
-            mnuFilterVeggies.Text = "Veggies";
+            mnuFilterVegetable.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            mnuFilterVegetable.Name = "mnuFilterVegetable";
+            mnuFilterVegetable.Size = new Size(180, 40);
+            mnuFilterVegetable.Text = "Vegetable";
+            // 
+            // mnuFilterFruit
+            // 
+            mnuFilterFruit.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            mnuFilterFruit.Name = "mnuFilterFruit";
+            mnuFilterFruit.Size = new Size(180, 40);
+            mnuFilterFruit.Text = "Fruit";
+            // 
+            // mnuFilterSeafood
+            // 
+            mnuFilterSeafood.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            mnuFilterSeafood.Name = "mnuFilterSeafood";
+            mnuFilterSeafood.Size = new Size(180, 40);
+            mnuFilterSeafood.Text = "Seafood";
             // 
             // mnuFilterPantry
             // 
@@ -1466,11 +1481,6 @@ namespace Pseuchef.UI
             Load += Form1_Load;
             tableLayoutPanel1.ResumeLayout(false);
             guna2Panel1.ResumeLayout(false);
-            pnlRecipeDiscovery.ResumeLayout(false);
-            tlpRecipeDiscovery.ResumeLayout(false);
-            tlpRecipeDiscovery.PerformLayout();
-            tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel3.PerformLayout();
             pnlDashboard.ResumeLayout(false);
             tlpDashboard.ResumeLayout(false);
             tlpDashboard.PerformLayout();
@@ -1485,6 +1495,11 @@ namespace Pseuchef.UI
             pnlRecipeSection.PerformLayout();
             tlpRecipeInner.ResumeLayout(false);
             tlpRecipeInner.PerformLayout();
+            pnlRecipeDiscovery.ResumeLayout(false);
+            tlpRecipeDiscovery.ResumeLayout(false);
+            tlpRecipeDiscovery.PerformLayout();
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
             pnlVirtualPantry.ResumeLayout(false);
             tlpPantryTab.ResumeLayout(false);
             tlpPantryTab.PerformLayout();
@@ -1582,7 +1597,9 @@ namespace Pseuchef.UI
         private ToolStripMenuItem mnuFilterAll;
         private ToolStripMenuItem mnuFilterMeat;
         private ToolStripMenuItem mnuFilterDairy;
-        private ToolStripMenuItem mnuFilterVeggies;
+        private ToolStripMenuItem mnuFilterVegetable;
+        private ToolStripMenuItem mnuFilterFruit;
+        private ToolStripMenuItem mnuFilterSeafood;
         private ToolStripMenuItem mnuFilterPantry;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem mnuStatusHeader;

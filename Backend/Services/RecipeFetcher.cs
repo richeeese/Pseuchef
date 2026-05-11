@@ -77,7 +77,7 @@ namespace Pseuchef.Services
 
                     if (!idToData.TryGetValue(id, out var data)) continue;
 
-                    recipes.Add(new Recipe(title, data.ingredients, prepTime, imageUrl, servings));
+                    recipes.Add(new Recipe(title, data.ingredients, prepTime, imageUrl, servings, id));
                 }
 
                 return recipes.Take(3).ToList();
@@ -85,6 +85,41 @@ namespace Pseuchef.Services
             catch
             {
                 return new List<Recipe>();
+            }
+        }
+
+        /// <summary>
+        /// Fetches full recipe instructions for a given Spoonacular recipe ID.
+        /// Called when the user clicks Cook Now on a recipe card.
+        /// Returns a list of step strings.
+        /// </summary>
+        public List<string> GetSteps(int recipeId)
+        {
+            string url = $"https://api.spoonacular.com/recipes/{recipeId}/analyzedInstructions"
+                       + $"?apiKey={Config.SpoonacularApiKey}";
+
+            try
+            {
+                var response = Task.Run(() => _http.GetStringAsync(url)).Result;
+                var json = JsonDocument.Parse(response);
+
+                var steps = new List<string>();
+
+                foreach (var section in json.RootElement.EnumerateArray())
+                {
+                    foreach (var step in section.GetProperty("steps").EnumerateArray())
+                    {
+                        string text = step.GetProperty("step").GetString() ?? "";
+                        if (!string.IsNullOrWhiteSpace(text))
+                            steps.Add(text);
+                    }
+                }
+
+                return steps;
+            }
+            catch
+            {
+                return new List<string> { "Steps unavailable. Search for this recipe online." };
             }
         }
     }

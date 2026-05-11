@@ -76,8 +76,8 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 125F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 125F));
             tableLayoutPanel1.Controls.Add(btnAddItem, 1, 6);
             tableLayoutPanel1.Controls.Add(lblError, 0, 5);
             tableLayoutPanel1.Controls.Add(txtExpiry, 1, 4);
@@ -92,36 +92,37 @@
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(3, 33);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Padding = new Padding(20, 0, 20, 20);
+            tableLayoutPanel1.Padding = new Padding(16, 0, 16, 20);
             tableLayoutPanel1.RowCount = 7;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 4F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 62F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 62F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 62F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 61F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            tableLayoutPanel1.Size = new Size(410, 300);
+            tableLayoutPanel1.Size = new Size(430, 400);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // btnAddItem
             // 
+            btnAddItem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnAddItem.CustomizableEdges = customizableEdges1;
             btnAddItem.DisabledState.BorderColor = Color.DarkGray;
             btnAddItem.DisabledState.CustomBorderColor = Color.DarkGray;
             btnAddItem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnAddItem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnAddItem.Dock = DockStyle.Fill;
             btnAddItem.FillColor = Color.FromArgb(26, 26, 26);
-            btnAddItem.Font = new Font("Segoe UI", 9F);
+            btnAddItem.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAddItem.ForeColor = Color.White;
-            btnAddItem.Location = new Point(124, 252);
+            btnAddItem.Location = new Point(145, 319);
             btnAddItem.Margin = new Padding(4, 8, 0, 10);
             btnAddItem.Name = "btnAddItem";
             btnAddItem.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnAddItem.Size = new Size(266, 42);
+            btnAddItem.Size = new Size(269, 46);
             btnAddItem.TabIndex = 10;
             btnAddItem.Text = "Add Item";
+            btnAddItem.TextOffset = new Point(0, 4);
             // 
             // lblError
             // 
@@ -130,10 +131,10 @@
             lblError.Dock = DockStyle.Fill;
             lblError.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblError.ForeColor = Color.Red;
-            lblError.Location = new Point(23, 210);
+            lblError.Location = new Point(19, 273);
             lblError.Margin = new Padding(3, 6, 3, 0);
             lblError.Name = "lblError";
-            lblError.Size = new Size(364, 34);
+            lblError.Size = new Size(392, 34);
             lblError.TabIndex = 8;
             lblError.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -147,15 +148,16 @@
             txtExpiry.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtExpiry.Dock = DockStyle.Fill;
             txtExpiry.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtExpiry.Font = new Font("Google Sans", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtExpiry.Font = new Font("Google Sans", 10.1999989F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtExpiry.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtExpiry.Location = new Point(123, 160);
-            txtExpiry.Margin = new Padding(3, 6, 3, 6);
+            txtExpiry.Location = new Point(145, 214);
+            txtExpiry.Margin = new Padding(4, 8, 4, 8);
+            txtExpiry.Multiline = true;
             txtExpiry.Name = "txtExpiry";
             txtExpiry.PlaceholderText = "yyyy-mm-dd";
             txtExpiry.SelectedText = "";
             txtExpiry.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtExpiry.Size = new Size(264, 38);
+            txtExpiry.Size = new Size(265, 45);
             txtExpiry.TabIndex = 7;
             // 
             // label4
@@ -163,10 +165,10 @@
             label4.AutoSize = true;
             label4.Dock = DockStyle.Fill;
             label4.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(23, 160);
+            label4.Location = new Point(19, 212);
             label4.Margin = new Padding(3, 6, 3, 0);
             label4.Name = "label4";
-            label4.Size = new Size(94, 44);
+            label4.Size = new Size(119, 55);
             label4.TabIndex = 6;
             label4.Text = "Expiry Date";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -181,15 +183,16 @@
             txtQuantity.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtQuantity.Dock = DockStyle.Fill;
             txtQuantity.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtQuantity.Font = new Font("Google Sans", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtQuantity.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtQuantity.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtQuantity.Location = new Point(123, 110);
-            txtQuantity.Margin = new Padding(3, 6, 3, 6);
+            txtQuantity.Location = new Point(145, 152);
+            txtQuantity.Margin = new Padding(4, 8, 4, 8);
+            txtQuantity.Multiline = true;
             txtQuantity.Name = "txtQuantity";
             txtQuantity.PlaceholderText = "e.g. 1 kg";
             txtQuantity.SelectedText = "";
             txtQuantity.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            txtQuantity.Size = new Size(264, 38);
+            txtQuantity.Size = new Size(265, 46);
             txtQuantity.TabIndex = 5;
             // 
             // label3
@@ -197,10 +200,10 @@
             label3.AutoSize = true;
             label3.Dock = DockStyle.Fill;
             label3.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(23, 110);
+            label3.Location = new Point(19, 150);
             label3.Margin = new Padding(3, 6, 3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(94, 44);
+            label3.Size = new Size(119, 56);
             label3.TabIndex = 4;
             label3.Text = "Quantity";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -210,10 +213,10 @@
             label2.AutoSize = true;
             label2.Dock = DockStyle.Fill;
             label2.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(23, 60);
+            label2.Location = new Point(19, 88);
             label2.Margin = new Padding(3, 6, 3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(94, 44);
+            label2.Size = new Size(119, 56);
             label2.TabIndex = 2;
             label2.Text = "Category";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -223,16 +226,17 @@
             label1.AutoSize = true;
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(23, 10);
+            label1.Location = new Point(19, 26);
             label1.Margin = new Padding(3, 6, 3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(94, 44);
+            label1.Size = new Size(119, 56);
             label1.TabIndex = 0;
             label1.Text = "Item Name";
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtItemName
             // 
+            txtItemName.AutoSize = true;
             txtItemName.CustomizableEdges = customizableEdges7;
             txtItemName.DefaultText = "";
             txtItemName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -241,19 +245,21 @@
             txtItemName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtItemName.Dock = DockStyle.Fill;
             txtItemName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtItemName.Font = new Font("Google Sans", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtItemName.Font = new Font("Google Sans", 10.1999989F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtItemName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtItemName.Location = new Point(123, 10);
-            txtItemName.Margin = new Padding(3, 6, 3, 6);
+            txtItemName.Location = new Point(145, 28);
+            txtItemName.Margin = new Padding(4, 8, 4, 8);
+            txtItemName.Multiline = true;
             txtItemName.Name = "txtItemName";
             txtItemName.PlaceholderText = "e.g. Chicken Thighs";
             txtItemName.SelectedText = "";
             txtItemName.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            txtItemName.Size = new Size(264, 38);
+            txtItemName.Size = new Size(265, 46);
             txtItemName.TabIndex = 1;
             // 
             // btnCancel
             // 
+            btnCancel.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnCancel.CustomBorderColor = Color.FromArgb(26, 26, 26);
             btnCancel.CustomBorderThickness = new Padding(2);
             btnCancel.CustomizableEdges = customizableEdges9;
@@ -264,26 +270,26 @@
             btnCancel.FillColor = Color.FromArgb(0, 0, 0, 0);
             btnCancel.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = Color.FromArgb(26, 26, 26);
-            btnCancel.Location = new Point(20, 252);
-            btnCancel.Margin = new Padding(0, 8, 4, 0);
+            btnCancel.Location = new Point(16, 321);
+            btnCancel.Margin = new Padding(0, 8, 8, 10);
             btnCancel.Name = "btnCancel";
             btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnCancel.Size = new Size(96, 42);
+            btnCancel.Size = new Size(117, 42);
             btnCancel.TabIndex = 9;
             btnCancel.Text = "Cancel";
             btnCancel.TextOffset = new Point(0, 4);
             // 
             // cmbCategory
             // 
-            cmbCategory.Dock = DockStyle.Fill;
+            cmbCategory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbCategory.Font = new Font("Google Sans", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbCategory.FormattingEnabled = true;
             cmbCategory.ItemHeight = 31;
-            cmbCategory.Items.AddRange(new object[] { "Meat", "Dairy", "Veggies", "Pantry", "Other" });
-            cmbCategory.Location = new Point(123, 60);
+            cmbCategory.Items.AddRange(new object[] { "Meat", "Seafood", "Dairy", "Vegetable", "Fruit", "Pantry" });
+            cmbCategory.Location = new Point(144, 95);
             cmbCategory.Margin = new Padding(3, 6, 3, 3);
             cmbCategory.Name = "cmbCategory";
-            cmbCategory.Size = new Size(264, 39);
+            cmbCategory.Size = new Size(267, 39);
             cmbCategory.TabIndex = 11;
             cmbCategory.SelectedIndexChanged += cmbCategory_SelectedIndexChanged;
             // 
@@ -301,7 +307,7 @@
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(416, 336);
+            tableLayoutPanel2.Size = new Size(436, 436);
             tableLayoutPanel2.TabIndex = 12;
             // 
             // tableLayoutPanel3
@@ -320,7 +326,7 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel3.Size = new Size(416, 30);
+            tableLayoutPanel3.Size = new Size(436, 30);
             tableLayoutPanel3.TabIndex = 1;
             // 
             // lblTitle
@@ -332,7 +338,7 @@
             lblTitle.Location = new Point(3, 2);
             lblTitle.Margin = new Padding(3, 2, 3, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(202, 28);
+            lblTitle.Size = new Size(212, 28);
             lblTitle.TabIndex = 1;
             lblTitle.Text = "Add Item";
             lblTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -352,7 +358,7 @@
             btnClose.ForeColor = Color.White;
             btnClose.Image = Properties.Resources.close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz48;
             btnClose.ImageOffset = new Point(4, 0);
-            btnClose.Location = new Point(389, 3);
+            btnClose.Location = new Point(409, 3);
             btnClose.Name = "btnClose";
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnClose.Size = new Size(24, 24);
@@ -369,7 +375,7 @@
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.Padding = new Padding(2);
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2Panel1.Size = new Size(420, 340);
+            guna2Panel1.Size = new Size(440, 440);
             guna2Panel1.TabIndex = 13;
             // 
             // AddItemForm
@@ -377,7 +383,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 245, 240);
-            ClientSize = new Size(420, 340);
+            ClientSize = new Size(440, 440);
             Controls.Add(guna2Panel1);
             FormBorderStyle = FormBorderStyle.None;
             MdiChildrenMinimizedAnchorBottom = false;

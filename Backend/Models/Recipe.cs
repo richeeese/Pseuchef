@@ -13,6 +13,7 @@ namespace Pseuchef.Models
         public double prepTime { get; private set; }
         public string imageUrl { get; private set; }
 
+        public int RecipeId { get; private set; }
         public int servings { get; private set; }
 
         /// <summary>
@@ -22,17 +23,19 @@ namespace Pseuchef.Models
         /// <param name="ingredients">List of RecipeIngredient objects</param>
         /// <param name="time">Preparation time in minutes</param>
         /// <param name="imageUrl">URL to the recipe dish image</param>
-        public Recipe(string title, List<RecipeIngredient> ingredients, double time, string imageUrl = "", int servings = 0)
+        public Recipe(string title, List<RecipeIngredient> ingredients,
+              double prepTime, string imageUrl, int servings, int recipeId = 0)
         {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("Recipe title cannot be empty", nameof(title));
-            if (time < 0)
-                throw new ArgumentException("Prep time cannot be negative", nameof(time));
+            if (prepTime < 0)
+                throw new ArgumentException("Prep time cannot be negative", nameof(prepTime));
 
             recipeTitle = title;
             ingredientsNeeded = ingredients ?? new List<RecipeIngredient>();
-            prepTime = time;
+            this.prepTime = prepTime;
             this.imageUrl = imageUrl ?? "";
+            this.RecipeId = recipeId;
             this.servings = servings;
         }
 
@@ -46,6 +49,7 @@ namespace Pseuchef.Models
 
         public int GetIngredientCount() => ingredientsNeeded.Count;
 
+        public int GetRecipeId() => RecipeId;
         public int GetServings() => servings;
         public bool ContainsIngredient(string ingredient)
         {
