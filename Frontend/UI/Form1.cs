@@ -54,7 +54,7 @@ namespace Pseuchef.UI
 
         // [MOCK] Full recipe list — TODO (Ritzy): replace with IRecipeService call
         private List<(string name, string duration, string servings,
-              int match, int total, string[] tags, string imageUrl)> _allRecipes;
+            int match, int total, string[] tags, string imageUrl, int recipeId)> _allRecipes;
 
         // [MOCK] Per-recipe detail data — TODO (Ritzy): replace with IRecipeService.GetDetail(id)
         private Dictionary<string, (
@@ -239,6 +239,7 @@ namespace Pseuchef.UI
             // Load dashboard content after layout is finalized
             // (FlowLayoutPanel ClientSize is only reliable after OnShown)
             LoadAlerts();
+            LoadRecipeDiscovery();
         }
 
         // ============================================================
@@ -1235,7 +1236,7 @@ namespace Pseuchef.UI
             if (apiRecipes.Count > 0)
             {
                 // Build _recipeDetails from API data
-                _recipeDetails = new Dictionary<string, (
+                _recipeDetails = new Dictionary<string,(
                     List<(string name, string qty, bool inPantry)> ingredients,
                     List<string> steps)>();
 
@@ -1267,13 +1268,12 @@ namespace Pseuchef.UI
                     string servingsText = recipe.GetServings() > 0
                         ? $"{recipe.GetServings()} servings" : "— servings";
 
-                    return (recipe.GetTitle(), duration, servingsText, match, total, tags.ToArray(), recipe.GetImageUrl());
+                    return (recipe.GetTitle(), duration, servingsText, match, total, tags.ToArray(), recipe.GetImageUrl(), recipe.GetRecipeId());
                 }).ToList();
-            }
+            }                 
             else
             {
-                // Fridge is empty or API key not set — show empty state
-                _allRecipes = new List<(string, string, string, int, int, string[], string)>();
+                _allRecipes = new List<(string, string, string, int, int, string[], string, int)>();
                 _recipeDetails = new Dictionary<string, (List<(string, string, bool)>, List<string>)>();
             }
 
@@ -1423,7 +1423,7 @@ namespace Pseuchef.UI
         /// </summary>
         private void RenderRecipeCards(
             List<(string name, string duration, string servings,
-                int match, int total, string[] tags, string imageUrl)> recipes)
+                int match, int total, string[] tags, string imageUrl, int recipeId)> recipes)
         {
             flpRecipeGrid.Controls.Clear();
             flpRecipeGrid.Padding = new Padding(0, 8, 0, 8);
@@ -1448,10 +1448,10 @@ namespace Pseuchef.UI
             int cardWidth = (available - (gutter * 2)) / 3;
             int cardHeight = 254;
 
-            foreach (var (name, duration, servings, match, total, _, imageUrl) in recipes)
+            foreach (var (name, duration, servings, match, total, _, imageUrl, recipeId) in recipes)
             {
                 var card = CreateDiscoveryCard(name, duration, servings,
-                                   match, total, cardWidth, cardHeight, imageUrl);
+                                   match, total, cardWidth, cardHeight, imageUrl, recipeId);
 
                 int cardIndex = flpRecipeGrid.Controls.Count; // count before Add
                 int rightMargin = ((cardIndex % 3) == 2) ? 0 : gutter; // 3rd card (index 2,5,8…) gets 0
@@ -1470,7 +1470,7 @@ namespace Pseuchef.UI
         /// </summary>
         private Panel CreateDiscoveryCard(string recipeName, string duration,
             string servings, int matchCount, int totalIngredients,
-            int cardWidth, int cardHeight, string imageUrl = "")
+            int cardWidth, int cardHeight, string imageUrl = "", int recipeId = 0)
         {
             var card = new Panel
             {
@@ -1588,21 +1588,43 @@ namespace Pseuchef.UI
                 // TODO (Ritzy): wire Click to open recipe detail view
             };
 
-            // Capture for lambda
             string cName = recipeName;
             string cDuration = duration;
             string cServings = servings;
             int cMatch = matchCount;
             int cTotal = totalIngredients;
+            int cId = recipeId;
 
             btnCook.Click += (s, e) =>
             {
-                _recipeDetails.TryGetValue(cName, out var detail);
-                using var popup = new RecipeDetailForm(
-                    cName, cDuration, cServings, cMatch, cTotal,
-                    detail.ingredients ?? new(),
-                    detail.steps ?? new());
-                popup.ShowDialog(this);
+                // Show loading indicator
+                lblRecipeCount.Text = "Loading recipe details...";
+                btnCook.Enabled = false;
+
+                Task.Run(() =>
+                {
+                    // Fetch real steps from API on background thread
+                    var steps = _recipeService.GetSteps(cId);
+
+                    // Get ingredients already stored from Search()
+                    _recipeDetails.TryGetValue(cName, out var detail);
+                    var ingredients = detail.ingredients ?? new();
+
+                    // Update _recipeDetails with real steps
+                    _recipeDetails[cName] = (ingredients, steps);
+
+                    // Switch back to UI thread to open popup
+                    this.Invoke(() =>
+                    {
+                        btnCook.Enabled = true;
+                        lblRecipeCount.Text = $"{_allRecipes?.Count ?? 0} recipes";
+
+                        using var popup = new RecipeDetailForm(
+                            cName, cDuration, cServings, cMatch, cTotal,
+                            ingredients, steps);
+                        popup.ShowDialog(this);
+                    });
+                });
             };
 
             // ── Neobrutalist card border ──
@@ -1645,10 +1667,8 @@ namespace Pseuchef.UI
             {
                 bool matchesChip = _activeRecipeFilter == "All"
                                 || r.tags.Contains(_activeRecipeFilter);
-
                 bool matchesSearch = string.IsNullOrEmpty(query)
                                   || r.name.ToLower().Contains(query);
-
                 return matchesChip && matchesSearch;
             }).ToList();
 
@@ -1730,7 +1750,7 @@ namespace Pseuchef.UI
         /// </summary>
         private void RenderSurpriseCard(
     (string name, string duration, string servings,
-     int match, int total, string[] tags, string imageUrl) recipe)
+     int match, int total, string[] tags, string imageUrl, int recipeId) recipe)
         {
             flpRecipeGrid.Controls.Clear();
 

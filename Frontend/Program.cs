@@ -8,9 +8,9 @@ namespace Pseuchef
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            using var profileForm = new UI.ProfileForm();
+            if (profileForm.ShowDialog() != DialogResult.OK) return;
             Application.Run(new UI.Form1());
         }
     }

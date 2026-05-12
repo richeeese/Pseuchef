@@ -115,11 +115,21 @@ namespace Pseuchef.Services
                     }
                 }
 
+                if (steps.Count == 0)
+                    return new List<string>
+                {
+                    "This recipe doesn't have step-by-step instructions on Spoonacular.",
+                    $"Search \"{recipeId}\" on spoonacular.com for the full recipe."
+                };
+
                 return steps;
             }
             catch
             {
-                return new List<string> { "Steps unavailable. Search for this recipe online." };
+                return new List<string>
+                {
+                    "Could not load instructions — check your connection or API key."
+                };
             }
         }
     }
