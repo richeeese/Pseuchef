@@ -1,0 +1,10 @@
+C:\Users\Mhalik\Projects\Pseuchef\Backend\bin\Debug\net8.0-windows\Pseuchef.Backend.deps.json
+C:\Users\Mhalik\Projects\Pseuchef\Backend\bin\Debug\net8.0-windows\Pseuchef.Backend.dll
+C:\Users\Mhalik\Projects\Pseuchef\Backend\bin\Debug\net8.0-windows\Pseuchef.Backend.pdb
+C:\Users\Mhalik\Projects\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mhalik\Projects\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.csproj.CoreCompileInputs.cache
+C:\Users\Mhalik\Projects\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.sourcelink.json
+C:\Users\Mhalik\Projects\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.dll
+C:\Users\Mhalik\Projects\Pseuchef\Backend\obj\Debug\net8.0-windows\refint\Pseuchef.Backend.dll
+C:\Users\Mhalik\Projects\Pseuchef\Backend\obj\Debug\net8.0-windows\Pseuchef.Backend.pdb
+C:\Users\Mhalik\Projects\Pseuchef\Backend\obj\Debug\net8.0-windows\ref\Pseuchef.Backend.dll
