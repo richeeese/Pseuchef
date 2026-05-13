@@ -8,6 +8,5 @@ namespace Pseuchef.Interfaces
     public interface IRecipeService
     {
         public List<Recipe> Search(List<string> inventory, UserProfile profile);
-        public List<string> GetSteps(int recipeId);
     }
 }

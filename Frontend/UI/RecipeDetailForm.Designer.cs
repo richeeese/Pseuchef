@@ -193,7 +193,6 @@ namespace Pseuchef.UI
             // lblIngredientsTitle
             // 
             lblIngredientsTitle.AutoSize = true;
-            lblIngredientsTitle.BackColor = Color.Transparent;
             lblIngredientsTitle.Font = new Font("Google Sans", 7.79999971F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblIngredientsTitle.ForeColor = Color.FromArgb(150, 150, 150);
             lblIngredientsTitle.Location = new Point(12, 12);
@@ -216,7 +215,6 @@ namespace Pseuchef.UI
             // lblInstructionsTitle
             // 
             lblInstructionsTitle.AutoSize = true;
-            lblInstructionsTitle.BackColor = Color.Transparent;
             lblInstructionsTitle.Font = new Font("Google Sans", 7.79999971F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblInstructionsTitle.ForeColor = Color.FromArgb(150, 150, 150);
             lblInstructionsTitle.Location = new Point(12, 12);

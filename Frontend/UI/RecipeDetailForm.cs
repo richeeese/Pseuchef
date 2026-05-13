@@ -33,9 +33,9 @@ namespace Pseuchef.UI
             btnCloseDetail.Click += (s, e) => this.Close();
         }
 
-        protected override void OnShown(EventArgs e)
+        private void RecipeDetailForm_Load(object sender, EventArgs e)
         {
-            base.OnShown(e);
+
             PopulateIngredients();
             PopulateSteps();
         }
@@ -46,27 +46,9 @@ namespace Pseuchef.UI
         /// </summary>
         private void PopulateIngredients()
         {
-            // Create a standard Panel (not Guna2Panel) — AutoScroll works reliably on these
-            var scrollPanel = new Panel
-            {
-                Location = new Point(0, 44),
-                Size = new Size(pnlIngredients.Width, pnlIngredients.Height - 44),
-                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
-                BackColor = Color.Transparent
-            };
-
-            // Suppress horizontal scroll
-            scrollPanel.AutoScroll = false;
-            scrollPanel.HorizontalScroll.Maximum = 0;
-            scrollPanel.HorizontalScroll.Enabled = false;
-            scrollPanel.HorizontalScroll.Visible = false;
-            scrollPanel.AutoScroll = true;
-
-            pnlIngredients.Controls.Add(scrollPanel);
-
-            int y = 4;
-            int rowW = scrollPanel.Width - 20;
-            int nameW = rowW - 94;
+            int y = 36;
+            int rowW = pnlIngredients.ClientSize.Width - 16;
+            int nameW = rowW - 88;
 
             foreach (var (name, qty, inPantry) in _ingredients)
             {
@@ -75,7 +57,7 @@ namespace Pseuchef.UI
                 var row = new Panel
                 {
                     Location = new Point(8, y),
-                    Size = new Size(rowW, 32),
+                    Size = new Size(rowW, 28),
                     BackColor = Color.FromArgb(18,
                                     inPantry ? AppColors.Green.R : AppColors.Red.R,
                                     inPantry ? AppColors.Green.G : AppColors.Red.G,
@@ -88,8 +70,8 @@ namespace Pseuchef.UI
                     Font = new Font("Google Sans", 8, FontStyle.Bold),
                     ForeColor = accent,
                     BackColor = Color.Transparent,
-                    Location = new Point(6, 6),
-                    Size = new Size(22, 20)
+                    Location = new Point(6, 5),
+                    Size = new Size(16, 18)
                 });
                 row.Controls.Add(new Label
                 {
@@ -97,8 +79,8 @@ namespace Pseuchef.UI
                     Font = new Font("Google Sans", 8),
                     ForeColor = AppColors.Dark,
                     BackColor = Color.Transparent,
-                    Location = new Point(32, 6),
-                    Size = new Size(nameW, 20)
+                    Location = new Point(26, 5),
+                    Size = new Size(nameW, 18)
                 });
                 row.Controls.Add(new Label
                 {
@@ -106,13 +88,13 @@ namespace Pseuchef.UI
                     Font = new Font("Google Sans", 8),
                     ForeColor = Color.FromArgb(130, 130, 130),
                     BackColor = Color.Transparent,
-                    Location = new Point(rowW - 60, 6),
-                    Size = new Size(56, 20),
+                    Location = new Point(rowW - 60, 5),
+                    Size = new Size(56, 18),
                     TextAlign = ContentAlignment.MiddleRight
                 });
 
-                scrollPanel.Controls.Add(row);
-                y += 36;
+                pnlIngredients.Controls.Add(row);
+                y += 32;
             }
         }
 
@@ -121,60 +103,32 @@ namespace Pseuchef.UI
         /// </summary>
         private void PopulateSteps()
         {
-            var scrollPanel = new Panel
-            {
-                Location = new Point(0, 44),
-                Size = new Size(pnlInstructions.Width, pnlInstructions.Height - 44),
-                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
-                BackColor = Color.Transparent
-            };
-
-            scrollPanel.AutoScroll = false;
-            scrollPanel.HorizontalScroll.Maximum = 0;
-            scrollPanel.HorizontalScroll.Enabled = false;
-            scrollPanel.HorizontalScroll.Visible = false;
-            scrollPanel.AutoScroll = true;
-
-            pnlInstructions.Controls.Add(scrollPanel);
-
-            int y = 4;
-            int textX = 44;
-            int textW = scrollPanel.Width - textX - 16;
-            var stepFont = new Font("Google Sans", 8);
+            int y = 36;
+            int textW = pnlInstructions.ClientSize.Width - 52;
 
             for (int i = 0; i < _steps.Count; i++)
             {
-                var textSize = TextRenderer.MeasureText(
-                    _steps[i], stepFont,
-                    new Size(textW, int.MaxValue),
-                    TextFormatFlags.WordBreak | TextFormatFlags.Left
-                );
-                int labelH = Math.Max(22, textSize.Height + 4);
-                int rowH = Math.Max(28, labelH + 6);
-
-                scrollPanel.Controls.Add(new Label
+                pnlInstructions.Controls.Add(new Label
                 {
                     Text = (i + 1).ToString(),
                     Font = new Font("Google Sans", 7, FontStyle.Bold),
                     ForeColor = AppColors.OffWhite,
                     BackColor = AppColors.Orange,
                     Location = new Point(12, y + 2),
-                    Size = new Size(26, 20),
+                    Size = new Size(20, 20),
                     TextAlign = ContentAlignment.MiddleCenter
                 });
-
-                scrollPanel.Controls.Add(new Label
+                pnlInstructions.Controls.Add(new Label
                 {
                     Text = _steps[i],
-                    Font = stepFont,
+                    Font = new Font("Google Sans", 8),
                     ForeColor = AppColors.Dark,
                     BackColor = Color.Transparent,
-                    Location = new Point(textX, y),
-                    Size = new Size(textW, labelH),
-                    AutoSize = false
+                    Location = new Point(38, y),
+                    Size = new Size(textW, 22)
                 });
 
-                y += rowH + 6;
+                y += 32;
             }
         }
     }

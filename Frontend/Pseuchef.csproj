@@ -14,7 +14,6 @@
   <!-- Guna UI2 library -->
   <ItemGroup>
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4.7" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <!-- Reference to Backend project so UI can use Models, Services, Enums -->
@@ -33,9 +32,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="UI\ProfileForm.cs">
-      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 
