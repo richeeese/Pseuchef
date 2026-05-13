@@ -15,23 +15,40 @@ namespace Pseuchef.Services
                 return new List<Recipe>();
 
             string ingredients = string.Join(",+", inventory);
-            string searchUrl = "https://api.spoonacular.com/recipes/findByIngredients"
-                             + $"?ingredients={Uri.EscapeDataString(ingredients)}"
+
+            // 1. Read directly from your globally accessible Singleton
+            string dietParam = UserProfileSingleton.Instance.GetDietParam();
+            string intolerancesParam = UserProfileSingleton.Instance.GetIntolerancesParam();
+
+            // 2. Use complexSearch with fillIngredients=true to keep UI parsing intact
+            string searchUrl = "https://api.spoonacular.com/recipes/complexSearch"
+                             + $"?includeIngredients={Uri.EscapeDataString(ingredients)}"
+                             + "&fillIngredients=true"
+                             + "&sort=max-used-ingredients"
                              + "&number=20"
-                             + "&ranking=2"
-                             + "&ignorePantry=true"
-                             + $"&apiKey={Config.SpoonacularApiKey}";
+                             + "&ignorePantry=true";
+
+            // 3. Append Diet if the user selected one
+            if (!string.IsNullOrEmpty(dietParam))
+                searchUrl += $"&diet={Uri.EscapeDataString(dietParam)}";
+
+            // 4. Append Intolerances if the user checked any
+            if (!string.IsNullOrEmpty(intolerancesParam))
+                searchUrl += $"&intolerances={Uri.EscapeDataString(intolerancesParam)}";
+
+            searchUrl += $"&apiKey={Config.SpoonacularApiKey}";
 
             try
             {
-                // ── Step 1: Get recipes + ingredient match data ──────────────────
                 var searchResponse = Task.Run(() => _http.GetStringAsync(searchUrl)).Result;
                 var searchJson = JsonDocument.Parse(searchResponse);
 
                 var recipes = new List<Recipe>();
                 var idToData = new Dictionary<int, (List<RecipeIngredient> ingredients, int matchCount)>();
 
-                foreach (var item in searchJson.RootElement.EnumerateArray())
+                // 5. CRITICAL FIX: complexSearch wraps results in a "results" array!
+                // We just add .GetProperty("results") here, and the rest of your loop stays untouched!
+                foreach (var item in searchJson.RootElement.GetProperty("results").EnumerateArray())
                 {
                     var ingredientList = new List<RecipeIngredient>();
 
@@ -59,6 +76,7 @@ namespace Pseuchef.Services
                 if (idToData.Count == 0) return new List<Recipe>();
 
                 // ── Step 2: Bulk fetch prep time + servings for all recipe IDs ───
+                // (This section remains 100% untouched!)
                 string ids = string.Join(",", idToData.Keys);
                 string bulkUrl = "https://api.spoonacular.com/recipes/informationBulk"
                                 + $"?ids={ids}"

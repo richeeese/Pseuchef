@@ -46,8 +46,26 @@ namespace Pseuchef.UI
         /// </summary>
         private void PopulateIngredients()
         {
-            int y = 36;
-            int rowW = pnlIngredients.ClientSize.Width - 16;
+            // Create a standard Panel (not Guna2Panel) — AutoScroll works reliably on these
+            var scrollPanel = new Panel
+            {
+                Location = new Point(0, 44),
+                Size = new Size(pnlIngredients.Width, pnlIngredients.Height - 44),
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                BackColor = Color.Transparent
+            };
+
+            // Suppress horizontal scroll
+            scrollPanel.AutoScroll = false;
+            scrollPanel.HorizontalScroll.Maximum = 0;
+            scrollPanel.HorizontalScroll.Enabled = false;
+            scrollPanel.HorizontalScroll.Visible = false;
+            scrollPanel.AutoScroll = true;
+
+            pnlIngredients.Controls.Add(scrollPanel);
+
+            int y = 4;
+            int rowW = scrollPanel.Width - 20;
             int nameW = rowW - 94;
 
             foreach (var (name, qty, inPantry) in _ingredients)
@@ -64,7 +82,6 @@ namespace Pseuchef.UI
                                     inPantry ? AppColors.Green.B : AppColors.Red.B)
                 };
 
-                // ✓ or ✗ badge
                 row.Controls.Add(new Label
                 {
                     Text = inPantry ? "✓" : "✗",
@@ -74,8 +91,6 @@ namespace Pseuchef.UI
                     Location = new Point(6, 6),
                     Size = new Size(22, 20)
                 });
-
-                // Ingredient name
                 row.Controls.Add(new Label
                 {
                     Text = name,
@@ -85,8 +100,6 @@ namespace Pseuchef.UI
                     Location = new Point(32, 6),
                     Size = new Size(nameW, 20)
                 });
-
-                // Quantity (right-aligned)
                 row.Controls.Add(new Label
                 {
                     Text = qty,
@@ -98,7 +111,7 @@ namespace Pseuchef.UI
                     TextAlign = ContentAlignment.MiddleRight
                 });
 
-                pnlIngredients.Controls.Add(row);
+                scrollPanel.Controls.Add(row);
                 y += 36;
             }
         }
@@ -108,25 +121,38 @@ namespace Pseuchef.UI
         /// </summary>
         private void PopulateSteps()
         {
-            int y = 36;
+            var scrollPanel = new Panel
+            {
+                Location = new Point(0, 44),
+                Size = new Size(pnlInstructions.Width, pnlInstructions.Height - 44),
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                BackColor = Color.Transparent
+            };
+
+            scrollPanel.AutoScroll = false;
+            scrollPanel.HorizontalScroll.Maximum = 0;
+            scrollPanel.HorizontalScroll.Enabled = false;
+            scrollPanel.HorizontalScroll.Visible = false;
+            scrollPanel.AutoScroll = true;
+
+            pnlInstructions.Controls.Add(scrollPanel);
+
+            int y = 4;
             int textX = 44;
-            int textW = pnlInstructions.ClientSize.Width - textX - 12;
+            int textW = scrollPanel.Width - textX - 16;
             var stepFont = new Font("Google Sans", 8);
 
             for (int i = 0; i < _steps.Count; i++)
             {
-                // Measure how tall this step's text will actually be
                 var textSize = TextRenderer.MeasureText(
-                    _steps[i],
-                    stepFont,
+                    _steps[i], stepFont,
                     new Size(textW, int.MaxValue),
                     TextFormatFlags.WordBreak | TextFormatFlags.Left
                 );
                 int labelH = Math.Max(22, textSize.Height + 4);
                 int rowH = Math.Max(28, labelH + 6);
 
-                // Orange step number badge
-                pnlInstructions.Controls.Add(new Label
+                scrollPanel.Controls.Add(new Label
                 {
                     Text = (i + 1).ToString(),
                     Font = new Font("Google Sans", 7, FontStyle.Bold),
@@ -137,8 +163,7 @@ namespace Pseuchef.UI
                     TextAlign = ContentAlignment.MiddleCenter
                 });
 
-                // Step text — sized to fit full content
-                pnlInstructions.Controls.Add(new Label
+                scrollPanel.Controls.Add(new Label
                 {
                     Text = _steps[i],
                     Font = stepFont,
@@ -149,7 +174,7 @@ namespace Pseuchef.UI
                     AutoSize = false
                 });
 
-                y += rowH + 6; // gap between steps
+                y += rowH + 6;
             }
         }
     }

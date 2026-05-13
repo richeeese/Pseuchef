@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputType>Library</OutputType>
@@ -9,6 +9,9 @@
     <RootNamespace>Pseuchef.AI</RootNamespace>
     <AssemblyName>Pseuchef.AI</AssemblyName>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Backend\Pseuchef.Backend.csproj" />
   </ItemGroup>

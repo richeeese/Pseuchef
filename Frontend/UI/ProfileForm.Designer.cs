@@ -38,6 +38,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             tableLayoutPanel1 = new TableLayoutPanel();
             btnSaveProfile = new Guna.UI2.WinForms.Guna2Button();
@@ -50,6 +52,7 @@
             clbIntolerances = new CheckedListBox();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
+            btnClose = new Guna.UI2.WinForms.Guna2Button();
             lblProfile = new Label();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             tableLayoutPanel1.SuspendLayout();
@@ -83,10 +86,10 @@
             tableLayoutPanel1.Padding = new Padding(16, 0, 16, 20);
             tableLayoutPanel1.RowCount = 5;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 22.59887F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 22.59887F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 32.20339F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 22.59887F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 21.9840622F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 21.9840622F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 34.0478172F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 21.9840622F));
             tableLayoutPanel1.Size = new Size(430, 400);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -101,7 +104,7 @@
             btnSaveProfile.FillColor = Color.FromArgb(26, 26, 26);
             btnSaveProfile.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSaveProfile.ForeColor = Color.White;
-            btnSaveProfile.Location = new Point(145, 314);
+            btnSaveProfile.Location = new Point(145, 316);
             btnSaveProfile.Margin = new Padding(4, 8, 0, 10);
             btnSaveProfile.Name = "btnSaveProfile";
             btnSaveProfile.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -115,10 +118,10 @@
             label3.AutoSize = true;
             label3.Dock = DockStyle.Fill;
             label3.Font = new Font("Google Sans", 10.1999989F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(19, 188);
+            label3.Location = new Point(19, 184);
             label3.Margin = new Padding(3, 6, 3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(119, 109);
+            label3.Size = new Size(119, 116);
             label3.TabIndex = 4;
             label3.Text = "Intolerances";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -128,10 +131,10 @@
             label2.AutoSize = true;
             label2.Dock = DockStyle.Fill;
             label2.Font = new Font("Google Sans", 10.1999989F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(19, 107);
+            label2.Location = new Point(19, 105);
             label2.Margin = new Padding(3, 6, 3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(119, 75);
+            label2.Size = new Size(119, 73);
             label2.TabIndex = 2;
             label2.Text = "Diet";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -145,7 +148,7 @@
             label1.Location = new Point(19, 26);
             label1.Margin = new Padding(3, 6, 3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(119, 75);
+            label1.Size = new Size(119, 73);
             label1.TabIndex = 0;
             label1.Text = "Name";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -163,16 +166,16 @@
             txtProfileName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtProfileName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtProfileName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtProfileName.Font = new Font("Google Sans", 10.1999989F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtProfileName.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtProfileName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtProfileName.Location = new Point(145, 41);
-            txtProfileName.Margin = new Padding(4, 8, 4, 8);
+            txtProfileName.Location = new Point(145, 34);
+            txtProfileName.Margin = new Padding(4, 14, 4, 14);
             txtProfileName.Multiline = true;
             txtProfileName.Name = "txtProfileName";
             txtProfileName.PlaceholderText = "";
             txtProfileName.SelectedText = "";
             txtProfileName.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtProfileName.Size = new Size(265, 38);
+            txtProfileName.Size = new Size(265, 51);
             txtProfileName.TabIndex = 1;
             // 
             // btnCancel
@@ -188,7 +191,7 @@
             btnCancel.FillColor = Color.FromArgb(0, 0, 0, 0);
             btnCancel.Font = new Font("Google Sans", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = Color.FromArgb(26, 26, 26);
-            btnCancel.Location = new Point(16, 316);
+            btnCancel.Location = new Point(16, 318);
             btnCancel.Margin = new Padding(0, 8, 8, 10);
             btnCancel.Name = "btnCancel";
             btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges6;
@@ -204,7 +207,7 @@
             cmbDiet.FormattingEnabled = true;
             cmbDiet.ItemHeight = 31;
             cmbDiet.Items.AddRange(new object[] { "None", "Vegetarian", "Vegan" });
-            cmbDiet.Location = new Point(144, 123);
+            cmbDiet.Location = new Point(144, 120);
             cmbDiet.Margin = new Padding(3, 6, 3, 3);
             cmbDiet.Name = "cmbDiet";
             cmbDiet.Size = new Size(267, 39);
@@ -213,13 +216,16 @@
             // clbIntolerances
             // 
             clbIntolerances.BorderStyle = BorderStyle.None;
+            clbIntolerances.Dock = DockStyle.Fill;
+            clbIntolerances.Font = new Font("Google Sans", 7.2F);
             clbIntolerances.FormattingEnabled = true;
             clbIntolerances.Items.AddRange(new object[] { "Dairy", "Gluten", "Peanut", "Seafood", "Soy" });
-            clbIntolerances.Location = new Point(141, 182);
+            clbIntolerances.Location = new Point(141, 178);
             clbIntolerances.Margin = new Padding(0);
             clbIntolerances.Name = "clbIntolerances";
-            clbIntolerances.Size = new Size(106, 110);
+            clbIntolerances.Size = new Size(273, 122);
             clbIntolerances.TabIndex = 12;
+            clbIntolerances.SelectedIndexChanged += clbIntolerances_SelectedIndexChanged;
             // 
             // tableLayoutPanel2
             // 
@@ -235,6 +241,7 @@
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Size = new Size(436, 436);
             tableLayoutPanel2.TabIndex = 12;
             // 
@@ -244,6 +251,7 @@
             tableLayoutPanel3.ColumnCount = 2;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(btnClose, 1, 0);
             tableLayoutPanel3.Controls.Add(lblProfile, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(0, 0);
@@ -255,6 +263,28 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel3.Size = new Size(436, 30);
             tableLayoutPanel3.TabIndex = 1;
+            // 
+            // btnClose
+            // 
+            btnClose.BackColor = Color.FromArgb(0, 0, 0, 0);
+            btnClose.CustomizableEdges = customizableEdges7;
+            btnClose.DisabledState.BorderColor = Color.DarkGray;
+            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnClose.Dock = DockStyle.Right;
+            btnClose.FillColor = Color.FromArgb(0, 0, 0, 0);
+            btnClose.FocusedColor = Color.Green;
+            btnClose.Font = new Font("Segoe Fluent Icons", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClose.ForeColor = Color.White;
+            btnClose.Image = Properties.Resources.close_48dp_FFFFFF_FILL0_wght700_GRAD0_opsz48;
+            btnClose.ImageOffset = new Point(4, 0);
+            btnClose.Location = new Point(409, 3);
+            btnClose.Name = "btnClose";
+            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnClose.Size = new Size(24, 24);
+            btnClose.TabIndex = 3;
+            btnClose.Text = "✕";
             // 
             // lblProfile
             // 
@@ -274,12 +304,12 @@
             // 
             guna2Panel1.BackColor = Color.FromArgb(26, 26, 26);
             guna2Panel1.Controls.Add(tableLayoutPanel2);
-            guna2Panel1.CustomizableEdges = customizableEdges7;
+            guna2Panel1.CustomizableEdges = customizableEdges9;
             guna2Panel1.Dock = DockStyle.Fill;
             guna2Panel1.Location = new Point(0, 0);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.Padding = new Padding(2);
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges10;
             guna2Panel1.Size = new Size(440, 440);
             guna2Panel1.TabIndex = 13;
             // 
@@ -321,5 +351,6 @@
         private Label lblProfile;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private CheckedListBox clbIntolerances;
+        private Guna.UI2.WinForms.Guna2Button btnClose;
     }
 }

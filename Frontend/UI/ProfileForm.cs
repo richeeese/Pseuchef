@@ -16,13 +16,25 @@ namespace Pseuchef.UI
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool ReleaseCapture();
 
-        public ProfileForm()
+        // 1. ADD THIS VARIABLE to remember the mode
+        private bool _isStartupMode;
+
+        public ProfileForm(bool isStartupMode = false)
         {
             InitializeComponent();
 
-            // Wire buttons
+            // 2. Save the mode so the Load event can use it later
+            _isStartupMode = isStartupMode;
+
+            // Wire standard buttons
             btnCancel.Click += (s, e) => { this.DialogResult = DialogResult.Cancel; this.Close(); };
             btnSaveProfile.Click += btnSaveProfile_Click;
+
+            // Wire your new X button (assuming you named it btnClose)
+            if (btnClose != null)
+            {
+                btnClose.Click += (s, e) => { this.DialogResult = DialogResult.Cancel; this.Close(); };
+            }
 
             // Make draggable
             this.MouseDown += (s, e) =>
@@ -64,6 +76,43 @@ namespace Pseuchef.UI
                 bool isChecked = UserProfileSingleton.Instance.Intolerances.Contains(intolerance);
                 clbIntolerances.Items.Add(display, isChecked);
             }
+
+            if (_isStartupMode)
+            {
+                // 1. Hide the cancel button
+                btnCancel.Visible = false;
+
+                // 2. CRUSH column 0 (Cancel) to 0 pixels
+                tableLayoutPanel1.ColumnStyles[0].SizeType = SizeType.Absolute;
+                tableLayoutPanel1.ColumnStyles[0].Width = 0;
+
+                // 3. EXPAND column 1 (Save) to 100% width
+                tableLayoutPanel1.ColumnStyles[1].SizeType = SizeType.Percent;
+                tableLayoutPanel1.ColumnStyles[1].Width = 100;
+
+                // 4. Update the Save button to act as "Continue"
+                btnSaveProfile.Text = "Continue";
+                btnSaveProfile.Dock = DockStyle.Fill;
+
+                if (btnClose != null) btnClose.Visible = true;
+            }
+            else
+            {
+                // Sidebar Mode ("As Is")
+                btnCancel.Visible = true;
+                btnSaveProfile.Text = "Save";
+
+                // RESTORE the table to 50/50 split
+                tableLayoutPanel1.ColumnStyles[0].SizeType = SizeType.Percent;
+                tableLayoutPanel1.ColumnStyles[0].Width = 50;
+
+                tableLayoutPanel1.ColumnStyles[1].SizeType = SizeType.Percent;
+                tableLayoutPanel1.ColumnStyles[1].Width = 50;
+
+                btnSaveProfile.Dock = DockStyle.None; // Reset dock
+
+                if (btnClose != null) btnClose.Visible = false;
+            }
         }
 
         private void btnSaveProfile_Click(object sender, EventArgs e)
@@ -93,5 +142,15 @@ namespace Pseuchef.UI
         // Designer stubs
         private void label1_Click(object sender, EventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }
+
+        private void btnStartupContinue_Click(object sender, EventArgs e)
+        {
+            btnSaveProfile_Click(sender, e);
+        }
+
+        private void clbIntolerances_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

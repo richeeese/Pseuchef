@@ -1,14 +1,3 @@
-// ============================================================
-// Pseuchef — Form1.cs
-// Author: Mhalik — Frontend / UI
-//
-// NOTES FOR RITZY:
-// - All data is currently MOCK DATA (see regions marked [MOCK])
-// - To connect real data, implement the IRecipeService and
-//   IPantryService interfaces and replace the mock lists below
-// - UI is decoupled from backend — swap one line per service call
-// - AppColors.cs holds the shared color palette
-// ============================================================
 
 using Guna.UI2.WinForms;
 using System.Linq;
@@ -21,14 +10,9 @@ namespace Pseuchef.UI
 {
     public partial class Form1 : Form
     {
-        // ─────────────────────────────────────────────
-        // [MOCK] Dashboard expiry summary counts
-        // TODO (Ritzy): Replace with real counts from IPantryService
-        // e.g. _useNow = pantryService.GetExpiringCount(maxDays: 1);
-        // ─────────────────────────────────────────────
-        private int _useNow => _fridge.GetExpiringItems(1).Count;
-        private int _expiringSoon => _fridge.GetExpiringItems(3).Count - _fridge.GetExpiringItems(1).Count;
-        private int _fresh => Math.Max(0, _fridge.GetInventory().Count - _fridge.GetExpiringItems(3).Count);
+        private int _useNow => _fridge.GetExpiringItems(3).Count;
+        private int _expiringSoon => _fridge.GetExpiringItems(7).Count - _fridge.GetExpiringItems(3).Count;
+        private int _fresh => Math.Max(0, _fridge.GetInventory().Count - _fridge.GetExpiringItems(7).Count);
 
         private readonly IRecipeService _recipeService = new RecipeFetcher();
 
@@ -40,6 +24,11 @@ namespace Pseuchef.UI
             2000,
             true
         );
+
+        public ChefbotService _chefbot = new ChefbotService();
+        private Guna.UI2.WinForms.Guna2TextBox aiUserInput;
+        private Guna.UI2.WinForms.Guna2Button aiBtnSend;
+        private Guna.UI2.WinForms.Guna2Button aiBtnClear;
 
         // Tracks whether the grid is showing a single surprise pick
         private bool _surpriseMode = false;
@@ -68,10 +57,6 @@ namespace Pseuchef.UI
         {
             InitializeComponent();
         }
-
-        // ============================================================
-        // LIFECYCLE
-        // ============================================================
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -106,6 +91,17 @@ namespace Pseuchef.UI
             mnuFilterFresh.ForeColor = AppColors.Green;
             mnuFilterExpiring.ForeColor = AppColors.Yellow;
             mnuFilterUseNow.ForeColor = AppColors.Red;
+
+            btnProfile.Click += btnProfile_Click;
+
+            flpRecipeGrid.Paint += (s, ev) =>
+            {
+                var controls = flpRecipeGrid.Controls.Cast<Control>().ToList();
+                foreach (Control c in controls)
+                    DrawPanelShadow(ev.Graphics, c, offset: 4);
+            };
+
+            flpRecipeCards.Invalidate();
 
             // Paint neobrutalist offset shadows behind the 3 dashboard section panels
             tlpDashboard.Paint += (s, ev) =>
@@ -196,8 +192,8 @@ namespace Pseuchef.UI
                 if (addForm.ShowDialog(this) == DialogResult.OK)
                 {
                     int daysLeft = (DateTime.Parse(addForm.ExpiryDate) - DateTime.Today).Days;
-                    string status = daysLeft <= 1 ? "🔴 Use Now"
-                                  : daysLeft <= 3 ? "🟡 Expiring Soon"
+                    string status = daysLeft <= 3 ? "🔴 Use Now"
+                                  : daysLeft <= 7 ? "🟡 Expiring Soon"
                                   : "🟢 Fresh";
 
                     // Save to VirtualFridge
@@ -226,7 +222,11 @@ namespace Pseuchef.UI
                     UpdateLastAdded(addForm.ItemName, addForm.Quantity);
                 }
             };
-
+            if (UserProfileSingleton.Instance.Username == "Chef")
+            {
+                using var startupProfile = new ProfileForm(isStartupMode: true);
+                startupProfile.ShowDialog(this);
+            }
         }
 
         protected override void OnShown(EventArgs e)
@@ -241,14 +241,6 @@ namespace Pseuchef.UI
             LoadAlerts();
             LoadRecipeDiscovery();
         }
-
-        // ============================================================
-        // NAVIGATION — Sidebar button active state + panel switching
-        // ============================================================
-
-        /// <summary>
-        /// Resets all nav buttons to inactive, then highlights the clicked one.
-        /// </summary>
         private void SetActiveButton(Guna2Button clicked)
         {
             var navButtons = new[]
@@ -266,10 +258,6 @@ namespace Pseuchef.UI
             clicked.ForeColor = Color.White;
             _activeButton = clicked;
         }
-
-        /// <summary>
-        /// Hides all main content panels, then shows only the selected one.
-        /// </summary>
         private void ShowPanel(Guna2Panel panelToShow)
         {
             var allPanels = new[]
@@ -288,23 +276,32 @@ namespace Pseuchef.UI
         private void btnDashboard_Click(object sender, EventArgs e) { SetActiveButton(btnDashboard); ShowPanel(pnlDashboard); }
         private void btnVirtualPantry_Click(object sender, EventArgs e) { SetActiveButton(btnVirtualPantry); ShowPanel(pnlVirtualPantry); }
         private void btnRecipeDiscovery_Click(object sender, EventArgs e) { SetActiveButton(btnRecipeDiscovery); ShowPanel(pnlRecipeDiscovery); }
-        private void btnChefbotAI_Click(object sender, EventArgs e) { SetActiveButton(btnChefbotAI); ShowPanel(pnlChefbotAI); }
+        private void btnChefbotAI_Click(object sender, EventArgs e)
+        {
+            SetActiveButton(btnChefbotAI);
+            ShowPanel(pnlChefbotAI);
 
-        // ============================================================
-        // WINDOW CONTROLS — Custom title bar (FormBorderStyle = None)
-        // ============================================================
+            if (aiUserInput == null)
+            {
+                BuildMissingChefbotUI();
+            }
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            using var profileForm = new ProfileForm(isStartupMode: false);
+
+            if (profileForm.ShowDialog(this) == DialogResult.OK)
+            {
+                if (_activeButton == btnRecipeDiscovery)
+                {
+                    LoadRecipeDiscovery();
+                }
+            }
+        }
 
         private void btnMinimize_Click(object sender, EventArgs e) => this.WindowState = FormWindowState.Minimized;
         private void btnClose_Click(object sender, EventArgs e) => Application.Exit();
-
-        // ============================================================
-        // DASHBOARD — Donut Chart (Pantry expiry overview)
-        // ============================================================
-
-        /// <summary>
-        /// Registers the Paint event for the donut chart PictureBox.
-        /// Called once from Form1_Load. Uses -= before += to prevent stacking.
-        /// </summary>
         private void SetupDonutChart()
         {
             int total = _useNow + _expiringSoon + _fresh;
@@ -314,11 +311,6 @@ namespace Pseuchef.UI
             pnlDonutChart.Paint += pnlDonutChart_Paint;
             pnlDonutChart.Invalidate();
         }
-
-        /// <summary>
-        /// Draws the donut chart segments and legend onto pnlDonutChart.
-        /// Colors: Red = use now, Yellow = expiring soon, Green = fresh.
-        /// </summary>
         private void pnlDonutChart_Paint(object sender, PaintEventArgs e)
         {
             int useNow = _useNow;
@@ -393,41 +385,6 @@ namespace Pseuchef.UI
             g.DrawString(text, font, textBrush, x + 14, y);
         }
 
-        // ============================================================
-        // DASHBOARD — Alert Center
-        // ============================================================
-
-        /// <summary>
-        /// Loads and renders alert cards into flpAlerts.
-        /// Cards are sorted by urgency (fewest days left first).
-        ///
-        /// [MOCK] TODO (Ritzy): Replace alert list with:
-        ///   var alerts = pantryService.GetExpiringItems()
-        ///       .Select(i => (i.Name, i.DaysUntilExpiry)).ToList();
-        /// </summary>
-        private void LoadMockAlerts()
-        {
-            flpAlerts.WrapContents = false;
-            flpAlerts.FlowDirection = FlowDirection.TopDown;
-            flpAlerts.Padding = new Padding(0);
-            flpAlerts.Margin = new Padding(0);
-
-            // [MOCK] Hardcoded alert data
-            var alerts = new List<(string item, int days)>
-            {
-                ("Heavy Cream",     5),
-                ("Asparagus",       0),
-                ("Chicken Thighs",  3),
-                ("Chicken Tracker", 2),
-            };
-
-            alerts = alerts.OrderBy(a => a.days).ToList();
-
-            flpAlerts.Controls.Clear();
-            foreach (var (item, days) in alerts)
-                flpAlerts.Controls.Add(CreateAlertCard(item, days));
-        }
-
         private void LoadAlerts()
         {
             flpAlerts.WrapContents = false;
@@ -460,10 +417,6 @@ namespace Pseuchef.UI
                 flpAlerts.Controls.Add(CreateAlertCard(item, days));
         }
 
-        /// <summary>
-        /// Builds a single alert card with colored left accent bar,
-        /// item name, urgency text, and a color-coded Use button.
-        /// </summary>
         private Panel CreateAlertCard(string itemName, int daysLeft)
         {
             Color badgeColor;
@@ -526,13 +479,12 @@ namespace Pseuchef.UI
                 SetActiveButton(btnRecipeDiscovery);
                 ShowPanel(pnlRecipeDiscovery);
 
-                // Activate "From My Pantry" chip — most relevant for expiring items
-                _activeRecipeFilter = "From My Pantry";
+                // Reset filter to "All" since other chips were removed
+                _activeRecipeFilter = "All";
                 RefreshRecipeFilterChips();
 
-                // Clear search and re-render filtered cards
-                txtRecipeSearch.Text = "";
-                ApplyRecipeFilters();
+                // Auto-fill the search box with the expiring item so it filters instantly!
+                txtRecipeSearch.Text = capturedItem;
             };
 
             container.Paint += (s, e) =>
@@ -547,18 +499,6 @@ namespace Pseuchef.UI
             container.Controls.Add(accent); // accent last so Dock = Left doesn't displace others
             return container;
         }
-
-        // ============================================================
-        // DASHBOARD — Recipe Recommendations
-        // ============================================================
-
-        /// <summary>
-        /// Loads and renders 3 recipe cards into flpRecipeCards.
-        ///
-        /// [MOCK] TODO (Ritzy): Replace with:
-        ///   var recipes = recipeService.GetRecommendations(pantryItems).Take(3);
-        /// TODO (Regina): AI recommendation logic plugs in here
-        /// </summary>
         private void LoadMockRecipes()
         {
             flpRecipeCards.Controls.Clear();
@@ -601,11 +541,6 @@ namespace Pseuchef.UI
                 });
             }
         }
-
-        /// <summary>
-        /// Builds a single recipe card with image placeholder, metadata,
-        /// ingredient match badge, and Cook Now button.
-        /// </summary>
         private Panel CreateRecipeCard(string recipeName, string duration,
                                         string servings, int matchCount, int totalIngredients,
                                         string imageUrl = "")
@@ -664,7 +599,7 @@ namespace Pseuchef.UI
 
                     // ✅ Draw the black border ON TOP of the image (inside pb.Paint)
                     using var pen = new Pen(AppColors.Dark, 3);
-                    ev.Graphics.DrawRectangle(pen, 0, 0, pb.Width - 1, pb.Height - 1);
+                    ev.Graphics.DrawRectangle(pen, 0, 0, pb.Width - 1, pb.Height);
                 };
 
                 pb.LoadCompleted += (s, ev) => pb.Invalidate();
@@ -719,8 +654,6 @@ namespace Pseuchef.UI
                 TextAlign = ContentAlignment.MiddleLeft,
                 Padding = new Padding(4, 0, 0, 0)
             };
-
-            // TODO (Ritzy): Wire click to open recipe detail / start cooking flow
             var btnCook = new Guna2Button
             {
                 Text = "Cook Now",
@@ -758,16 +691,6 @@ namespace Pseuchef.UI
             card.Controls.Add(imgPlaceholder); // added last so it renders on top
             return card;
         }
-
-        // ============================================================
-        // SHARED UTILITIES
-        // ============================================================
-
-        /// <summary>
-        /// Draws a solid offset rectangle behind a panel to simulate
-        /// a neobrutalist hard drop shadow. Must be called from the
-        /// parent container's Paint event.
-        /// </summary>
         private void DrawPanelShadow(Graphics g, Control panel, int offset = 4)
         {
             var shadowRect = new Rectangle(
@@ -793,14 +716,6 @@ namespace Pseuchef.UI
             _ => FoodCategory.Produce
         };
 
-        // ============================================================
-        // PANTRY TAB
-        // ============================================================
-
-        /// <summary>
-        /// Styles the full pantry tab DataGridView.
-        /// Called from Form1_Load.
-        /// </summary>
         private void StylePantryTab()
         {
             dgvPantryTab.ReadOnly = true; // prevent direct cell editing
@@ -856,8 +771,8 @@ namespace Pseuchef.UI
                 {
                     int days = p.GetDaysRemaining();
                     expiry = p.GetExpiryDate().ToString("yyyy-MM-dd");
-                    status = days <= 1 ? "🔴 Use Now"
-                              : days <= 3 ? "🟡 Expiring Soon"
+                    status = days <= 3 ? "🔴 Use Now"
+                              : days <= 7 ? "🟡 Expiring Soon"
                               : "🟢 Fresh";
                 }
 
@@ -869,15 +784,9 @@ namespace Pseuchef.UI
                     status,
                     "⋮"
                 );
-                dgvPantryTab.Rows[rowIndex].Tag = item; // store reference for Edit/Delete
+                dgvPantryTab.Rows[rowIndex].Tag = item; 
             }
         }
-
-        /// <summary>
-        /// Custom cell painting for the pantry tab:
-        /// - ⋮ column: flat text, orange on hover
-        /// - Status column: colored badge pill
-        /// </summary>
         private void dgvPantryTab_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -910,7 +819,6 @@ namespace Pseuchef.UI
                 return;
             }
 
-            // ── Status column — paint as colored badge pill ──
             if (e.ColumnIndex != dgvPantryTab.Columns["colStatus"].Index) return;
 
             e.PaintBackground(e.ClipBounds, true);
@@ -949,9 +857,7 @@ namespace Pseuchef.UI
             e.Handled = true;
         }
 
-        /// <summary>
-        /// Handles ⋮ button click — shows context menu below the clicked cell.
-        /// </summary>
+
         private void dgvPantryTab_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -964,10 +870,6 @@ namespace Pseuchef.UI
             cmsRowActions.Show(menuPos);
         }
 
-        /// <summary>
-        /// Edit menu item — placeholder until Ritzy wires up the edit form.
-        /// TODO (Ritzy): Replace MessageBox with real edit dialog/form.
-        /// </summary>
         private void mnuEdit_Click(object sender, EventArgs e)
         {
             if (_actionRowIndex < 0) return;
@@ -986,8 +888,8 @@ namespace Pseuchef.UI
                 // Update the row with new values
                 int daysLeft = (DateTime.Parse(editForm.ExpiryDate) - DateTime.Today).Days;
 
-                string status = daysLeft <= 1 ? "🔴 Use Now"
-                              : daysLeft <= 3 ? "🟡 Expiring Soon"
+                string status = daysLeft <= 3 ? "🔴 Use Now"
+                              : daysLeft <= 7 ? "🟡 Expiring Soon"
                               : "🟢 Fresh";
 
                 dgvPantryTab.Rows[_actionRowIndex].Cells["colItemName"].Value = editForm.ItemName;
@@ -1016,10 +918,6 @@ namespace Pseuchef.UI
             }
         }
 
-        /// <summary>
-        /// Delete menu item — confirms then removes the row from the grid.
-        /// TODO (Ritzy): Also call pantryService.DeleteItem(id) here.
-        /// </summary>
         private void mnuDelete_Click(object sender, EventArgs e)
         {
             if (_actionRowIndex < 0) return;
@@ -1041,12 +939,6 @@ namespace Pseuchef.UI
                 _actionRowIndex = -1;
             }
         }
-
-        /// <summary>
-        /// Filters dgvPantryTab by search text, category, and status.
-        /// All three filters work together (AND logic).
-        /// TODO (Ritzy): When real data is loaded, call this after binding.
-        /// </summary>
         private void ApplyPantryFilters()
         {
             string query = txtPantrySearch.Text.Trim().ToLower();
@@ -1086,9 +978,6 @@ namespace Pseuchef.UI
             UpdateFilterMenuCheckmarks();
         }
 
-        /// <summary>
-        /// Adds a ✓ checkmark next to the currently active filter menu item.
-        /// </summary>
         private void UpdateFilterMenuCheckmarks()
         {
             // Category checkmarks
@@ -1105,19 +994,12 @@ namespace Pseuchef.UI
             mnuFilterUseNow.Text = _activeStatusFilters.Contains("Use Now") ? "✓ Use Now" : "Use Now";
         }
 
-        // ============================================================
-        // DESIGNER-GENERATED STUBS
-        // Kept to prevent designer from throwing missing method errors
-        // ============================================================
+
         private void guna2Panel1_Paint(object sender, PaintEventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }
         private void dgvPantry_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void lblDashboardTitle_Click(object sender, EventArgs e) { }
 
-        /// <summary>
-        /// Toggles a filter value in a HashSet.
-        /// If already present — removes it. If not — adds it.
-        /// </summary>
         private void ToggleFilter(HashSet<string> filterSet, string value)
         {
             if (filterSet.Contains(value))
@@ -1133,8 +1015,8 @@ namespace Pseuchef.UI
             if (addForm.ShowDialog(this) == DialogResult.OK)
             {
                 int daysLeft = (DateTime.Parse(addForm.ExpiryDate) - DateTime.Today).Days;
-                string status = daysLeft <= 1 ? "🔴 Use Now"
-                              : daysLeft <= 3 ? "🟡 Expiring Soon"
+                string status = daysLeft <= 3 ? "🔴 Use Now"
+                              : daysLeft <= 7 ? "🟡 Expiring Soon"
                               : "🟢 Fresh";
 
                 var newItem = new PerishableItem(
@@ -1160,19 +1042,9 @@ namespace Pseuchef.UI
                 UpdateLastAdded(addForm.ItemName, addForm.Quantity);
             }
         }
-
-        // ============================================================
-        // RECIPE DISCOVERY — Filter Chips
-        // ============================================================
-
-        /// <summary>
-        /// Generates the filter chip row (All, From My Pantry, Quick,
-        /// Healthy, Budget-Friendly) and adds them to pnlRecipeFilters.
-        /// Chips are created in code so they're easy to restyle or extend.
-        /// </summary>
         private void StyleRecipeFilterChips()
         {
-            var filters = new[] { "All", "Quick",};
+            var filters = new[] { "All", "Quick", };
 
             pnlRecipeFilters.Controls.Clear();
             int xOffset = 0;
@@ -1210,21 +1082,6 @@ namespace Pseuchef.UI
             }
         }
 
-        // ============================================================
-        // RECIPE DISCOVERY — Load + Render
-        // ============================================================
-
-        /// <summary>
-        /// Initialises the full mock recipe list and renders cards.
-        /// Called from OnShown so flpRecipeGrid has its real ClientSize.
-        ///
-        /// [MOCK] TODO (Ritzy): Replace _allRecipes list with:
-        ///   _allRecipes = recipeService.GetAll()
-        ///       .Select(r => (r.Name, r.Duration, r.Servings,
-        ///                     r.MatchCount, r.TotalIngredients, r.Tags))
-        ///       .ToList();
-        /// TODO (Regina): AI recommendation scores plug in here
-        /// </summary>
         private void LoadRecipeDiscovery()
         {
             var inventoryNames = _fridge.GetInventory()
@@ -1236,7 +1093,7 @@ namespace Pseuchef.UI
             if (apiRecipes.Count > 0)
             {
                 // Build _recipeDetails from API data
-                _recipeDetails = new Dictionary<string,(
+                _recipeDetails = new Dictionary<string, (
                     List<(string name, string qty, bool inPantry)> ingredients,
                     List<string> steps)>();
 
@@ -1259,9 +1116,10 @@ namespace Pseuchef.UI
 
                     // Compute filter chip tags based on match ratio
                     var tags = new List<string>();
-                    if (total > 0 && match == total) tags.Add("From My Pantry");
-                    if (total <= 5) tags.Add("Quick");
-                    if (total > 0 && (double)match / total >= 0.7) tags.Add("Budget-Friendly");
+                    if (recipe.GetPrepTime() > 0 && recipe.GetPrepTime() <= 30)
+                    {
+                        tags.Add("Quick");
+                    }
 
                     string duration = recipe.GetPrepTime() > 0
                         ? $"{(int)recipe.GetPrepTime()} min" : "— min";
@@ -1270,7 +1128,7 @@ namespace Pseuchef.UI
 
                     return (recipe.GetTitle(), duration, servingsText, match, total, tags.ToArray(), recipe.GetImageUrl(), recipe.GetRecipeId());
                 }).ToList();
-            }                 
+            }
             else
             {
                 _allRecipes = new List<(string, string, string, int, int, string[], string, int)>();
@@ -1280,11 +1138,6 @@ namespace Pseuchef.UI
             RenderRecipeCards(_allRecipes);
         }
 
-        /// <summary>
-        /// Populates _recipeDetails with mock ingredient lists and steps.
-        /// [MOCK] TODO (Ritzy): Replace with IRecipeService.GetDetail(id)
-        /// TODO (Regina): steps and ingredient data can come from AI/API here
-        /// </summary>
         private void InitRecipeDetails()
         {
             _recipeDetails = new Dictionary<string, (
@@ -1411,36 +1264,21 @@ namespace Pseuchef.UI
                 ),
             };
         }
-
-        /// <summary>
-        /// Clears flpRecipeGrid and rebuilds cards from the supplied list.
-        /// Card width is computed to fill 3 columns with 12px gutters.
-        /// </summary>
-        /// <summary>
-        /// Clears flpRecipeGrid and rebuilds cards from the supplied list.
-        /// Card width is computed to fill exactly 3 columns with 12px gutters.
-        /// Horizontal scroll is suppressed — vertical only.
-        /// </summary>
         private void RenderRecipeCards(
             List<(string name, string duration, string servings,
                 int match, int total, string[] tags, string imageUrl, int recipeId)> recipes)
         {
             flpRecipeGrid.Controls.Clear();
+            flpRecipeGrid.Invalidate(true);
+            flpRecipeGrid.Update();
             flpRecipeGrid.Padding = new Padding(0, 8, 0, 8);
 
-            // ── Fix 1: Suppress horizontal scrollbar ──────────────────────────
-            // WinForms trick: set AutoScroll false, lock horizontal, re-enable.
-            // This keeps vertical scroll while completely hiding the horizontal one.
             flpRecipeGrid.AutoScroll = false;
             flpRecipeGrid.HorizontalScroll.Maximum = 0;
             flpRecipeGrid.HorizontalScroll.Enabled = false;
             flpRecipeGrid.HorizontalScroll.Visible = false;
             flpRecipeGrid.AutoScroll = true;
 
-            // ── Fix 2: Exact card width calculation ───────────────────────────
-            // Always subtract the vertical scrollbar width (even when not yet
-            // visible) so the 3rd card never nudges past the edge.
-            // Then subtract only the 2 gutters *between* the 3 cards (not after).
             int scrollbar = SystemInformation.VerticalScrollBarWidth; // typically 17px
             int rightPad = 10; // breathing room so shadow clears the scrollbar track
             int available = flpRecipeGrid.ClientSize.Width - scrollbar - rightPad;
@@ -1463,11 +1301,6 @@ namespace Pseuchef.UI
             UpdateRecipeCount(recipes.Count);
         }
 
-        /// <summary>
-        /// Builds a single Recipe Discovery card.
-        /// Identical visual language to dashboard cards but taller,
-        /// with a hard offset shadow painted by the parent FlowLayoutPanel.
-        /// </summary>
         private Panel CreateDiscoveryCard(string recipeName, string duration,
             string servings, int matchCount, int totalIngredients,
             int cardWidth, int cardHeight, string imageUrl = "", int recipeId = 0)
@@ -1518,6 +1351,8 @@ namespace Pseuchef.UI
                     }
                     ev.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     ev.Graphics.DrawImage(img, pb.ClientRectangle, srcRect, GraphicsUnit.Pixel);
+                    using var pen = new Pen(AppColors.Dark, 3);
+                    ev.Graphics.DrawRectangle(pen, 0, 0, pb.Width - 1, pb.Height - 1);
                 };
                 pb.LoadCompleted += (s, ev) => pb.Invalidate();
                 pb.LoadAsync(imageUrl);
@@ -1634,13 +1469,6 @@ namespace Pseuchef.UI
                 e.Graphics.DrawRectangle(pen, 1, 1, card.Width - 2, card.Height - 2);
             };
 
-            imgPlaceholder.Paint += (s, e) =>
-            {
-                using var pen = new Pen(AppColors.Dark, 3);
-                e.Graphics.DrawRectangle(pen, 0, 0, imgPlaceholder.Width - 1,
-                                                    imgPlaceholder.Height - 1);
-            };
-
             card.Controls.Add(lblName);
             card.Controls.Add(lblMeta);
             card.Controls.Add(lblMatch);
@@ -1649,14 +1477,6 @@ namespace Pseuchef.UI
             return card;
         }
 
-        /// <summary>
-        /// Filters _allRecipes by the active chip and search text,
-        /// then re-renders the card grid.
-        ///
-        /// Chip filter: "All" shows everything; others match against recipe tags.
-        /// Search filter: matches on recipe name (case-insensitive).
-        /// Both filters are AND'd together.
-        /// </summary>
         private void ApplyRecipeFilters()
         {
             if (_allRecipes == null) return;
@@ -1675,10 +1495,6 @@ namespace Pseuchef.UI
             RenderRecipeCards(filtered);
         }
 
-        /// <summary>
-        /// Repaints all chips to reflect the current _activeRecipeFilter.
-        /// Called whenever the user clicks a chip.
-        /// </summary>
         private void RefreshRecipeFilterChips()
         {
             foreach (Control c in pnlRecipeFilters.Controls)
@@ -1691,25 +1507,12 @@ namespace Pseuchef.UI
             }
         }
 
-        /// <summary>
-        /// Updates the recipe count label to match the current rendered list.
-        /// Called at the end of RenderRecipeCards().
-        /// </summary>
+
         private void UpdateRecipeCount(int count)
         {
             lblRecipeCount.Text = count == 1 ? "1 recipe" : $"{count} recipes";
         }
 
-        // ============================================================
-        // RECIPE DISCOVERY — Surprise Me
-        // ============================================================
-
-        /// <summary>
-        /// Picks a random recipe from the currently active filtered pool,
-        /// clears the grid, and renders it as a single featured card.
-        /// Entering surprise mode also updates the chip row to show a
-        /// "← Back" hint so the user knows how to return.
-        /// </summary>
         private void btnSurpriseMe_Click(object sender, EventArgs e)
         {
             // Pull from filtered pool if a chip/search is active,
@@ -1739,23 +1542,16 @@ namespace Pseuchef.UI
             RenderSurpriseCard(pick);
         }
 
-        /// <summary>
-        /// Renders a single recipe as a large centered "featured" card
-        /// with a surprise banner above it and a Back button below.
-        /// </summary>
-        /// <summary>
-        /// Renders the surprise pick as a horizontal featured card —
-        /// image panel on the left (~40%), recipe details on the right (~60%).
-        /// Header row has the surprise label left and Back button right.
-        /// </summary>
         private void RenderSurpriseCard(
     (string name, string duration, string servings,
      int match, int total, string[] tags, string imageUrl, int recipeId) recipe)
         {
             flpRecipeGrid.Controls.Clear();
+            flpRecipeGrid.Invalidate(true);
+            flpRecipeGrid.Update();
 
             int scrollbar = SystemInformation.VerticalScrollBarWidth;
-            int rightPad = 10;
+            int rightPad = 18;
             int fullWidth = flpRecipeGrid.ClientSize.Width - scrollbar - rightPad;
 
             // ── Row 0: Header bar (label left, back button right) ────────────
@@ -1932,7 +1728,6 @@ namespace Pseuchef.UI
                 FillColor = AppColors.Orange,
                 ForeColor = AppColors.OffWhite,
                 BorderRadius = 0
-                // TODO (Ritzy): wire to recipe detail view
             };
 
             btnCook.Click += (s, e) =>
@@ -1951,7 +1746,6 @@ namespace Pseuchef.UI
             pnlDetails.Controls.Add(lblMatch);
             pnlDetails.Controls.Add(btnCook);
 
-            // Card border + divider line between image and details
             card.Paint += (s, e) =>
             {
                 using var divPen = new Pen(AppColors.Dark, 1);
@@ -1965,18 +1759,140 @@ namespace Pseuchef.UI
             UpdateRecipeCount(1);
         }
 
-        /// <summary>
-        /// Exits surprise mode and restores the full filtered grid.
-        /// </summary>
         private void ExitSurpriseMode()
         {
             _surpriseMode = false;
-            ApplyRecipeFilters(); // re-renders with current chip + search state
+            ApplyRecipeFilters();
         }
 
         private void UpdateLastAdded(string itemName, string quantity)
         {
             lblLastAdded.Text = $"Last added: {itemName} · {quantity} · just now";
+        }
+
+        // ============================================================
+        // CHEFBOT AI — Auto-Generated UI & API Wiring
+        // ============================================================
+
+        private void BuildMissingChefbotUI()
+        {
+            // 1. Style the existing rtbChatDisplay from your designer
+            rtbChatDisplay.Location = new Point(20, 64);
+            rtbChatDisplay.Size = new Size(pnlChefbotAI.Width - 40, pnlChefbotAI.Height - 140);
+            rtbChatDisplay.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            rtbChatDisplay.ReadOnly = true;
+            rtbChatDisplay.BackColor = Color.White;
+            rtbChatDisplay.Font = new Font("Google Sans", 10);
+            rtbChatDisplay.BorderStyle = BorderStyle.None;
+
+            // 2. Spawn Clear Chat Button
+            aiBtnClear = new Guna.UI2.WinForms.Guna2Button
+            {
+                Text = "Clear Chat",
+                Size = new Size(120, 36),
+                Location = new Point(pnlChefbotAI.Width - 140, 16),
+                Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                FillColor = Color.White,
+                ForeColor = AppColors.Dark,
+                CustomBorderColor = AppColors.Dark,
+                CustomBorderThickness = new Padding(2),
+                BorderRadius = 0,
+                Font = new Font("Google Sans", 9, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+            aiBtnClear.Click += (s, e) =>
+            {
+                _chefbot.ClearHistory();
+                rtbChatDisplay.Clear();
+                AppendMessage("Chefbot", "Chat cleared! What are we cooking next?");
+            };
+
+            // 3. Spawn User Input Box
+            aiUserInput = new Guna.UI2.WinForms.Guna2TextBox
+            {
+                PlaceholderText = "Ask Chefbot anything about cooking...",
+                Location = new Point(20, pnlChefbotAI.Height - 60),
+                Size = new Size(pnlChefbotAI.Width - 140, 44),
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                BorderRadius = 0,
+                BorderColor = AppColors.Dark,
+                BorderThickness = 2,
+                FocusedState = { BorderColor = AppColors.Green },
+                Font = new Font("Google Sans", 10)
+            };
+            aiUserInput.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; e.Handled = true; SendChatMessage(); }
+            };
+
+            // 4. Spawn Send Button
+            aiBtnSend = new Guna.UI2.WinForms.Guna2Button
+            {
+                Text = "Send",
+                Location = new Point(pnlChefbotAI.Width - 110, pnlChefbotAI.Height - 60),
+                Size = new Size(90, 44),
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
+                FillColor = AppColors.Orange,
+                ForeColor = AppColors.OffWhite,
+                BorderRadius = 0,
+                Font = new Font("Google Sans", 10, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+            aiBtnSend.Click += (s, e) => SendChatMessage();
+
+            // 5. Add the missing controls to the panel
+            pnlChefbotAI.Controls.Add(aiBtnClear);
+            pnlChefbotAI.Controls.Add(aiUserInput);
+            pnlChefbotAI.Controls.Add(aiBtnSend);
+
+            // 6. Paint border around the chat display
+            pnlChefbotAI.Paint += (s, e) => {
+                using var pen = new Pen(AppColors.Dark, 2);
+                e.Graphics.DrawRectangle(pen, rtbChatDisplay.Left - 1, rtbChatDisplay.Top - 1, rtbChatDisplay.Width + 1, rtbChatDisplay.Height + 1);
+            };
+
+            AppendMessage("Chefbot", "Hello! I'm Chefbot. What are we cooking today?");
+        }
+
+        private async void SendChatMessage()
+        {
+            string userText = aiUserInput.Text.Trim();
+            if (string.IsNullOrEmpty(userText)) return;
+
+            string currentName = UserProfileSingleton.Instance.Username == "Chef" ? "You" : UserProfileSingleton.Instance.Username;
+            AppendMessage(currentName, userText);
+
+            aiUserInput.Clear();
+            aiBtnSend.Enabled = false;
+            aiUserInput.PlaceholderText = "Chefbot is thinking...";
+
+            // Send to Gemini!
+            string response = await _chefbot.SendMessageAsync(userText);
+
+            AppendMessage("Chefbot", response);
+
+            aiBtnSend.Enabled = true;
+            aiUserInput.PlaceholderText = "Ask Chefbot anything about cooking...";
+            aiUserInput.Focus();
+        }
+
+        private void AppendMessage(string sender, string message)
+        {
+            if (rtbChatDisplay.TextLength > 0) rtbChatDisplay.AppendText(Environment.NewLine + Environment.NewLine);
+
+            int startPos = rtbChatDisplay.TextLength;
+            rtbChatDisplay.AppendText($"{sender}:\n");
+            rtbChatDisplay.Select(startPos, sender.Length + 1);
+            rtbChatDisplay.SelectionFont = new Font("Google Sans", 10, FontStyle.Bold);
+            rtbChatDisplay.SelectionColor = sender == "Chefbot" ? AppColors.Orange : AppColors.Dark;
+
+            rtbChatDisplay.Select(rtbChatDisplay.TextLength, 0);
+            rtbChatDisplay.SelectionFont = new Font("Google Sans", 10, FontStyle.Regular);
+            rtbChatDisplay.SelectionColor = AppColors.Dark;
+            rtbChatDisplay.AppendText(message);
+
+            rtbChatDisplay.SelectionStart = rtbChatDisplay.TextLength;
+            rtbChatDisplay.ScrollToCaret();
         }
         private void txtPantrySearch_TextChanged(object sender, EventArgs e)
         {
